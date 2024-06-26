@@ -5,3 +5,4 @@ vim.cmd("set shiftwidth=4")
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.o.statuscolumn = "%s %l %r "
+vim.o.clipboard = 'unnamedplus'
