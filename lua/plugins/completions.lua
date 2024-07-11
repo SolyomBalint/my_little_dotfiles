@@ -3,6 +3,9 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 	},
 	{
+		"onsails/lspkind.nvim",
+	},
+	{
 		"L3MON4D3/LuaSnip",
 		dependencies = {
 			"saadparwaiz1/cmp_luasnip",
@@ -13,9 +16,20 @@ return {
 		"hrsh7th/nvim-cmp",
 		config = function()
 			local cmp = require("cmp")
+			local lspkind = require("lspkind")
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = "symbol_text",
+						maxwidth = 50,
+						ellipsis_char = "...",
+						before = function(_, vim_item)
+							return vim_item
+						end,
+					}),
+				},
 				snippet = {
 					expand = function(args) -- which snippet engine should be used
 						require("luasnip").lsp_expand(args.body)
