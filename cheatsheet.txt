@@ -1,0 +1,76 @@
+<C-S-N> harpoon next
+<C-S-P> harpoon prev
+<C-h/t/n/s> harpoon select(1/2/3/4)
+<C-e> harpoon menu toggle
+<leader>a harpoon add
+
+<C-p> telescope file find
+<leader>fg telescope ripgrep
+<M-g>c telescope git commits
+<M-g>b telescope branches
+<M-g>s telescope status
+
+- open oil
+
+<C-t>n test nearest to cursor
+<C-t>f test file
+<C-t>l test last
+<C-t>v test visit
+<C-t>s test suit
+
+I hover
+gd go to definition
+<leader>ca code actions
+<leader>wa add workspace folder
+gD go to declaration
+gi go to implementation
+rn rename
+
+<leader>ic incoming calls
+<leader>ot outgoing calls
+<leader>rf references
+<leader>td type definitions
+<leader>ds document symbols
+<leader>tp type hierarchy
+
+    Old text                    Command         New text
+--------------------------------------------------------------------------------
+    surr*ound_words             ysiw)           (surround_words)
+    *make strings               ys$"            "make strings"
+    [delete ar*ound me!]        ds]             delete around me!
+    remove <b>HTML t*ags</b>    dst             remove HTML tags
+    'change quot*es'            cs'"            "change quotes"
+    <b>or tag* types</b>        csth1<CR>       <h1>or tag types</h1>
+    delete(functi*on calls)     dsf             function calls
+
+
+Normal:
+`gcc` - Toggles the current line using linewise comment
+`gbc` - Toggles the current line using blockwise comment
+`[count]gcc` - Toggles the number of line given as a prefix-count using linewise
+`[count]gbc` - Toggles the number of line given as a prefix-count using blockwise
+`gc[count]{motion}` - (Op-pending) Toggles the region using linewise comment
+`gb[count]{motion}` - (Op-pending) Toggles the region using blockwise comment
+
+Visual:
+`gc` - Toggles the region using linewise comment
+`gb` - Toggles the region using blockwise comment
+
+ keymaps = {
+    ["g?"] = "actions.show_help",
+    ["<CR>"] = "actions.select",
+    ["<C-s>"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
+    ["<C-h>"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
+    ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
+    ["<C-p>"] = "actions.preview",
+    ["<C-c>"] = "actions.close",
+    ["<C-l>"] = "actions.refresh",
+    ["-"] = "actions.parent",
+    ["_"] = "actions.open_cwd",
+    ["`"] = "actions.cd",
+    ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory" },
+    ["gs"] = "actions.change_sort",
+    ["gx"] = "actions.open_external",
+    ["g."] = "actions.toggle_hidden",
+    ["g\\"] = "actions.toggle_trash",
+  },

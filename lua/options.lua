@@ -16,9 +16,3 @@ vim.o.statuscolumn = "%s %l %r "
 -- Setting the system clipboard
 vim.o.clipboard = "unnamedplus"
 vim.g.mapleader = " "
-
--- keymaps for tmux integration
-vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
-vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
-vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
-vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
