@@ -1,0 +1,7 @@
+https://github.com/kylechui/nvim-surround
+https://github.com/numToStr/Comment.nvim
+https://github.com/dhruvasagar/vim-open-url
+https://github.com/easymotion/vim-easymotion
+https://github.com/rhysd/conflict-marker.vim
+https://github.com/jesseduffield/lazygit
+https://github.com/sindrets/diffview.nvim?tab=readme-ov-file
