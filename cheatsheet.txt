@@ -1,3 +1,37 @@
+d/e w/e/$ delete delete/change word/word/till the line
+
+0 jump to the star of the line
+
+d/c number w/e/$ delete/change number times word/word/till the line
+number dd delete number lines
+
+u undo
+U undo all in the line
+<C-r> redo
+
+r<key> replace char
+ce delete word from cursor
+
+gg top of the file
+G bottom of the file
+number G jump to
+<C-g> current pos
+
+% <on parenthesis> jump to other par
+
+:s/<old>/<new>/g replace, g if replace all in line
+:<from>,<to>s/old/new/g replace all between
+:%s/old/new/g replace all
+:%s/old/new/gc replace all with prompt one by one
+
+:! <cmd> external shell command
+
+
+//?<pattern> enter search from top/bottom
+n/N in search forward/backward
+<C-o> go back to startingpos top
+<C-i> go back to startingpos bottom
+
 <C-S-N> harpoon next
 <C-S-P> harpoon prev
 <C-h/t/n/s> harpoon select(1/2/3/4)
