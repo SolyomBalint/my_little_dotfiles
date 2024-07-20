@@ -2,6 +2,8 @@ d/e w/e/$ delete delete/change word/word/till the line
 
 0 jump to the star of the line
 
+<C-w>v :vsplit
+
 d/c number w/e/$ delete/change number times word/word/till the line
 number dd delete number lines
 
