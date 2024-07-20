@@ -6,6 +6,7 @@ local on_attach = function()
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { noremap = true })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { noremap = true })
     vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { noremap = true })
+    vim.keymap.set("n", "<leader>of", vim.diagnostic.open_float, { noremap = true })
 
     vim.keymap.set("n", "<leader>ic", ":Telescope lsp_incoming_calls<CR>", { noremap = true })
     vim.keymap.set("n", "<leader>ot", ":Telescope lsp_outgoing_calls<CR>", { noremap = true })
