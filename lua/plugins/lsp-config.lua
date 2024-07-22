@@ -62,8 +62,8 @@ return {
                 root_dir = require("lspconfig").util.root_pattern("src"),
                 capabilities = capabilities,
                 on_attach = function()
-                    require("clangd_extensions.inlay_hints").setup_autocmd()
-                    require("clangd_extensions.inlay_hints").set_inlay_hints()
+                    -- require("clangd_extensions.inlay_hints").setup_autocmd()
+                    -- require("clangd_extensions.inlay_hints").set_inlay_hints()
                     on_attach()
                 end,
             })
