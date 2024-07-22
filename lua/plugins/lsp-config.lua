@@ -14,6 +14,10 @@ local on_attach = function()
     vim.keymap.set("n", "<leader>td", ":Telescope lsp_type_definitions<CR>", { noremap = true })
     vim.keymap.set("n", "<leader>ds", ":Telescope lsp_document_symbols<CR>", { noremap = true })
     vim.keymap.set("n", "<leader>tp", vim.lsp.buf.typehierarchy, { noremap = true })
+
+    if vim.lsp.client.name == 'clangd' then
+         vim.lsp.client.server_capabilities.semanticTokensProvider = nil
+    end
 end
 
 
