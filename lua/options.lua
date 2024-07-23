@@ -16,3 +16,6 @@ vim.o.statuscolumn = "%s %l %r "
 -- Setting the system clipboard
 vim.o.clipboard = "unnamedplus"
 vim.g.mapleader = " "
+
+-- setting line length limit
+vim.o.textwidth = 120

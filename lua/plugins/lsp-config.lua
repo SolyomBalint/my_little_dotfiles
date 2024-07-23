@@ -15,39 +15,40 @@ local on_attach = function()
     vim.keymap.set("n", "<leader>ds", ":Telescope lsp_document_symbols<CR>", { noremap = true })
     vim.keymap.set("n", "<leader>tp", vim.lsp.buf.typehierarchy, { noremap = true })
 
-    if vim.lsp.client.name == 'clangd' then
-         vim.lsp.client.server_capabilities.semanticTokensProvider = nil
+    if vim.lsp.client.name == "clangd" then
+        vim.lsp.client.server_capabilities.semanticTokensProvider = nil
     end
 end
 
-
 return {
-	{
-		"williamboman/mason.nvim",
-		lazy = false,
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		lazy = false,
-		opts = {
-			auto_install = true,
-			ensure_installed = { "clangd", "lua_ls", "cmake", "jdtls" },
-		},
-	},
-	{
-		"neovim/nvim-lspconfig",
-		lazy = false,
-		config = function() -- To avoid later key conflicts use auto_cmd
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
+    {
+        "williamboman/mason.nvim",
+        lazy = false,
+        config = function()
+            require("mason").setup()
+        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        lazy = false,
+        config = function()
+            require("mason-lspconfig").setup({
+                auto_install = true,
+                ensure_installed = { "clangd", "lua_ls", "cmake", "jdtls", "bashls" },
+            })
+        end,
+    },
+    {
+        "neovim/nvim-lspconfig",
+        lazy = false,
+        config = function() -- To avoid later key conflicts use auto_cmd
+            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local lspconfig = require("lspconfig")
 
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
+            lspconfig.lua_ls.setup({
+                capabilities = capabilities,
                 on_attach = on_attach,
-			})
+            })
             require("lspconfig").clangd.setup({
                 cmd = {
                     "clangd",
@@ -75,6 +76,10 @@ return {
                 capabilities = capabilities,
                 on_attach = on_attach,
             })
-		end,
-	},
+            lspconfig.bashls.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+            })
+        end,
+    },
 }

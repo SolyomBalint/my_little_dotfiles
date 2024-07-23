@@ -2,6 +2,7 @@ d/e w/e/$ delete delete/change word/word/till the line
 
 0 jump to the star of the line
 
+viw mark whole world
 <C-w>v :vsplit
 
 d/c number w/e/$ delete/change number times word/word/till the line
@@ -41,6 +42,7 @@ n/N in search forward/backward
 <leader>a harpoon add
 
 <C-p> telescope file find
+<C-d>/<C-u> scroll in privew
 <leader>fg telescope ripgrep
 <M-g>c telescope git commits
 <M-g>b telescope branches

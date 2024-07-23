@@ -1,0 +1,10 @@
+1. Gather dependencies, maybe make an install script, for know known deps:
+    - node > 17
+    - ripgrep
+    - for java to a work a lot of things
+    - npm
+    - pip
+    - fd
+2. Python setup
+3. Markdown setup
+4. hardcore git setup
