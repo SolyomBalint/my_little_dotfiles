@@ -1,9 +1,15 @@
 d/e w/e/$ delete delete/change word/word/till the line
 
+
+<shift>v highlight while line
+<ctrl>v highlight block
 0 jump to the star of the line
 
 viw mark whole world
 <C-w>v :vsplit
+
+]s [s next/previous spellchecking error
+z= fix spell error
 
 d/c number w/e/$ delete/change number times word/word/till the line
 number dd delete number lines
