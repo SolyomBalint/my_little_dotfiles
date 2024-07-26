@@ -14,10 +14,6 @@ local on_attach = function()
 	vim.keymap.set("n", "<leader>td", ":Telescope lsp_type_definitions<CR>", { noremap = true })
 	vim.keymap.set("n", "<leader>ds", ":Telescope lsp_document_symbols<CR>", { noremap = true })
 	vim.keymap.set("n", "<leader>tp", vim.lsp.buf.typehierarchy, { noremap = true })
-
-	if vim.lsp.client.name == "clangd" then
-		vim.lsp.client.server_capabilities.semanticTokensProvider = nil
-	end
 end
 
 return {
@@ -34,57 +30,48 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				auto_install = true,
-				ensure_installed = { "clangd", "lua_ls", "cmake", "jdtls", "bashls", "marksman" },
+				ensure_installed = { "clangd", "lua_ls", "cmake", "bashls", "marksman" },
+			})
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+			require("mason-lspconfig").setup_handlers({
+				function(server_name)
+					require("lspconfig")[server_name].setup({
+						capabilities = capabilities,
+						on_attach = on_attach,
+					})
+				end,
+				["clangd"] = function()
+					require("lspconfig").clangd.setup({
+						cmd = {
+							"clangd",
+							"-j=4",
+							"--offset-encoding=utf-16",
+							"--pretty",
+							"--inlay-hints",
+							"--background-index",
+							"--pch-storage=memory",
+							"--all-scopes-completion",
+							"--header-insertion=never",
+							"--function-arg-placeholders",
+							"--completion-style=detailed",
+							"--header-insertion-decorators",
+						},
+						filetypes = { "c", "cpp" },
+						root_dir = require("lspconfig").util.root_pattern("src"),
+						capabilities = capabilities,
+						on_attach = function()
+							-- require("clangd_extensions.inlay_hints").setup_autocmd()
+							-- require("clangd_extensions.inlay_hints").set_inlay_hints()
+							on_attach()
+						end,
+					})
+				end,
 			})
 		end,
 	},
 	{
 		"neovim/nvim-lspconfig",
 		lazy = false,
-		config = function() -- To avoid later key conflicts use auto_cmd
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
-
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-			})
-			require("lspconfig").clangd.setup({
-				cmd = {
-					"clangd",
-					"-j=4",
-                    "--offset-encoding=utf-16",
-					"--pretty",
-					"--inlay-hints",
-					"--background-index",
-					"--pch-storage=memory",
-					"--all-scopes-completion",
-					"--header-insertion=never",
-					"--function-arg-placeholders",
-					"--completion-style=detailed",
-					"--header-insertion-decorators",
-				},
-				filetypes = { "c", "cpp" },
-				root_dir = require("lspconfig").util.root_pattern("src"),
-				capabilities = capabilities,
-				on_attach = function()
-					-- require("clangd_extensions.inlay_hints").setup_autocmd()
-					-- require("clangd_extensions.inlay_hints").set_inlay_hints()
-					on_attach()
-				end,
-			})
-			lspconfig.cmake.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-			})
-			lspconfig.bashls.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-			})
-			lspconfig.marksman.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-			})
-		end,
 	},
 }
