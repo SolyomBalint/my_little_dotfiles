@@ -30,7 +30,7 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				auto_install = true,
-				ensure_installed = { "clangd", "lua_ls", "cmake", "bashls", "marksman" },
+				ensure_installed = { "clangd", "lua_ls", "cmake", "bashls", "marksman", "pyright" },
 			})
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
