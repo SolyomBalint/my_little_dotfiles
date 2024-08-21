@@ -1,4 +1,23 @@
---https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation this is where I can find debugger installiations
+-- These function may help later
+local function add_debug_keymaps()
+    local dap = require("dap")
+    vim.keymap.set("n", "<leader>dr", dap.restart, { noremap = true })
+    vim.keymap.set("n", "<leader>dt", dap.terminate, { noremap = true })
+    vim.keymap.set("n", "<F11>", dap.step_into, { noremap = true })
+    vim.keymap.set("n", "<F10>", dap.step_over, { noremap = true })
+    vim.keymap.set("n", "<F9>", dap.step_out, { noremap = true })
+    vim.keymap.set("n", "<leader>dc", dap.run_to_cursor, { noremap = true })
+end
+
+local function remove_debug_keymaps()
+    vim.keymap.del("n", "<leader>dr")
+    vim.keymap.del("n", "<leader>dt")
+    vim.keymap.del("n", "<F11>")
+    vim.keymap.del("n", "<F10>")
+    vim.keymap.del("n", "<F9>")
+    vim.keymap.del("n", "<leader>dc")
+end
+
 return {
     {
         "rcarriga/nvim-dap-ui",
@@ -14,6 +33,7 @@ return {
             "nvim-neotest/nvim-nio",
         },
         config = function()
+            -- Dap ui subscribes to dap events
             local dap, dapui = require("dap"), require("dapui")
             dap.listeners.before.attach.dapui_config = function()
                 dapui.open()
@@ -28,11 +48,14 @@ return {
                 dapui.close()
             end
 
+            -- gdb adapter setup
             dap.adapters.gdb = {
                 type = "executable",
                 command = "gdb",
                 args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
             }
+
+            --C/C++ native debugging setup
             dap.configurations.cpp = {
                 {
                     name = "Launch",
@@ -71,9 +94,15 @@ return {
 
             dap.configurations.c = dap.configurations.cpp
             vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, { noremap = true })
-            vim.keymap.set("n", "<Leader>dc", dap.continue, { noremap = true })
-            vim.keymap.set("n", "<leader>di", dap.step_into, { noremap = true })
-            vim.keymap.set("n", "<leader>do", dap.step_over, { noremap = true })
+            vim.keymap.set("n", "<leader>dl", dap.run_last, { noremap = true })
+            vim.keymap.set("n", "<leader>dlb", dap.list_breakpoints, { noremap = true })
+            vim.keymap.set("n", "<F5>", dap.continue, { noremap = true })
+            vim.keymap.set("n", "<leader>dr", dap.restart, { noremap = true })
+            vim.keymap.set("n", "<leader>dt", dap.terminate, { noremap = true })
+            vim.keymap.set("n", "<F11>", dap.step_into, { noremap = true })
+            vim.keymap.set("n", "<F10>", dap.step_over, { noremap = true })
+            vim.keymap.set("n", "<F9>", dap.step_out, { noremap = true })
+            vim.keymap.set("n", "<leader>dc", dap.run_to_cursor, { noremap = true })
         end,
     },
 }
