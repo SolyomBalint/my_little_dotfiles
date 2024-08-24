@@ -23,5 +23,6 @@ vim.o.textwidth = 120
 -- spell checking
 vim.opt.spelllang = 'en_gb'
 vim.opt.spell = true
+
 -- adding colour columns
 vim.o.colorcolumn = "80,120"

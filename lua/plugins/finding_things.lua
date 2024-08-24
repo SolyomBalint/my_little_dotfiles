@@ -31,10 +31,10 @@ return {
             end, {})
 
             vim.keymap.set("n", "<C-p>c", builtin.current_buffer_fuzzy_find, {})
-            vim.keymap.set("n", "<M-g>c", builtin.git_commits, {})
-            vim.keymap.set("n", "<M-g>b", builtin.git_branches, {})
-            vim.keymap.set("n", "<M-g>s", builtin.git_status, {})
-            vim.keymap.set("n", "<M-g>st", builtin.git_stash, {})
+            vim.keymap.set("n", ";gc", builtin.git_commits, {})
+            vim.keymap.set("n", ";gb", builtin.git_branches, {})
+            vim.keymap.set("n", ";gs", builtin.git_status, {})
+            vim.keymap.set("n", ";gst", builtin.git_stash, {})
         end,
     },
     {
