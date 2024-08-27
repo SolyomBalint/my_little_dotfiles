@@ -1,98 +1,13 @@
 return {
     {
-        "nvim-telescope/telescope.nvim",
-        tag = "0.1.8",
-        dependencies = { "nvim-lua/plenary.nvim" },
-        config = function()
-            local builtin = require("telescope.builtin")
-            local utils = require("telescope.utils")
-
-            vim.keymap.set("n", "<C-p>a", builtin.find_files, {})
-            vim.keymap.set("n", "<C-p>r", function()
-                builtin.find_files({ cwd = utils.buffer_dir() })
-            end, {})
-
-            vim.keymap.set("n", "<leader>fg", function()
-                builtin.live_grep({
-                    cwd = vim.fn.input("Path to basedir: ", vim.fn.getcwd() .. "/", "file"),
-                    additional_args = {
-                        "-u",
-                        "--follow",
-                        "--hidden",
-                        "--with-filename",
-                        "--line-number",
-                        "--column",
-                        "--smart-case",
-                        "--glob=!**/.git/*",
-                        "--glob=!**/build/*",
-                        "--glob=!**/.idea/*",
-                    },
-                })
-            end, {})
-
-            vim.keymap.set("n", "<C-p>c", builtin.current_buffer_fuzzy_find, {})
-            vim.keymap.set("n", ";gc", builtin.git_commits, {})
-            vim.keymap.set("n", ";gb", builtin.git_branches, {})
-            vim.keymap.set("n", ";gs", builtin.git_status, {})
-            vim.keymap.set("n", ";gst", builtin.git_stash, {})
-        end,
-    },
-    {
-        "nvim-telescope/telescope-ui-select.nvim",
-        config = function()
-            require("telescope").setup({
-                defaults = {
-                    file_ignore_patterns = {
-                        "build",
-                    },
-                },
-                pickers = {
-                    find_files = {
-                        find_command = {
-                            "fdfind",
-                            "--follow",
-                            "--no-ignore-vcs",
-                        },
-                    },
-                },
-                extensions = {
-                    ["ui-select"] = {
-                        require("telescope.themes").get_dropdown({}),
-                    },
-                },
-            })
-            require("telescope").load_extension("ui-select")
-        end,
-    },
-    {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
-        dependencies = { "nvim-lua/plenary.nvim", "telescope.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             local harpoon = require("harpoon")
             harpoon:setup()
-
-            local conf = require("telescope.config").values
-            local function toggle_telescope(harpoon_files)
-                local file_paths = {}
-                for _, item in ipairs(harpoon_files.items) do
-                    table.insert(file_paths, item.value)
-                end
-
-                require("telescope.pickers")
-                    .new({}, {
-                        prompt_title = "Harpoon",
-                        finder = require("telescope.finders").new_table({
-                            results = file_paths,
-                        }),
-                        previewer = conf.file_previewer({}),
-                        sorter = conf.generic_sorter({}),
-                    })
-                    :find()
-            end
-
             vim.keymap.set("n", "<C-e>", function()
-                toggle_telescope(harpoon:list())
+                harpoon:list()
             end, { desc = "Open harpoon window" })
 
             vim.keymap.set("n", "<leader>a", function()
@@ -121,6 +36,45 @@ return {
             vim.keymap.set("n", "<C-S-N>", function()
                 harpoon:list():next()
             end)
+        end,
+    },
+    { "junegunn/fzf", build = "./install --bin" },
+    {
+        "ibhagwan/fzf-lua",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            local fzf = require("fzf-lua")
+
+            fzf.setup({})
+            local rg_cmd = "rg -u --follow --hidden --with-filename --line-number --column --smart-case"
+                .. " --glob=!**/.git/* --glob=!**/build/* --glob=!**/.idea/*"
+            vim.keymap.set("n", "<C-p>a", function()
+                fzf.files({
+                    cwd = vim.fn.input("Path to basedir: ", vim.fn.getcwd() .. "/", "file"),
+                })
+            end, { noremap = true })
+            vim.keymap.set("n", "<leader>lg", function()
+                fzf.live_grep_glob({
+                    cwd = vim.fn.input("Path to basedir: ", vim.fn.getcwd() .. "/", "file"),
+                    cmd = rg_cmd,
+                })
+            end, { noremap = true })
+            vim.keymap.set("v", "<C-p>v", function()
+                fzf.grep_visual({
+                    cwd = vim.fn.input("Path to basedir: ", vim.fn.getcwd() .. "/", "file"),
+                    cmd = rg_cmd,
+                })
+            end, { noremap = true })
+            vim.keymap.set("n", "<C-p>rl", fzf.live_grep_resume, { noremap = true })
+            vim.keymap.set("n", "<C-p>c", fzf.lgrep_curbuf, { noremap = true })
+            vim.keymap.set("n", "<C-p>sh", fzf.search_history, { noremap = true })
+            vim.keymap.set("n", "<C-p>cmd", fzf.command_history, { noremap = true })
+            vim.keymap.set("n", "<C-p>od", fzf.oldfiles, { noremap = true })
+            vim.keymap.set("n", "<leader>dlb", fzf.dap_breakpoints, { noremap = true })
+            vim.keymap.set("n", ";gc", fzf.git_commits, {})
+            vim.keymap.set("n", ";gb", fzf.git_branches, {})
+            vim.keymap.set("n", ";gs", fzf.git_status, {})
+            vim.keymap.set("n", ";gst", fzf.git_stash, {})
         end,
     },
 }
