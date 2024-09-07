@@ -51,7 +51,7 @@ return {
             vim.keymap.set("n", "<C-p>a", function()
                 fzf.files({
                     cwd = vim.fn.input("Path to basedir: ", vim.fn.getcwd() .. "/", "file"),
-                    cmd = "fd --follow --no-ignore-vcs -E !**/build/* -E build"
+                    cmd = "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build"
                 })
             end, { noremap = true })
             vim.keymap.set("n", "<leader>lg", function()

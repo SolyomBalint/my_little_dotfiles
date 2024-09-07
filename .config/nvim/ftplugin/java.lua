@@ -35,7 +35,7 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 local bundles = {
     vim.fn.glob(
         home_dir
-        .. "/java-debug/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.53.0.jar",
+        .. "/java_lsp_utilities/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.53.0.jar",
         1
     ),
 }
@@ -43,7 +43,7 @@ vim.list_extend(
     bundles,
     vim.split(
         vim.fn.glob(
-            home_dir .. "/java-test/vscode-java-test/server/org.eclipse.jdt.junit5.runtime_1.1.100.v20220907-0450.jar",
+            home_dir .. "/java_lsp_utilities/vscode-java-test/server/org.eclipse.jdt.junit5.runtime_1.1.300.v20231214-1952.jar",
             1
         ),
         "\n"
@@ -55,7 +55,7 @@ local config = {
     on_attach = on_attach,
     cmd = {
 
-        "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
+        "/usr/bin/java",
         "-Declipse.application=org.eclipse.jdt.ls.core.id1",
         "-Dosgi.bundles.defaultStartLevel=4",
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
@@ -69,10 +69,10 @@ local config = {
         "java.base/java.lang=ALL-UNNAMED",
 
         "-jar",
-        home_dir .. "/eclipse-jdtls/plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
+        home_dir .. "/java_lsp_utilities/eclipse_language_server/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar",
 
         "-configuration",
-        home_dir .. "/eclipse-jdtls/config_linux",
+        home_dir .. "/java_lsp_utilities/eclipse_language_server/config_linux",
 
         "-data",
         workspace_dir,
