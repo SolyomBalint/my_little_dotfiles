@@ -61,7 +61,7 @@ local config = {
         "-Declipse.product=org.eclipse.jdt.ls.core.product",
         "-Dlog.protocol=true",
         "-Dlog.level=ALL",
-        "-Xmx1g",
+        "-Xmx4g",
         "--add-modules=ALL-SYSTEM",
         "--add-opens",
         "java.base/java.util=ALL-UNNAMED",
@@ -69,10 +69,10 @@ local config = {
         "java.base/java.lang=ALL-UNNAMED",
 
         "-jar",
-        home_dir .. "/java_lsp_utilities/eclipse_language_server/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar",
+        home_dir .. "/java_lsp_utilities/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/plugins/org.eclipse.equinox.launcher_1.6.900.v20240613-2009.jar",
 
         "-configuration",
-        home_dir .. "/java_lsp_utilities/eclipse_language_server/config_linux",
+        home_dir .. "/java_lsp_utilities/eclipse.jdt.ls/org.eclipse.jdt.ls.product/target/repository/config_linux",
 
         "-data",
         workspace_dir,
