@@ -24,7 +24,7 @@ return {
         dependencies = {
             { "hrsh7th/cmp-nvim-lsp" },
             { "L3MON4D3/LuaSnip" },
-            { "hrsh7th/cmp-buffer",  lazy = true },
+            { "hrsh7th/cmp-buffer" },
             {
                 "uga-rosa/cmp-dictionary",
                 lazy = true,
@@ -35,10 +35,10 @@ return {
                     })
                 end
             },
-            { "f3fora/cmp-spell",                     lazy = true },
-            { "hrsh7th/cmp-nvim-lsp-document-symbol", lazy = true },
-            { "hrsh7th/cmp-nvim-lsp-signature-help",  lazy = true },
-            { "FelipeLema/cmp-async-path",            lazy = true },
+            { "f3fora/cmp-spell" },
+            { "hrsh7th/cmp-nvim-lsp-document-symbol" },
+            { "hrsh7th/cmp-nvim-lsp-signature-help" },
+            { "FelipeLema/cmp-async-path" },
             {
                 "lukas-reineke/cmp-rg",
                 lazy = true,
@@ -46,10 +46,10 @@ return {
                     return vim.fn.executable("rg") == 1
                 end,
             },
-            { "hrsh7th/cmp-cmdline",  lazy = true },
-            { "rcarriga/cmp-dap",     lazy = true },
-            { "hrsh7th/cmp-nvim-lua", lazy = true },
-            { "hrsh7th/cmp-calc",     lazy = true },
+            { "hrsh7th/cmp-cmdline" },
+            { "rcarriga/cmp-dap" },
+            { "hrsh7th/cmp-nvim-lua" },
+            { "hrsh7th/cmp-calc" },
         },
         config = function()
             local cmp = require("cmp")
