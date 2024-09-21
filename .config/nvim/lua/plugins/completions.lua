@@ -51,7 +51,7 @@ return {
             { "hrsh7th/cmp-nvim-lua" },
             { "hrsh7th/cmp-calc" },
             { "hrsh7th/cmp-path" },
-            { "dmitmel/cmp-cmdline-history" }
+            { "dmitmel/cmp-cmdline-history" },
         },
         config = function()
             local cmp = require("cmp")
@@ -183,26 +183,34 @@ return {
             })
             cmp.setup.cmdline(":", {
                 mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
+                sources = cmp.config.sources(
                     {
-                        name = "path",
-                        option = {
-                            -- show_hidden_files_by_default = true,
-                            trailing_slash = true
+                        {
+                            name = "path",
+                            option = {
+                                trailing_slash = true
+                            }
+                        },
+                    },
+                    {
+                        {
+                            name = "async_path",
+                            option = {
+                                show_hidden_files_by_default = true,
+                                trailing_slash = true
+                            }
+
                         }
                     },
-                }, {
                     {
-                        name = "cmdline",
-                        -- option = {
-                        --     ignore_cmds = { 'Man', '!' }
-                        -- }
-                    },
-                }, {
-                    buffer_source,
-                }, {
-                    { name = "cmdline_history" },
-                }),
+                        {
+                            name = "cmdline",
+                        },
+                    }, {
+                        buffer_source,
+                    }, {
+                        { name = "cmdline_history" },
+                    }),
             })
             cmp.setup.cmdline("/", {
                 mapping = cmp.mapping.preset.cmdline(),
@@ -211,11 +219,21 @@ return {
                         {
                             name = "path",
                             option = {
-                                -- show_hidden_files_by_default = true,
                                 trailing_slash = true
                             }
                         },
                     },
+                    {
+                        {
+                            name = "async_path",
+                            option = {
+                                show_hidden_files_by_default = true,
+                                trailing_slash = true
+                            }
+
+                        }
+                    },
+
                     { { name = 'nvim_lsp_document_symbol' } },
                     {
                         buffer_source,
@@ -233,24 +251,33 @@ return {
             })
             cmp.setup.cmdline("@", {
                 mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
+                sources = cmp.config.sources(
                     {
-                        name = "path",
-                        option = {
-                            -- show_hidden_files_by_default = true,
-                            trailing_slash = true
+                        {
+                            name = "path",
+                            option = {
+                                trailing_slash = true
+                            }
+                        },
+                    },
+                    {
+                        {
+                            name = "async_path",
+                            option = {
+                                show_hidden_files_by_default = true,
+                                trailing_slash = true
+                            }
+
                         }
                     },
-                }, {
                     {
-                        name = "cmdline",
-                        -- option = {
-                        --     ignore_cmds = { 'Man', '!' }
-                        -- }
-                    },
-                }, {
-                    buffer_source,
-                }),
+                        {
+                            name = "cmdline",
+                        },
+                    }, {
+                        buffer_source,
+                    }
+                ),
             })
         end,
     },
