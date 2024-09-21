@@ -72,6 +72,7 @@ return {
             vim.keymap.set("n", "<C-p>cmd", fzf.command_history, { noremap = true })
             vim.keymap.set("n", "<C-p>od", fzf.oldfiles, { noremap = true })
             vim.keymap.set("n", "<leader>dlb", fzf.dap_breakpoints, { noremap = true })
+            -- TODO think this through
             vim.keymap.set("n", ";gc", fzf.git_commits, {})
             vim.keymap.set("n", ";gb", fzf.git_branches, {})
             vim.keymap.set("n", ";gs", fzf.git_status, {})
