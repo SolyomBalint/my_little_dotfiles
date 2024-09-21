@@ -50,7 +50,8 @@ return {
             { "rcarriga/cmp-dap" },
             { "hrsh7th/cmp-nvim-lua" },
             { "hrsh7th/cmp-calc" },
-            { "hrsh7th/cmp-path" }
+            { "hrsh7th/cmp-path" },
+            { "dmitmel/cmp-cmdline-history" }
         },
         config = function()
             local cmp = require("cmp")
