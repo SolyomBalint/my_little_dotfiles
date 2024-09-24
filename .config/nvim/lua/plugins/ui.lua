@@ -12,7 +12,16 @@ return {
             -- OPTIONAL:
             --   `nvim-notify` is only needed, if you want to use the notification view.
             --   If not available, we use `mini` as the fallback
-            "rcarriga/nvim-notify",
+            { "rcarriga/nvim-notify",
+                config = function ()
+                    require("notify").setup({
+                        render = "wrapped-compact",
+                        max_width = function ()
+                            return math.floor(vim.api.nvim_win_get_width(0) / 3)
+                        end
+                    })
+                end
+            },
         },
         config = function()
             require("noice").setup({
