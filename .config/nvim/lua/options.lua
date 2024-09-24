@@ -26,3 +26,6 @@ vim.opt.spell = true
 
 -- adding colour columns
 vim.o.colorcolumn = "80,120"
+
+-- Setting undo persistency
+vim.opt.undofile = true
