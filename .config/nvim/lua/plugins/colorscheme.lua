@@ -1,3 +1,55 @@
+-- these two function has to be called after coloscheme is set up
+local function turn_off_semantics_highlighting()
+    for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+        vim.api.nvim_set_hl(0, group, {})
+    end
+end
+
+local function fix_semantic_highlighting()
+    local links = {
+        ['@lsp.type.namespace'] = '@namespace',
+        ['@lsp.type.type'] = '@type',
+        ['@lsp.type.class'] = '@type',
+        ['@lsp.type.enum'] = '@type',
+        ['@lsp.type.interface'] = '@type',
+        ['@lsp.type.struct'] = '@structure',
+        ['@lsp.type.parameter'] = '@parameter',
+        ['@lsp.type.variable'] = '@variable',
+        ['@lsp.type.property'] = '@property',
+        ['@lsp.type.enumMember'] = '@constant',
+        ['@lsp.type.function'] = '@function',
+        ['@lsp.type.method'] = '@method',
+        ['@lsp.type.macro'] = '@macro',
+        ['@lsp.type.decorator'] = '@function',
+    }
+    for newgroup, oldgroup in pairs(links) do
+        vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
+    end
+end
+
+local semantics_enabled = true
+
+local function toggle_semantics_highlighting()
+    if semantics_enabled then
+        -- Turn off semantic highlighting
+        for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+            vim.api.nvim_set_hl(0, group, {})
+        end
+    else
+        -- -- Re-enable semantic highlighting
+        for _, client in pairs(vim.lsp.get_clients()) do
+            vim.lsp.buf.attach(client)
+        end
+        -- Optional: reload color scheme to fully restore all highlights
+        vim.cmd('colorscheme ' .. vim.g.colors_name)
+    end
+    semantics_enabled = not semantics_enabled
+end
+
+vim.api.nvim_create_user_command("ToggleSemanticsHighlight", function()
+    toggle_semantics_highlighting()
+end, {})
+
 return {
     {
         "rebelot/kanagawa.nvim",
@@ -24,7 +76,7 @@ return {
                         }
                     },
                 },
-                theme = "wave",    -- Load "wave" theme when 'background' option is not set
+                theme = "wave",      -- Load "wave" theme when 'background' option is not set
                 background = {       -- map the value of 'background' option to a theme
                     dark = "dragon", -- try "dragon" !
                 },
@@ -55,6 +107,11 @@ return {
 
             -- setup must be called before loading
             vim.cmd("colorscheme kanagawa")
+
+            -- check if this is bad in c++ as well, only leave it in then
+            -- turn_off_semantics_highlighting()
+
+            -- fix_semantic_highlighting()
         end
     }
     -- {
