@@ -37,9 +37,9 @@ local function toggle_semantics_highlighting()
         end
     else
         -- -- Re-enable semantic highlighting
-        for _, client in pairs(vim.lsp.get_clients()) do
-            vim.lsp.buf.attach(client)
-        end
+        -- for _, client in pairs(vim.lsp.get_clients()) do
+        --     vim.lsp.buf.attach(client)
+        -- end
         -- Optional: reload color scheme to fully restore all highlights
         vim.cmd('colorscheme ' .. vim.g.colors_name)
     end
