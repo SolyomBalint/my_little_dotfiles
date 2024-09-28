@@ -32,12 +32,14 @@ return {
     {
         "mfussenegger/nvim-dap",
         dependencies = {
+            "williamboman/mason.nvim",
             "rcarriga/nvim-dap-ui",
             "nvim-neotest/nvim-nio",
         },
         config = function()
             -- Dap ui subscribes to dap events
             local dap, dapui = require("dap"), require("dapui")
+            dap.set_log_level('DEBUG')
             dap.listeners.before.attach.dapui_config = function()
                 if not keys_registered then
                     add_debug_keymaps()
@@ -67,6 +69,7 @@ return {
                 dapui.close()
             end
 
+            -- local mason_registry = require("mason-registry")
             -- gdb adapter setup
             dap.adapters.gdb = {
                 type = "executable",
@@ -117,8 +120,8 @@ return {
             vim.keymap.set("n", "<leader>dlb", dap.list_breakpoints, { noremap = true })
             vim.keymap.set("n", "<F5>",
                 function()
-                    if vim.fn.filereadable("~/.config/custom/launch.json") then
-                        require('dep.ext.vscode').load_launchjs("~/.config/custom/launch.json")
+                    if vim.fn.filereadable(vim.fn.expand("~/.config/custom/launch.json")) then
+                        require('dap.ext.vscode').load_launchjs(vim.fn.expand("~/.config/custom/launch.json"), {})
                     end
                     dap.continue()
                 end,
@@ -126,13 +129,10 @@ return {
         end,
     },
     {
-        "jay-babu/mason-nvim-dap.nvim",
-        dependencies = { 'mason.nvim' },
+        "mfussenegger/nvim-dap-python",
+        dependencies = { "mfussenegger/nvim-dap" },
         config = function()
-            require('mason-nvim-dap').setup({
-                ensure_installed = { 'python' },
-                handlers = {}, -- sets up dap in the predefined manner
-            })
+            require("dap-python").setup("python")
         end
     },
     {
