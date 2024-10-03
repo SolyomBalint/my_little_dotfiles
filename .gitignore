@@ -1,3 +1,4 @@
 gdb
 \.config/yazi/flavors/
 \.config/custom/launch.json
+\.config/nvim/lazy-lock.json
