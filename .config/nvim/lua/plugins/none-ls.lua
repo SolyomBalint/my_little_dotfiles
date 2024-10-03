@@ -8,7 +8,7 @@ return {
             "nvimtools/none-ls.nvim",
         },
         config = function()
-            require("your.null-ls.config").setup({
+            require("mason-null-ls").setup({
                 ensure_installed = { "stylua", "black", "isort", "shfmt", "clang_format", "mypy" },
                 handlers = {},
             })
