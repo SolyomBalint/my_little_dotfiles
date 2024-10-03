@@ -22,6 +22,9 @@ return {
             require('dashboard').setup {
                 theme = 'hyper',
                 config = {
+                    project = {
+                        action = "FzfLua files cwd="
+                    },
                     week_header = {
                         enable = true,
                     },
@@ -32,6 +35,12 @@ return {
                             group = "@property",
                             action = function() require('fzf-lua').files({ cwd = vim.fn.expand("~/my_little_dotfiles/") }) end,
                             key = 'c'
+                        },
+                        {
+                            desc = ' NeoGit',
+                            group = "@property",
+                            action = function() require('neogit').open() end,
+                            key = 'g'
                         }
                     },
                 },
