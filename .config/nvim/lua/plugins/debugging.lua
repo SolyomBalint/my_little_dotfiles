@@ -116,8 +116,10 @@ return {
 
             dap.configurations.c = dap.configurations.cpp
             vim.keymap.set("n", "<Leader>db", dap.toggle_breakpoint, { noremap = true })
-            vim.keymap.set("n", "<leader>dl", dap.run_last, { noremap = true })
-            vim.keymap.set("n", "<leader>dlb", dap.list_breakpoints, { noremap = true })
+            vim.keymap.set("n", "<Leader>cb", function ()
+                dap.toggle_breakpoint(vim.fn.input("Breakpoint condition: "))
+            end, { noremap = true })
+            vim.keymap.set("n", "<leader>drl", dap.run_last, { noremap = true })
             vim.keymap.set("n", "<F5>",
                 function()
                     if vim.fn.filereadable(vim.fn.expand("~/.config/custom/launch.json")) then
