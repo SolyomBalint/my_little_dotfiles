@@ -41,6 +41,12 @@ return {
                             group = "@property",
                             action = function() require('neogit').open() end,
                             key = 'g'
+                        },
+                        {
+                            desc = ' Browse cwd',
+                            group = "@property",
+                            action = function() require('fzf-lua').files() end,
+                            key = 's'
                         }
                     },
                 },
