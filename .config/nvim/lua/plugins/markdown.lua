@@ -1,10 +1,14 @@
 return {
     {
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {},
-        dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons', 'nvim-tree/nvim-web-devicons' }, -- if you use standalone mini plugins
+        "OXY2DEV/markview.nvim",
+        lazy = false, -- Recommended
+        -- ft = "markdown" -- If you decide to lazy-load anyway
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons"
+        },
         config = function()
-            vim.keymap.set("n", "<C-m>", ":RenderMarkdown toggle<CR>", { noremap = true })
+            vim.keymap.set("n", "<C-m>", ":Markview toggleAll<CR>", { noremap = true })
         end
     }
 }
