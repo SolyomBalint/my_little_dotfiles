@@ -53,6 +53,7 @@ end, {})
 return {
     {
         "rebelot/kanagawa.nvim",
+        dependencies = { "HiPhish/rainbow-delimiters.nvim" },
         lazy = false,
         priority = 1000,
         config = function()
