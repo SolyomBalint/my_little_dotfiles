@@ -20,7 +20,8 @@ return {
         end,
     },
     {
-        "hrsh7th/nvim-cmp",
+        "iguanacucumber/magazine.nvim",
+        name = "nvim-cmp", -- Otherwise highlighting gets messed up
         dependencies = {
             { "hrsh7th/cmp-nvim-lsp" },
             { "L3MON4D3/LuaSnip" },
@@ -116,7 +117,7 @@ return {
                     documentation = cmp.config.window.bordered(),
                 },
                 performance = {
-                    max_view_entries = 8,
+                    max_view_entries = 10,
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
