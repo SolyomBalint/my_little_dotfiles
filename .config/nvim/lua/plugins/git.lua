@@ -1,3 +1,5 @@
+local last_open_git_repo_path = nil
+
 return {
     {
         "lewis6991/gitsigns.nvim",
@@ -68,6 +70,19 @@ return {
             "sindrets/diffview.nvim", -- optional - Diff integration
             "ibhagwan/fzf-lua",       -- optional
         },
-        config = true
+        config = function ()
+            local neogit = require("neogit")
+            neogit.setup({})
+            vim.keymap.set("n", ";goc", neogit.open, { silent = true, noremap = true }) -- git open current
+            vim.keymap.set("n", ";gop", function ()
+                local cwd = vim.fn.input("Path to gitrepo: ", vim.fn.getcwd() .. "/", "file")
+                last_open_git_repo_path = cwd
+                neogit.open({ cwd=cwd })
+            end ,{ silent = true, noremap = true }) -- git open path
+            vim.keymap.set("n", ";gol", function ()
+                neogit.open({cwd=last_open_git_repo_path})
+            end, { silent = true, noremap = true }) -- git open last
+        end
+
     }
 }
