@@ -5,6 +5,14 @@ return {
         "lewis6991/gitsigns.nvim",
         config = function()
             require("gitsigns").setup({
+                current_line_blame_opts = {
+                    virt_text = true,
+                    virt_text_pos = "eol",
+                    delay = 100,
+                    ignore_whitespace = true,
+                    virt_text_priority = 100,
+                    use_focus = true,
+                },
                 on_attach = function(bufnr)
                     local gitsigns = require("gitsigns")
 
@@ -61,28 +69,27 @@ return {
         end,
     },
     {
-        'sindrets/diffview.nvim',
+        "sindrets/diffview.nvim",
     },
     {
         "NeogitOrg/neogit",
         dependencies = {
-            "nvim-lua/plenary.nvim",  -- required
+            "nvim-lua/plenary.nvim", -- required
             "sindrets/diffview.nvim", -- optional - Diff integration
-            "ibhagwan/fzf-lua",       -- optional
+            "ibhagwan/fzf-lua", -- optional
         },
-        config = function ()
+        config = function()
             local neogit = require("neogit")
             neogit.setup({})
             vim.keymap.set("n", ";goc", neogit.open, { silent = true, noremap = true }) -- git open current
-            vim.keymap.set("n", ";gop", function ()
+            vim.keymap.set("n", ";gop", function()
                 local cwd = vim.fn.input("Path to gitrepo: ", vim.fn.getcwd() .. "/", "file")
                 last_open_git_repo_path = cwd
-                neogit.open({ cwd=cwd })
-            end ,{ silent = true, noremap = true }) -- git open path
-            vim.keymap.set("n", ";gol", function ()
-                neogit.open({cwd=last_open_git_repo_path})
+                neogit.open({ cwd = cwd })
+            end, { silent = true, noremap = true }) -- git open path
+            vim.keymap.set("n", ";gol", function()
+                neogit.open({ cwd = last_open_git_repo_path })
             end, { silent = true, noremap = true }) -- git open last
-        end
-
-    }
+        end,
+    },
 }
