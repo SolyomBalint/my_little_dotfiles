@@ -4,3 +4,4 @@ gdb
 \.config/nvim/lazy-lock.json
 \.virtualenvs
 \.bashrc
+\.config/nvim/\.undo
