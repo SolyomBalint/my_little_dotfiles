@@ -51,7 +51,7 @@ return {
             vim.keymap.set("n", "<C-p>a", function()
                 fzf.files({
                     cwd = vim.fn.input("Path to basedir: ", vim.fn.getcwd() .. "/", "file"),
-                    cmd = "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build"
+                    cmd = "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build",
                 })
             end, { noremap = true })
             vim.keymap.set("n", "<leader>lg", function()
@@ -72,6 +72,8 @@ return {
             vim.keymap.set("n", "<C-p>cmd", fzf.command_history, { noremap = true })
             vim.keymap.set("n", "<C-p>od", fzf.oldfiles, { noremap = true })
             vim.keymap.set("n", "<leader>dl", fzf.dap_breakpoints, { noremap = true })
+            vim.keymap.set("n", "<C-p>b", fzf.buffers, { noremap = true })
+            vim.keymap.set("n", "<C-p>k", fzf.keymaps, { noremap = true })
             -- TODO think this through
             vim.keymap.set("n", ";gc", fzf.git_commits, {})
             vim.keymap.set("n", ";gb", fzf.git_branches, {})
