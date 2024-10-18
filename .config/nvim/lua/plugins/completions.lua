@@ -34,7 +34,7 @@ return {
                         paths = { "/usr/share/dict/words" },
                         exact_length = 2,
                     })
-                end
+                end,
             },
             { "f3fora/cmp-spell" },
             { "hrsh7th/cmp-nvim-lsp-document-symbol" },
@@ -48,7 +48,6 @@ return {
                 end,
             },
             { "hrsh7th/cmp-cmdline" },
-            { "rcarriga/cmp-dap" },
             { "hrsh7th/cmp-nvim-lua" },
             { "hrsh7th/cmp-calc" },
             { "hrsh7th/cmp-path" },
@@ -78,12 +77,16 @@ return {
             cmp.setup({
                 formatting = {
                     format = lspkind.cmp_format({
-                        mode = 'symbol_text',
+                        mode = "symbol_text",
                         -- maxwidth = 50,
-                        maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
-                        ellipsis_char = '...',    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                        maxwidth = function()
+                            return math.floor(0.45 * vim.o.columns)
+                        end,
+                        ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                         show_labelDetails = true, -- show labelDetails in menu. Disabled by default
-                        menu = vim.tbl_extend("keep", {
+                        menu = vim.tbl_extend(
+                            "keep",
+                            {
                                 nvim_lsp = "[LSP]",
                                 path = "[Path]",
                                 nvim_lua = "[Lua]",
@@ -96,16 +99,15 @@ return {
                             { rg = "[RG]" },
                             { cmdline = "[CmdLine]" },
                             { cmdline_history = "{CmdLineHistory}" },
-                            { calc = "[Calc]" },
-                            { dap = "[DAP]" }
+                            { calc = "[Calc]" }
                         ),
 
                         -- The function below will be called before any actual modifications from lspkind
                         -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
                         before = function(entry, vim_item)
                             return vim_item
-                        end
-                    })
+                        end,
+                    }),
                 },
                 snippet = {
                     expand = function(args) -- which snippet engine should be used
@@ -128,7 +130,7 @@ return {
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp", priority_weight = 150, group_index = 1 },
-                    { name = "luasnip",  priority_weight = 150, group_index = 1 }, -- For luasnip users.
+                    { name = "luasnip", priority_weight = 150, group_index = 1 }, -- For luasnip users.
                     {
                         name = "nvim_lua",
                         entry_filter = function()
@@ -138,10 +140,10 @@ return {
                             return true
                         end,
                         priority_weight = 150,
-                        group_index = 1
+                        group_index = 1,
                     },
                     { name = "cmp-nvim-lsp-document-symbol", priority_weight = 100, group_index = 2 },
-                    { name = "cmp-nvim-lsp-signature-help",  priority_weight = 100, group_index = 2 },
+                    { name = "cmp-nvim-lsp-signature-help", priority_weight = 100, group_index = 2 },
                     {
                         name = "rg",
                         keyword_length = 5,
@@ -164,7 +166,7 @@ return {
                             end
                             return false
                         end,
-                        group_index = 4
+                        group_index = 4,
                     },
                     {
                         name = "spell",
@@ -183,9 +185,8 @@ return {
                                 return true
                             end,
                             preselect_correct_word = true,
-                        }
+                        },
                     },
-                    { name = "dap",  priority_weight = 40, group_index = 5 },
                     { name = "path", priority_weight = 30, group_index = 6 },
                     { name = "calc", priority_weight = 10, group_index = 7 },
                 }, {
@@ -217,63 +218,53 @@ return {
             })
             cmp.setup.cmdline(":", {
                 mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources(
+                sources = cmp.config.sources({
                     {
-                        {
-                            name = "path",
-                            option = {
-                                trailing_slash = true
-                            }
+                        name = "path",
+                        option = {
+                            trailing_slash = true,
                         },
                     },
+                }, {
                     {
-                        {
-                            name = "async_path",
-                            option = {
-                                show_hidden_files_by_default = true,
-                                trailing_slash = true
-                            }
-
-                        }
-                    },
-                    {
-                        {
-                            name = "cmdline",
+                        name = "async_path",
+                        option = {
+                            show_hidden_files_by_default = true,
+                            trailing_slash = true,
                         },
-                    }, {
-                        buffer_source,
-                    }, {
-                        { name = "cmdline_history" },
-                    }),
+                    },
+                }, {
+                    {
+                        name = "cmdline",
+                    },
+                }, {
+                    buffer_source,
+                }, {
+                    { name = "cmdline_history" },
+                }),
             })
             cmp.setup.cmdline("/", {
                 mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources(
+                sources = cmp.config.sources({
                     {
-                        {
-                            name = "path",
-                            option = {
-                                trailing_slash = true
-                            }
+                        name = "path",
+                        option = {
+                            trailing_slash = true,
                         },
                     },
+                }, {
                     {
-                        {
-                            name = "async_path",
-                            option = {
-                                show_hidden_files_by_default = true,
-                                trailing_slash = true
-                            }
-
-                        }
+                        name = "async_path",
+                        option = {
+                            show_hidden_files_by_default = true,
+                            trailing_slash = true,
+                        },
                     },
-
-                    { { name = 'nvim_lsp_document_symbol' } },
-                    {
-                        buffer_source,
-                    }, {
-                        { name = "cmdline_history" },
-                    }),
+                }, { { name = "nvim_lsp_document_symbol" } }, {
+                    buffer_source,
+                }, {
+                    { name = "cmdline_history" },
+                }),
             })
             cmp.setup.cmdline("?", {
                 mapping = cmp.mapping.preset.cmdline(),
@@ -285,33 +276,28 @@ return {
             })
             cmp.setup.cmdline("@", {
                 mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources(
+                sources = cmp.config.sources({
                     {
-                        {
-                            name = "path",
-                            option = {
-                                trailing_slash = true
-                            }
+                        name = "path",
+                        option = {
+                            trailing_slash = true,
                         },
                     },
+                }, {
                     {
-                        {
-                            name = "async_path",
-                            option = {
-                                show_hidden_files_by_default = true,
-                                trailing_slash = true
-                            }
-
-                        }
-                    },
-                    {
-                        {
-                            name = "cmdline",
+                        name = "async_path",
+                        option = {
+                            show_hidden_files_by_default = true,
+                            trailing_slash = true,
                         },
-                    }, {
-                        buffer_source,
-                    }
-                ),
+                    },
+                }, {
+                    {
+                        name = "cmdline",
+                    },
+                }, {
+                    buffer_source,
+                }),
             })
         end,
     },

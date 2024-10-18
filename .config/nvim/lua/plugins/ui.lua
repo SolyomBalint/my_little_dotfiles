@@ -13,15 +13,16 @@ return {
             -- OPTIONAL:
             --   `nvim-notify` is only needed, if you want to use the notification view.
             --   If not available, we use `mini` as the fallback
-            { "rcarriga/nvim-notify",
-                config = function ()
+            {
+                "rcarriga/nvim-notify",
+                config = function()
                     require("notify").setup({
                         render = "wrapped-compact",
-                        max_width = function ()
+                        max_width = function()
                             return math.floor(vim.api.nvim_win_get_width(0) / 3)
-                        end
+                        end,
                     })
-                end
+                end,
             },
         },
         config = function()
@@ -36,14 +37,14 @@ return {
                 },
                 -- you can enable a preset for easier configuration
                 presets = {
-                    bottom_search = true,         -- use a classic bottom cmdline for search
-                    command_palette = true,       -- position the cmdline and popupmenu together
+                    bottom_search = true, -- use a classic bottom cmdline for search
+                    command_palette = true, -- position the cmdline and popupmenu together
                     long_message_to_split = true, -- long messages will be sent to a split
-                    inc_rename = false,           -- enables an input dialog for inc-rename.nvim
-                    lsp_doc_border = false,       -- add a border to hover docs and signature help
+                    inc_rename = false, -- enables an input dialog for inc-rename.nvim
+                    lsp_doc_border = false, -- add a border to hover docs and signature help
                 },
                 popupmenu = {
-                    enabled = true,  -- enables the Noice popupmenu UI
+                    enabled = true, -- enables the Noice popupmenu UI
                     ---@type 'nui'|'cmp'
                     backend = "nui", -- backend to use to show regular cmdline completions
                     ---@type NoicePopupmenuItemKind|false
@@ -51,7 +52,51 @@ return {
                     kind_icons = {}, -- set to `false` to disable icons
                 },
             })
-        end
-
-    }
+        end,
+    },
+    {
+        "nvimdev/dashboard-nvim",
+        event = "VimEnter",
+        config = function()
+            require("dashboard").setup({
+                theme = "hyper",
+                config = {
+                    project = {
+                        action = "FzfLua files cwd=",
+                    },
+                    week_header = {
+                        enable = true,
+                    },
+                    shortcut = {
+                        { desc = "󰊳 Update", group = "@property", action = "Lazy update", key = "u" },
+                        {
+                            desc = " config",
+                            group = "@property",
+                            action = function()
+                                require("fzf-lua").files({ cwd = vim.fn.expand("~/my_little_dotfiles/") })
+                            end,
+                            key = "c",
+                        },
+                        {
+                            desc = " NeoGit",
+                            group = "@property",
+                            action = function()
+                                require("neogit").open()
+                            end,
+                            key = "g",
+                        },
+                        {
+                            desc = " Browse cwd",
+                            group = "@property",
+                            action = function()
+                                require("fzf-lua").files()
+                            end,
+                            key = "s",
+                        },
+                    },
+                },
+            })
+        end,
+        dependencies = { { "nvim-tree/nvim-web-devicons" } },
+    },
 }

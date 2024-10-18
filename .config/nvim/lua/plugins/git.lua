@@ -70,6 +70,7 @@ return {
     },
     {
         "sindrets/diffview.nvim",
+        lazy = true,
     },
     {
         "NeogitOrg/neogit",
@@ -81,15 +82,20 @@ return {
         config = function()
             local neogit = require("neogit")
             neogit.setup({})
-            vim.keymap.set("n", ";goc", neogit.open, { silent = true, noremap = true }) -- git open current
+            vim.keymap.set(
+                "n",
+                ";goc",
+                neogit.open,
+                { silent = true, noremap = true, desc = "NEOGIT: Open neogit in current root" }
+            ) -- git open current
             vim.keymap.set("n", ";gop", function()
                 local cwd = vim.fn.input("Path to gitrepo: ", vim.fn.getcwd() .. "/", "file")
                 last_open_git_repo_path = cwd
                 neogit.open({ cwd = cwd })
-            end, { silent = true, noremap = true }) -- git open path
+            end, { silent = true, noremap = true, desc = "NEOGIT: Open neogit in given dir" }) -- git open path
             vim.keymap.set("n", ";gol", function()
                 neogit.open({ cwd = last_open_git_repo_path })
-            end, { silent = true, noremap = true }) -- git open last
+            end, { silent = true, noremap = true, desc = "NEOGIT: Open neogit in last open dir" }) -- git open last
         end,
     },
 }

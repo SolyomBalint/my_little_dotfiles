@@ -1,20 +1,5 @@
 return {
     {
-        "jay-babu/mason-null-ls.nvim",
-        enabled = false,
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-            "williamboman/mason.nvim",
-            "nvimtools/none-ls.nvim",
-        },
-        config = function()
-            require("mason-null-ls").setup({
-                ensure_installed = { "stylua", "black", "isort", "shfmt", "clang_format", "mypy" },
-                handlers = {},
-            })
-        end,
-    },
-    {
         "nvimtools/none-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
@@ -70,7 +55,7 @@ return {
                         filetypes = { "python" },
                         command = "black",
                         extra_args = { "--line-length", "120" },
-                    }), -- python formatting
+                    }),                                                                     -- python formatting
                     formatting.isort.with({ filetypes = { "python" }, command = "isort" }), -- python import formatting
                     formatting.clang_format.with({ filetypes = { "c", "cpp" }, command = "clang-format" }),
                     formatting.shfmt.with({ filetypes = { "sh", "zsh" }, command = "shfmt" }),

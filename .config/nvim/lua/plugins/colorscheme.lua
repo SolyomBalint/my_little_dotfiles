@@ -7,20 +7,20 @@ end
 
 local function fix_semantic_highlighting()
     local links = {
-        ['@lsp.type.namespace'] = '@namespace',
-        ['@lsp.type.type'] = '@type',
-        ['@lsp.type.class'] = '@type',
-        ['@lsp.type.enum'] = '@type',
-        ['@lsp.type.interface'] = '@type',
-        ['@lsp.type.struct'] = '@structure',
-        ['@lsp.type.parameter'] = '@parameter',
-        ['@lsp.type.variable'] = '@variable',
-        ['@lsp.type.property'] = '@property',
-        ['@lsp.type.enumMember'] = '@constant',
-        ['@lsp.type.function'] = '@function',
-        ['@lsp.type.method'] = '@method',
-        ['@lsp.type.macro'] = '@macro',
-        ['@lsp.type.decorator'] = '@function',
+        ["@lsp.type.namespace"] = "@namespace",
+        ["@lsp.type.type"] = "@type",
+        ["@lsp.type.class"] = "@type",
+        ["@lsp.type.enum"] = "@type",
+        ["@lsp.type.interface"] = "@type",
+        ["@lsp.type.struct"] = "@structure",
+        ["@lsp.type.parameter"] = "@parameter",
+        ["@lsp.type.variable"] = "@variable",
+        ["@lsp.type.property"] = "@property",
+        ["@lsp.type.enumMember"] = "@constant",
+        ["@lsp.type.function"] = "@function",
+        ["@lsp.type.method"] = "@method",
+        ["@lsp.type.macro"] = "@macro",
+        ["@lsp.type.decorator"] = "@function",
     }
     for newgroup, oldgroup in pairs(links) do
         vim.api.nvim_set_hl(0, newgroup, { link = oldgroup, default = true })
@@ -41,7 +41,7 @@ local function toggle_semantics_highlighting()
         --     vim.lsp.buf.attach(client)
         -- end
         -- Optional: reload color scheme to fully restore all highlights
-        vim.cmd('colorscheme ' .. vim.g.colors_name)
+        vim.cmd("colorscheme " .. vim.g.colors_name)
     end
     semantics_enabled = not semantics_enabled
 end
@@ -58,27 +58,27 @@ return {
         priority = 1000,
         config = function()
             -- Default options:
-            require('kanagawa').setup({
-                compile = false,  -- enable compiling the colorscheme
+            require("kanagawa").setup({
+                compile = false, -- enable compiling the colorscheme
                 undercurl = true, -- enable undercurls
                 commentStyle = { italic = true },
                 functionStyle = {},
                 keywordStyle = { italic = true },
                 statementStyle = { bold = true },
                 typeStyle = {},
-                transparent = false,   -- do not set background color
-                dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
+                transparent = false, -- do not set background color
+                dimInactive = false, -- dim inactive window `:h hl-NormalNC`
                 terminalColors = true, -- define vim.g.terminal_color_{0,17}
-                colors = {             -- add/modify theme and palette colors
+                colors = { -- add/modify theme and palette colors
                     palette = {},
                     theme = {
                         ui = {
-                            bg_gutter = "none"
-                        }
+                            bg_gutter = "none",
+                        },
                     },
                 },
-                theme = "wave",      -- Load "wave" theme when 'background' option is not set
-                background = {       -- map the value of 'background' option to a theme
+                theme = "wave", -- Load "wave" theme when 'background' option is not set
+                background = { -- map the value of 'background' option to a theme
                     dark = "dragon", -- try "dragon" !
                 },
                 overrides = function(colors)
@@ -101,7 +101,7 @@ return {
                         PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
                         PmenuSbar = { bg = theme.ui.bg_m1 },
                         PmenuThumb = { bg = theme.ui.bg_p2 },
-                        String = { fg = "#98BB6C", italic = true }
+                        String = { fg = "#98BB6C", italic = true },
                     }
                 end,
             })
@@ -113,84 +113,60 @@ return {
             -- turn_off_semantics_highlighting()
 
             -- fix_semantic_highlighting()
-        end
-    }
-    -- {
-    --     "folke/tokyonight.nvim",
-    --     lazy = false,
-    --     priority = 1000,
-    --     config = function()
-    --         require("tokyonight").setup({
-    --             style = "night",
-    --             transparent = true,
-    --             terminal_colors = true,
-    --             on_colors = function(colors)
-    --                 colors.comment = "#409e74" -- test comment
-    --             end,
-    --             on_highlights = function(highlights, colors) end,
-    --         })
-    --         vim.cmd.colorscheme("tokyonight-night")
-    --         for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
-    --             vim.api.nvim_set_hl(0, group, {})
-    --         end
-    --     end,
-    -- },
-    -- {
-    -- 	{
-    -- 		"catppuccin/nvim",
-    -- 		name = "catppuccin",
-    -- 		priority = 1000,
-    -- 		config = function()
-    -- 			require("catppuccin").setup({
-    -- 				flavour = "mocha", -- latte, frappe, macchiato, mocha
-    -- 				background = { -- :h background
-    -- 					light = "latte",
-    -- 					dark = "mocha",
-    -- 				},
-    -- 				transparent_background = false, -- disables setting the background color.
-    -- 				show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-    -- 				term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
-    -- 				dim_inactive = {
-    -- 					enabled = false, -- dims the background color of inactive window
-    -- 					shade = "dark",
-    -- 					percentage = 0.15, -- percentage of the shade to apply to the inactive window
-    -- 				},
-    -- 				no_italic = false, -- Force no italic
-    -- 				no_bold = false, -- Force no bold
-    -- 				no_underline = false, -- Force no underline
-    -- 				styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
-    -- 					comments = { "italic" }, -- Change the style of comments
-    -- 					conditionals = { "italic" },
-    -- 					loops = {},
-    -- 		 		functions = {},
-    -- 		 		keywords = {},
-    -- 		 		strings = {},
-    -- 		 		variables = {},
-    -- 		 		numbers = {},
-    -- 		 		booleans = {},
-    -- 		 		properties = {},
-    -- 		 		types = {},
-    -- 		 		operators = {},
-    -- 		 		 miscs = {}, -- Uncomment to turn off hard-coded styles
-    -- 		 	},
-    -- 		 	color_overrides = {},
-    -- 		 	custom_highlights = {},
-    -- 		 	default_integrations = true,
-    -- 		 	integrations = {
-    -- 		 		cmp = true,
-    -- 		 		gitsigns = true,
-    -- 		 		nvimtree = true,
-    -- 		 		treesitter = true,
-    -- 		 		notify = false,
-    -- 		 		mini = {
-    -- 		 			enabled = true,
-    -- 		 			indentscope_color = "",
-    -- 		 		},
-    -- 		 	},
-    -- 		 })
-    --
-    -- 			vim.cmd.colorscheme("catppuccin")
-    -- 		end,
-    -- 	},
-    -- },
+        end,
+    },
+    {
+        "HiPhish/rainbow-delimiters.nvim",
+        config = function()
+            -- This module contains a number of default definitions
+            local rainbow_delimiters = require("rainbow-delimiters")
+            local setColours = function(group, opts)
+                vim.api.nvim_set_hl(0, group, opts)
+            end
+            setColours("KanagawaDelimiterLightGrey", { default = true, fg = "#9CABCA", ctermfg = "LightGrey" }) -- Light Grey
+            setColours("KanagawaDelimiterDeepPurple", { default = true, fg = "#957FB8", ctermfg = "Magenta" }) -- Spring Violet
+            setColours("KanagawaDelimiterBrightCyan", { default = true, fg = "#6A9589", ctermfg = "Cyan" }) -- Light Blue
+            setColours("KanagawaDelimiterTeal", { default = true, fg = "#7AA89F", ctermfg = "Cyan" }) -- Teal
+            setColours("KanagawaDelimiterYellow", { default = true, fg = "#DCD7BA", ctermfg = "Yellow" }) -- Yellow
+            setColours("KanagawaDelimiterRed", { default = true, fg = "#E46876", ctermfg = "Red" }) -- Red
+            setColours("KanagawaDelimiterOrange", { default = true, fg = "#FF9E3B", ctermfg = "Yellow" }) -- Yellow
+
+            ---@type rainbow_delimiters.config
+            vim.g.rainbow_delimiters = {
+                strategy = {
+                    [""] = function(bufnr)
+                        -- Disabled for very large files, global strategy for large files,
+                        -- local strategy otherwise
+                        local line_count = vim.api.nvim_buf_line_count(bufnr)
+                        if line_count > 5000 then
+                            return nil
+                        end
+                        return rainbow_delimiters.strategy["global"]
+                    end,
+                    vim = rainbow_delimiters.strategy["local"],
+                },
+                query = {
+                    [""] = "rainbow-delimiters",
+                    lua = "rainbow-blocks",
+                },
+                priority = {
+                    [""] = 110,
+                    lua = 210,
+                },
+                highlight = {
+                    "KanagawaDelimiterLightGrey", -- Outermost delimiter
+                    "KanagawaDelimiterDeepPurple",
+                    "KanagawaDelimiterBrightCyan",
+                    "KanagawaDelimiterYellow",
+                    "KanagawaDelimiterTeal",
+                    "KanagawaDelimiterRed",
+                    "KanagawaDelimiterOrange", -- Innermost delimiter
+                },
+            }
+
+            vim.api.nvim_create_user_command("ToggleBracketHighlight", function()
+                rainbow_delimiters.toggle(0)
+            end, {})
+        end,
+    },
 }

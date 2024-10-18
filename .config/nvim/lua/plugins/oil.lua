@@ -1,7 +1,7 @@
 return {
 
-    { "echasnovski/mini.icons",     version = false },
-    { "nvim-tree/nvim-web-devicons" },
+    { "echasnovski/mini.icons", lazy = true, version = false },
+    { "nvim-tree/nvim-web-devicons", lazy = true },
     {
         "stevearc/oil.nvim",
         opts = {},
@@ -12,8 +12,16 @@ return {
                 keymaps = {
                     ["g?"] = "actions.show_help",
                     ["<CR>"] = "actions.select",
-                    ["<leader>wv"] = { "actions.select", opts = { vertical = true }, desc = "Open the entry in a vertical split" },
-                    ["<leader>wh"] = { "actions.select", opts = { horizontal = true }, desc = "Open the entry in a horizontal split" },
+                    ["<leader>wv"] = {
+                        "actions.select",
+                        opts = { vertical = true },
+                        desc = "Open the entry in a vertical split",
+                    },
+                    ["<leader>wh"] = {
+                        "actions.select",
+                        opts = { horizontal = true },
+                        desc = "Open the entry in a horizontal split",
+                    },
                     ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
                     ["<C-p>"] = "actions.preview",
                     ["<C-c>"] = "actions.close",
@@ -31,7 +39,7 @@ return {
                     show_hidden = true,
                 },
             })
-            vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+            vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "OIL: Open parent directory" })
         end,
     },
 }
