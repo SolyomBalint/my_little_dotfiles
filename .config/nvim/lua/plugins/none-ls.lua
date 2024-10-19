@@ -8,14 +8,6 @@ return {
             local diagnostics = null_ls.builtins.diagnostics
             local formatting = null_ls.builtins.formatting
 
-            local diagnostics_config = {
-                underline = true,
-                virtual_text = true,
-                signs = true,
-                update_in_insert = false,
-                severity_sort = true,
-            }
-
             local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
             null_ls.setup({
@@ -55,15 +47,12 @@ return {
                         filetypes = { "python" },
                         command = "black",
                         extra_args = { "--line-length", "120" },
-                    }),                                                                     -- python formatting
+                    }), -- python formatting
                     formatting.isort.with({ filetypes = { "python" }, command = "isort" }), -- python import formatting
                     formatting.clang_format.with({ filetypes = { "c", "cpp" }, command = "clang-format" }),
                     formatting.shfmt.with({ filetypes = { "sh", "zsh" }, command = "shfmt" }),
 
-                    diagnostics.mypy.with({
-                        diagnostics_config = diagnostics_config,
-                        diagnostics_format = "[#{c}] #{m} (#{s})",
-                    }),
+                    diagnostics.mypy.with({ filetypes = { "python" } }),
                 },
             })
         end,

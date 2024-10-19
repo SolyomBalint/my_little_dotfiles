@@ -82,7 +82,7 @@ return {
                         maxwidth = function()
                             return math.floor(0.45 * vim.o.columns)
                         end,
-                        ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                        ellipsis_char = "...",    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                         show_labelDetails = true, -- show labelDetails in menu. Disabled by default
                         menu = vim.tbl_extend(
                             "keep",
@@ -130,7 +130,7 @@ return {
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp", priority_weight = 150, group_index = 1 },
-                    { name = "luasnip", priority_weight = 150, group_index = 1 }, -- For luasnip users.
+                    { name = "luasnip",  priority_weight = 150, group_index = 1 }, -- For luasnip users.
                     {
                         name = "nvim_lua",
                         entry_filter = function()
@@ -143,7 +143,7 @@ return {
                         group_index = 1,
                     },
                     { name = "cmp-nvim-lsp-document-symbol", priority_weight = 100, group_index = 2 },
-                    { name = "cmp-nvim-lsp-signature-help", priority_weight = 100, group_index = 2 },
+                    { name = "cmp-nvim-lsp-signature-help",  priority_weight = 100, group_index = 2 },
                     {
                         name = "rg",
                         keyword_length = 5,

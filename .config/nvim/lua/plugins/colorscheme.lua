@@ -116,6 +116,20 @@ return {
         end,
     },
     {
+        "lukas-reineke/indent-blankline.nvim",
+        dependencies = "HiPhish/rainbow-delimiters.nvim",
+        main = "ibl",
+        ---@module "ibl"
+        ---@type ibl.config
+        opts = {},
+        -- config = function()
+        --     require("ibl").setup({
+        --         exclude = { filetypes = { "dashboard" } },
+        --         -- scope = { highlight = vim.g.rainbow_delimiters.highlight },
+        --     })
+        -- end,
+    },
+    {
         "HiPhish/rainbow-delimiters.nvim",
         config = function()
             -- This module contains a number of default definitions
@@ -123,13 +137,27 @@ return {
             local setColours = function(group, opts)
                 vim.api.nvim_set_hl(0, group, opts)
             end
-            setColours("KanagawaDelimiterLightGrey", { default = true, fg = "#9CABCA", ctermfg = "LightGrey" }) -- Light Grey
-            setColours("KanagawaDelimiterDeepPurple", { default = true, fg = "#957FB8", ctermfg = "Magenta" }) -- Spring Violet
-            setColours("KanagawaDelimiterBrightCyan", { default = true, fg = "#6A9589", ctermfg = "Cyan" }) -- Light Blue
-            setColours("KanagawaDelimiterTeal", { default = true, fg = "#7AA89F", ctermfg = "Cyan" }) -- Teal
-            setColours("KanagawaDelimiterYellow", { default = true, fg = "#DCD7BA", ctermfg = "Yellow" }) -- Yellow
-            setColours("KanagawaDelimiterRed", { default = true, fg = "#E46876", ctermfg = "Red" }) -- Red
-            setColours("KanagawaDelimiterOrange", { default = true, fg = "#FF9E3B", ctermfg = "Yellow" }) -- Yellow
+
+            local highlights = {
+                "KanagawaDelimiterLightGrey", -- Outermost delimiter
+                "KanagawaDelimiterDeepPurple",
+                "KanagawaDelimiterBrightCyan",
+                "KanagawaDelimiterYellow",
+                "KanagawaDelimiterTeal",
+                "KanagawaDelimiterRed",
+                "KanagawaDelimiterOrange", -- Innermost delimiter
+            }
+
+            local hooks = require("ibl.hooks")
+            hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+                setColours("KanagawaDelimiterLightGrey", { default = true, fg = "#9CABCA", ctermfg = "LightGrey" }) -- Light Grey
+                setColours("KanagawaDelimiterDeepPurple", { default = true, fg = "#957FB8", ctermfg = "Magenta" }) -- Spring Violet
+                setColours("KanagawaDelimiterBrightCyan", { default = true, fg = "#6A9589", ctermfg = "Cyan" }) -- Light Blue
+                setColours("KanagawaDelimiterTeal", { default = true, fg = "#7AA89F", ctermfg = "Cyan" }) -- Teal
+                setColours("KanagawaDelimiterYellow", { default = true, fg = "#DCD7BA", ctermfg = "Yellow" }) -- Yellow
+                setColours("KanagawaDelimiterRed", { default = true, fg = "#E46876", ctermfg = "Red" }) -- Red
+                setColours("KanagawaDelimiterOrange", { default = true, fg = "#FF9E3B", ctermfg = "Yellow" }) -- Yellow
+            end)
 
             ---@type rainbow_delimiters.config
             vim.g.rainbow_delimiters = {
@@ -163,6 +191,13 @@ return {
                     "KanagawaDelimiterOrange", -- Innermost delimiter
                 },
             }
+
+            require("ibl").setup({
+                exclude = { filetypes = { "dashboard" } },
+                scope = { highlight = highlights },
+            })
+
+            hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 
             vim.api.nvim_create_user_command("ToggleBracketHighlight", function()
                 rainbow_delimiters.toggle(0)
