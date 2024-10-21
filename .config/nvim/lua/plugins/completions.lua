@@ -26,23 +26,22 @@ return {
             { "hrsh7th/cmp-nvim-lsp" },
             { "L3MON4D3/LuaSnip" },
             { "hrsh7th/cmp-buffer" },
-            {
-                "uga-rosa/cmp-dictionary",
-                lazy = true,
-                config = function()
-                    require("cmp_dictionary").setup({
-                        paths = { "/usr/share/dict/words" },
-                        exact_length = 2,
-                    })
-                end,
-            },
-            { "f3fora/cmp-spell" },
+            -- {
+            --     "uga-rosa/cmp-dictionary",
+            --     lazy = true,
+            --     config = function()
+            --         require("cmp_dictionary").setup({
+            --             paths = { "/usr/share/dict/words" },
+            --             exact_length = 2,
+            --         })
+            --     end,
+            -- },
+            -- { "f3fora/cmp-spell" },
             { "hrsh7th/cmp-nvim-lsp-document-symbol" },
-            { "hrsh7th/cmp-nvim-lsp-signature-help" },
             { "FelipeLema/cmp-async-path" },
             {
                 "lukas-reineke/cmp-rg",
-                lazy = true,
+                additional_arguments = "--max-depth 6 --one-file-system --ignore-file ~/.config/nvim/ignore.rg",
                 enabled = function()
                     return vim.fn.executable("rg") == 1
                 end,
@@ -50,7 +49,9 @@ return {
             { "hrsh7th/cmp-cmdline" },
             { "hrsh7th/cmp-nvim-lua" },
             { "hrsh7th/cmp-calc" },
-            { "hrsh7th/cmp-path" },
+            {
+                "hrsh7th/cmp-path",
+            },
             { "dmitmel/cmp-cmdline-history" },
         },
         config = function()
@@ -93,8 +94,8 @@ return {
                                 buffer = "[Buffer]",
                             },
                             { luasnip = "[LuaSnip]" },
-                            { dictionary = "[Dictionary]" },
-                            { spell = "[Spell]" },
+                            -- { dictionary = "[Dictionary]" },
+                            -- { spell = "[Spell]" },
                             { async_path = "{AsyncPath}" },
                             { rg = "[RG]" },
                             { cmdline = "[CmdLine]" },
@@ -143,7 +144,6 @@ return {
                         group_index = 1,
                     },
                     { name = "cmp-nvim-lsp-document-symbol", priority_weight = 100, group_index = 2 },
-                    { name = "cmp-nvim-lsp-signature-help",  priority_weight = 100, group_index = 2 },
                     {
                         name = "rg",
                         keyword_length = 5,
@@ -154,41 +154,40 @@ return {
                         priority_weight = 80,
                         group_index = 3,
                     },
-                    {
-
-                        name = "dictionary",
-                        keyword_length = 2,
-                        priority_weight = 50,
-                        entry_filter = function()
-                            local filetype = vim.bo.filetype
-                            if filetype == "markdown" or filetype == "txt" or filetype == "tex" then
-                                return true
-                            end
-                            return false
-                        end,
-                        group_index = 4,
-                    },
-                    {
-                        name = "spell",
-                        priority_weight = 50,
-                        group_index = 4,
-                        entry_filter = function()
-                            local filetype = vim.bo.filetype
-                            if filetype == "markdown" or filetype == "txt" or filetype == "tex" then
-                                return true
-                            end
-                            return false
-                        end,
-                        option = {
-                            keep_all_entries = false,
-                            enable_in_context = function()
-                                return true
-                            end,
-                            preselect_correct_word = true,
-                        },
-                    },
-                    { name = "path", priority_weight = 30, group_index = 6 },
-                    { name = "calc", priority_weight = 10, group_index = 7 },
+                    -- {
+                    --     name = "dictionary",
+                    --     keyword_length = 2,
+                    --     priority_weight = 50,
+                    --     entry_filter = function()
+                    --         local filetype = vim.bo.filetype
+                    --         if filetype == "markdown" or filetype == "txt" or filetype == "tex" then
+                    --             return true
+                    --         end
+                    --         return false
+                    --     end,
+                    --     group_index = 4,
+                    -- },
+                    -- {
+                    --     name = "spell",
+                    --     priority_weight = 50,
+                    --     group_index = 4,
+                    --     entry_filter = function()
+                    --         local filetype = vim.bo.filetype
+                    --         if filetype == "markdown" or filetype == "txt" or filetype == "tex" then
+                    --             return true
+                    --         end
+                    --         return false
+                    --     end,
+                    --     option = {
+                    --         keep_all_entries = false,
+                    --         enable_in_context = function()
+                    --             return true
+                    --         end,
+                    --         preselect_correct_word = true,
+                    --     },
+                    -- },
+                    { name = "path",                         priority_weight = 30,  group_index = 6 },
+                    { name = "calc",                         priority_weight = 10,  group_index = 7 },
                 }, {
                     vim.tbl_deep_extend("force", buffer_source, {
                         keyword_length = 5,
