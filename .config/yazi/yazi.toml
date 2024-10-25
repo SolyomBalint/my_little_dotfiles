@@ -2,5 +2,19 @@
 [manager]
 show_hidden = true
 show_symlink = true
+linemode = 'size'
 # [flavor]
 # use = "kanagawa"
+
+[opener]
+edit = [ 
+    { run = 'nvim "$@"', block = true, for = 'unix' },
+]
+
+open = [
+    { run = 'zathura $1', block = false, orphan = true, for = "linux" },
+    { run = 'evince $1', block = false, orphan = true, for = "linux" },
+]
+# prepend_rules = [
+#     { name = '*.pdf', use = "open" },
+# ]

@@ -16,7 +16,8 @@ return {
                 enable_autosnippets = true,
                 store_selection_key = "<Tab>",
             })
-            require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
+            require("luasnip.loaders.from_vscode").lazy_load()
+            -- require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/LuaSnip/" })
         end,
     },
     {
@@ -41,7 +42,6 @@ return {
             { "FelipeLema/cmp-async-path" },
             {
                 "lukas-reineke/cmp-rg",
-                additional_arguments = "--max-depth 6 --one-file-system --ignore-file ~/.config/nvim/ignore.rg",
                 enabled = function()
                     return vim.fn.executable("rg") == 1
                 end,
@@ -83,7 +83,7 @@ return {
                         maxwidth = function()
                             return math.floor(0.45 * vim.o.columns)
                         end,
-                        ellipsis_char = "...",    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                        ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                         show_labelDetails = true, -- show labelDetails in menu. Disabled by default
                         menu = vim.tbl_extend(
                             "keep",
@@ -121,6 +121,7 @@ return {
                 },
                 performance = {
                     max_view_entries = 10,
+                    fetching_timeout = 2,
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -131,7 +132,7 @@ return {
                 }),
                 sources = cmp.config.sources({
                     { name = "nvim_lsp", priority_weight = 150, group_index = 1 },
-                    { name = "luasnip",  priority_weight = 150, group_index = 1 }, -- For luasnip users.
+                    { name = "luasnip", priority_weight = 150, group_index = 1 }, -- For luasnip users.
                     {
                         name = "nvim_lua",
                         entry_filter = function()
@@ -149,7 +150,7 @@ return {
                         keyword_length = 5,
                         max_item_count = 5,
                         option = {
-                            additional_arguments = "--smart-case --hidden --no-ignore-vcs",
+                            additional_arguments = "--max-depth 6 --one-file-system --ignore-file ~/.config/nvim/ignore.rg --smart-case --hidden --no-ignore-vcs",
                         },
                         priority_weight = 80,
                         group_index = 3,
@@ -186,8 +187,8 @@ return {
                     --         preselect_correct_word = true,
                     --     },
                     -- },
-                    { name = "path",                         priority_weight = 30,  group_index = 6 },
-                    { name = "calc",                         priority_weight = 10,  group_index = 7 },
+                    { name = "path", priority_weight = 30, group_index = 6 },
+                    { name = "calc", priority_weight = 10, group_index = 7 },
                 }, {
                     vim.tbl_deep_extend("force", buffer_source, {
                         keyword_length = 5,
