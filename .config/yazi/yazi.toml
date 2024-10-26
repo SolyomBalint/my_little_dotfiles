@@ -2,9 +2,10 @@
 [manager]
 show_hidden = true
 show_symlink = true
-linemode = 'size'
-# [flavor]
-# use = "kanagawa"
+linemode = 'mtime'
+
+[preview]
+wrap = "yes"
 
 [opener]
 edit = [ 
@@ -18,3 +19,4 @@ open = [
 # prepend_rules = [
 #     { name = '*.pdf', use = "open" },
 # ]
+
