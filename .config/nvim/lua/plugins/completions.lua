@@ -83,7 +83,7 @@ return {
                         maxwidth = function()
                             return math.floor(0.45 * vim.o.columns)
                         end,
-                        ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+                        ellipsis_char = "...",    -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                         show_labelDetails = true, -- show labelDetails in menu. Disabled by default
                         menu = vim.tbl_extend(
                             "keep",
@@ -121,7 +121,7 @@ return {
                 },
                 performance = {
                     max_view_entries = 10,
-                    fetching_timeout = 2,
+                    fetching_timeout = 5,
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -130,78 +130,82 @@ return {
                     ["<C-e>"] = cmp.mapping.abort(),
                     ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 }),
-                sources = cmp.config.sources({
-                    { name = "nvim_lsp", priority_weight = 150, group_index = 1 },
-                    { name = "luasnip", priority_weight = 150, group_index = 1 }, -- For luasnip users.
+                sources = cmp.config.sources(
                     {
-                        name = "nvim_lua",
-                        entry_filter = function()
-                            if vim.bo.filetype ~= "lua" then
-                                return false
-                            end
-                            return true
-                        end,
-                        priority_weight = 150,
-                        group_index = 1,
-                    },
-                    { name = "cmp-nvim-lsp-document-symbol", priority_weight = 100, group_index = 2 },
-                    {
-                        name = "rg",
-                        keyword_length = 5,
-                        max_item_count = 5,
-                        option = {
-                            additional_arguments = "--max-depth 6 --one-file-system --ignore-file ~/.config/nvim/ignore.rg --smart-case --hidden --no-ignore-vcs",
+                        { name = "nvim_lsp", priority_weight = 150, group_index = 1 },
+                        { name = "luasnip",  priority_weight = 150, group_index = 1 }, -- For luasnip users.
+                        {
+                            name = "nvim_lua",
+                            entry_filter = function()
+                                if vim.bo.filetype ~= "lua" then
+                                    return false
+                                end
+                                return true
+                            end,
+                            priority_weight = 150,
+                            group_index = 1,
                         },
-                        priority_weight = 80,
-                        group_index = 3,
-                    },
-                    -- {
-                    --     name = "dictionary",
-                    --     keyword_length = 2,
-                    --     priority_weight = 50,
-                    --     entry_filter = function()
-                    --         local filetype = vim.bo.filetype
-                    --         if filetype == "markdown" or filetype == "txt" or filetype == "tex" then
-                    --             return true
-                    --         end
-                    --         return false
-                    --     end,
-                    --     group_index = 4,
-                    -- },
-                    -- {
-                    --     name = "spell",
-                    --     priority_weight = 50,
-                    --     group_index = 4,
-                    --     entry_filter = function()
-                    --         local filetype = vim.bo.filetype
-                    --         if filetype == "markdown" or filetype == "txt" or filetype == "tex" then
-                    --             return true
-                    --         end
-                    --         return false
-                    --     end,
-                    --     option = {
-                    --         keep_all_entries = false,
-                    --         enable_in_context = function()
-                    --             return true
-                    --         end,
-                    --         preselect_correct_word = true,
-                    --     },
-                    -- },
-                    { name = "path", priority_weight = 30, group_index = 6 },
-                    { name = "calc", priority_weight = 10, group_index = 7 },
-                }, {
-                    vim.tbl_deep_extend("force", buffer_source, {
-                        keyword_length = 5,
-                        max_item_count = 5,
-                        option = {
+                        { name = "cmp-nvim-lsp-document-symbol", priority_weight = 100, group_index = 2 },
+                        {
+                            name = "rg",
                             keyword_length = 5,
+                            max_item_count = 5,
+                            option = {
+                                additional_arguments =
+                                "--max-depth 6 --one-file-system --ignore-file ~/.config/nvim/ignore.rg --smart-case --hidden --no-ignore-vcs",
+                            },
+                            priority_weight = 80,
+                            group_index = 3,
                         },
-                        priority_weight_weight = 60,
-                        entry_filter = function(entry)
-                            return not entry.exact
-                        end,
-                    }),
-                }),
+                        -- {
+                        --     name = "dictionary",
+                        --     keyword_length = 2,
+                        --     priority_weight = 50,
+                        --     entry_filter = function()
+                        --         local filetype = vim.bo.filetype
+                        --         if filetype == "markdown" or filetype == "txt" or filetype == "tex" then
+                        --             return true
+                        --         end
+                        --         return false
+                        --     end,
+                        --     group_index = 4,
+                        -- },
+                        -- {
+                        --     name = "spell",
+                        --     priority_weight = 50,
+                        --     group_index = 4,
+                        --     entry_filter = function()
+                        --         local filetype = vim.bo.filetype
+                        --         if filetype == "markdown" or filetype == "txt" or filetype == "tex" then
+                        --             return true
+                        --         end
+                        --         return false
+                        --     end,
+                        --     option = {
+                        --         keep_all_entries = false,
+                        --         enable_in_context = function()
+                        --             return true
+                        --         end,
+                        --         preselect_correct_word = true,
+                        --     },
+                        -- },
+                        { name = "path",                         priority_weight = 30,  group_index = 6 },
+                        { name = "calc",                         priority_weight = 10,  group_index = 7 },
+                    }
+                --     {
+                --     vim.tbl_deep_extend("force", buffer_source, {
+                --         keyword_length = 5,
+                --         max_item_count = 5,
+                --         option = {
+                --             keyword_length = 5,
+                --         },
+                --         priority_weight_weight = 60,
+                --         entry_filter = function(entry)
+                --             return not entry.exact
+                --         end,
+                --     }),
+                -- }
+                ),
                 sorting = {
                     priority_weight = 1,
                     comparators = {

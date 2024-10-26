@@ -9,14 +9,20 @@ wrap = "yes"
 
 [opener]
 edit = [ 
-    { run = 'nvim "$@"', block = true, for = 'unix' },
+    { run = 'nvim "$@"', block = true, for = 'unix', desc = "nvim file" },
 ]
 
-open = [
+# open = [
+#     { run = 'xdg-open $1', block = false, orphan = true, for = "linux" },
+# ]
+
+openpdf = [
     { run = 'zathura $1', block = false, orphan = true, for = "linux" },
     { run = 'evince $1', block = false, orphan = true, for = "linux" },
 ]
-# prepend_rules = [
-#     { name = '*.pdf', use = "open" },
-# ]
+
+[open]
+prepend_rules = [
+    { name = '*.pdf', use = "openpdf" },
+]
 
