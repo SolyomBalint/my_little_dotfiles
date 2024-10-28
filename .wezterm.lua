@@ -4,22 +4,47 @@ local wezterm = require("wezterm")
 -- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
-
--- For example, changing the color scheme:
-config.color_scheme = 'Kanagawa (Gogh)'
+-- Color scheme settings
+config.color_scheme = "Kanagawa (Gogh)"
 -- config.color_scheme = 'Kanagawa Dragon (Gogh)'
 -- config.window_background_image = "/home/solyombalint/Pictures/nvimbackground.jpg"
 
+-- Window appearance settings
 config.hide_tab_bar_if_only_one_tab = true
 -- config.window_background_opacity = 0.9
-
--- This is to make using neovim easier, refer ti tge keyboard concepts docs for more information.
-config.use_dead_keys = false
-
 config.window_background_image_hsb = {
     brightness = 0.1,
 }
 
--- and finally, return the configuration to wezterm
+-- This is to make using neovim easier, refer ti tge keyboard concepts docs for more information.
+config.use_dead_keys = false
+
+-- Key Settings
+
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
+config.keys = {
+    {
+        key = "a",
+        mods = "LEADER",
+        action = wezterm.action.ToggleFullScreen,
+    },
+    { key = "L", mods = "CTRL|SHIFT", action = wezterm.action.ShowDebugOverlay },
+    {
+        key = "v",
+        mods = "LEADER",
+        action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+    },
+    {
+        key = "h",
+        mods = "LEADER",
+        action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+    },
+    {
+        key = "f",
+        mods = "LEADER",
+        action = wezterm.action.TogglePaneZoomState,
+    },
+}
+
+config.front_end = "WebGpu"
 return config

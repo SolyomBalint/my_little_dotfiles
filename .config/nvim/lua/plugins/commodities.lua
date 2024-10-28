@@ -1,3 +1,31 @@
+local handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = (" 󰁂 %d "):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+        local chunkText = chunk[1]
+        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+        else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, { chunkText, hlGroup })
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            -- str width returned from truncate() may less than 2nd argument, need padding
+            if curWidth + chunkWidth < targetWidth then
+                suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
+        end
+        curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, { suffix, "MoreMsg" })
+    return newVirtText
+end
+
 return {
     { "cohama/lexima.vim" },
     {
@@ -9,105 +37,67 @@ return {
         end,
     },
     {
-        "numToStr/Comment.nvim",
-        opts = {},
-        config = function()
-            require("Comment").setup({})
-        end,
+        "zeioth/garbage-day.nvim",
+        dependencies = "neovim/nvim-lspconfig",
+        event = "VeryLazy",
+        opts = {
+            wakeup_delay = 500,
+        },
     },
     {
-        "HiPhish/rainbow-delimiters.nvim",
-        config = function()
-            -- This module contains a number of default definitions
-            local rainbow_delimiters = require 'rainbow-delimiters'
-            local setColours = function(group, opts)
-                vim.api.nvim_set_hl(0, group, opts)
-            end
-            setColours('KanagawaDelimiterLightGrey', { default = true, fg = '#9CABCA', ctermfg = 'LightGrey' }) -- Light Grey
-            setColours('KanagawaDelimiterDeepPurple', { default = true, fg = '#957FB8', ctermfg = 'Magenta' })  -- Spring Violet
-            setColours('KanagawaDelimiterBrightCyan', { default = true, fg = '#6A9589', ctermfg = 'Cyan' })     -- Light Blue
-            setColours('KanagawaDelimiterTeal', { default = true, fg = '#7AA89F', ctermfg = 'Cyan' })           -- Teal
-            setColours('KanagawaDelimiterYellow', { default = true, fg = '#DCD7BA', ctermfg = 'Yellow' })       -- Yellow
-            setColours('KanagawaDelimiterRed', { default = true, fg = '#E46876', ctermfg = 'Red' })             -- Red
-            setColours('KanagawaDelimiterOrange', { default = true, fg = '#FF9E3B', ctermfg = 'Yellow' })       -- Yellow
-
-            ---@type rainbow_delimiters.config
-            vim.g.rainbow_delimiters = {
-                strategy = {
-                    [''] = function(bufnr)
-                        -- Disabled for very large files, global strategy for large files,
-                        -- local strategy otherwise
-                        local line_count = vim.api.nvim_buf_line_count(bufnr)
-                        if line_count > 5000 then
-                            return nil
-                        end
-                        return rainbow_delimiters.strategy['global']
-                    end
-                    ,
-                    vim = rainbow_delimiters.strategy['local'],
-                },
-                query = {
-                    [''] = 'rainbow-delimiters',
-                    lua = 'rainbow-blocks',
-                },
-                priority = {
-                    [''] = 110,
-                    lua = 210,
-                },
-                highlight = {
-                    'KanagawaDelimiterLightGrey', -- Outermost delimiter
-                    'KanagawaDelimiterDeepPurple',
-                    'KanagawaDelimiterBrightCyan',
-                    'KanagawaDelimiterYellow',
-                    'KanagawaDelimiterTeal',
-                    'KanagawaDelimiterRed',
-                    'KanagawaDelimiterOrange', -- Innermost delimiter
-                },
-            }
-
-            vim.api.nvim_create_user_command("ToggleBracketHighlight", function()
-                rainbow_delimiters.toggle(0)
-            end, {})
-        end
-    },
-    {
-        'nvimdev/dashboard-nvim',
-        event = 'VimEnter',
-        config = function()
-            require('dashboard').setup {
-                theme = 'hyper',
-                config = {
-                    project = {
-                        action = "FzfLua files cwd="
-                    },
-                    week_header = {
-                        enable = true,
-                    },
-                    shortcut = {
-                        { desc = '󰊳 Update', group = '@property', action = 'Lazy update', key = 'u' },
-                        {
-                            desc = ' config',
-                            group = "@property",
-                            action = function() require('fzf-lua').files({ cwd = vim.fn.expand("~/my_little_dotfiles/") }) end,
-                            key = 'c'
-                        },
-                        {
-                            desc = ' NeoGit',
-                            group = "@property",
-                            action = function() require('neogit').open() end,
-                            key = 'g'
-                        },
-                        {
-                            desc = ' Browse cwd',
-                            group = "@property",
-                            action = function() require('fzf-lua').files() end,
-                            key = 's'
-                        }
-                    },
-                },
-            }
+        "kevinhwang91/nvim-ufo",
+        dependencies = "kevinhwang91/promise-async",
+        enabled = false,
+        init = function()
+            vim.o.foldcolumn = "1" -- '0' is not bad
+            vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+            vim.o.foldlevelstart = 99
+            vim.o.foldenable = true
+            vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
         end,
-        dependencies = { { 'nvim-tree/nvim-web-devicons' } }
+        config = function()
+            local ftMap = {
+                vim = "indent",
+                python = { "indent" },
+                git = "",
+            }
+            require("ufo").setup({
+                fold_virt_text_handler = handler,
+                open_fold_hl_timeout = 150,
+                close_fold_kinds_for_ft = {
+                    default = { "imports", "comment" },
+                    json = { "array" },
+                    c = { "comment", "region" },
+                },
+                preview = {
+                    win_config = {
+                        border = { "", "─", "", "", "", "─", "", "" },
+                        winhighlight = "Normal:Folded",
+                        winblend = 0,
+                    },
+                    mappings = {
+                        scrollU = "<C-u>",
+                        scrollD = "<C-d>",
+                        jumpTop = "[",
+                        jumpBot = "]",
+                    },
+                },
+                provider_selector = function(bufnr, filetype, buftype)
+                    return { "treesitter", "indent" }
+                end,
+            })
+            vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "UFO: Open all folds" })
+            vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "UFO: Close all folds" })
+            vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds, { desc = "UFO: Open all folds except kind" })
+            vim.keymap.set("n", "zm", function()
+                require("ufo").closeFoldsWith(1)
+            end, { desc = "UFO: Close all folds below level 1" })
+            vim.keymap.set("n", "K", function()
+                local winid = require("ufo").peekFoldedLinesUnderCursor()
+                if not winid then
+                    vim.lsp.buf.hover()
+                end
+            end, { desc = "UFO: Closed folds preview" })
+        end,
     },
-
 }
