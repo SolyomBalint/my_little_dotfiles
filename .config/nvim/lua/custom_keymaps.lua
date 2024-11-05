@@ -36,6 +36,5 @@ vim.api.nvim_create_user_command("ToggleWhiteSpaceDisplay", function()
 end, {})
 
 -- Making register handling easier
-vim.keymap.set({ "n", "v" }, "p", '"0p', { desc = "CUSTOM: Paste from 0 reg" })
 vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "CUSTOM: Yank to + reg" })
 vim.keymap.set({ "n", "v" }, "<leader>p", '"+p', { desc = "CUSTOM: Paste from + reg" })

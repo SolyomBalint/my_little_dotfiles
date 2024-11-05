@@ -2,7 +2,7 @@ require("full-border"):setup({
     -- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
     type = ui.Border.ROUNDED,
 })
-
+require("git"):setup()
 Status:children_add(function()
     local h = cx.active.current.hovered
     if h == nil or ya.target_family() ~= "unix" then
