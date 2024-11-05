@@ -26,3 +26,12 @@ prepend_rules = [
     { name = '*.pdf', use = "openpdf" },
 ]
 
+[[plugin.prepend_fetchers]]
+id   = "git"
+name = "*"
+run  = "git"
+
+[[plugin.prepend_fetchers]]
+id   = "git"
+name = "*/"
+run  = "git"
