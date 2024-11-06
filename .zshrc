@@ -51,8 +51,7 @@ setopt hist_find_no_dups
 
 # Tool integrations
 
-## Fzf
-eval "$(fzf --zsh)"
+## Fzf eval "$(fzf --zsh)"
 
 # Keybindings
 bindkey -e
