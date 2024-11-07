@@ -96,6 +96,8 @@ return {
             vim.keymap.set("n", ";gol", function()
                 neogit.open({ cwd = last_open_git_repo_path })
             end, { silent = true, noremap = true, desc = "NEOGIT: Open neogit in last open dir" }) -- git open last
+            -- Example custom command, would come in handy for work, maybe using a vim cmd would also be good
+            -- vim.keymap.set("n", "<leader>gcc", neogit.action("commit", "commit", { "--verbose", "--all" }))
         end,
     },
 }

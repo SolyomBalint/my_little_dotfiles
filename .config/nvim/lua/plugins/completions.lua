@@ -53,6 +53,17 @@ return {
                 "hrsh7th/cmp-path",
             },
             { "dmitmel/cmp-cmdline-history" },
+            {
+                "tamago324/cmp-zsh",
+                dependencies = "Shougo/deol.nvim",
+                ft = { "zsh", "deoledit" },
+                config = function()
+                    require("cmp_zsh").setup({
+                        zshrc = true,
+                        filetypes = { "deoledit", "zsh" },
+                    })
+                end,
+            },
         },
         config = function()
             local cmp = require("cmp")
@@ -98,6 +109,7 @@ return {
                             -- { spell = "[Spell]" },
                             { async_path = "{AsyncPath}" },
                             { rg = "[RG]" },
+                            { zsh = "[Zsh]" },
                             { cmdline = "[CmdLine]" },
                             { cmdline_history = "{CmdLineHistory}" },
                             { calc = "[Calc]" }
@@ -156,6 +168,11 @@ return {
                             },
                             priority_weight = 80,
                             group_index = 3,
+                        },
+                        {
+                            name = "zsh",
+                            group_index = 2,
+                            priority_weight = 80,
                         },
                         -- {
                         --     name = "dictionary",

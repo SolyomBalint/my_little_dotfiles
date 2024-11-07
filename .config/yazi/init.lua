@@ -2,7 +2,6 @@ require("full-border"):setup({
     -- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
     type = ui.Border.ROUNDED,
 })
-require("git"):setup()
 Status:children_add(function()
     local h = cx.active.current.hovered
     if h == nil or ya.target_family() ~= "unix" then
@@ -16,3 +15,13 @@ Status:children_add(function()
         ui.Span(" "),
     })
 end, 500, Status.RIGHT)
+
+-- ~/.config/yazi/init.lua
+THEME.git = THEME.git or {}
+THEME.git.modified_sign = "M"
+THEME.git.added_sign = "A"
+THEME.git.untracked_sign = "U"
+THEME.git.deleted_sign = "D"
+THEME.git.ignored_sign = "I"
+THEME.git.updated_sign = "u"
+require("git"):setup()
