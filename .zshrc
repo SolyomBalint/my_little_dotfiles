@@ -29,6 +29,10 @@ zinit cdreplay -q
 ## Auto suggestions
 zinit light zsh-users/zsh-autosuggestions
 
+## Vim integration plugin
+zinit ice depth=1
+zinit light jeffreytse/zsh-vi-mode
+
 ## fzf integratin plugin
 zinit light Aloxaf/fzf-tab
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -51,13 +55,13 @@ setopt hist_find_no_dups
 
 # Tool integrations
 
-## Fzf eval "$(fzf --zsh)"
+## Fzf
+eval "$(fzf --zsh)"
 
 # Keybindings
-bindkey -e
 bindkey '^f' autosuggest-accept
-bindkey '^p' history-search-backward
-bindkey '^n' history-search-forward
+# bindkey '^p' history-search-backward
+# bindkey '^n' history-search-forward
 
 # Custom additions
 
@@ -93,9 +97,9 @@ alias tmuxifierbase="tmuxifier load-session base"
 alias intellij="~/jetbrains/intellij/idea-IU-242.21829.142/bin/idea"
 alias zed="~/.local/zed.app/bin/zed"
 
-## yazi things
-alias yazi="~/yazi/target/release/yazi"
-alias ya="~/yazi/target/release/ya"
+## yazi things TODO these should be exported to PATH instead of making aliases, this is true fro the above parts as well
+alias yazi="~/yazi/yazi/target/release/yazi"
+alias ya="~/yazi/yazi/target/release/ya"
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
