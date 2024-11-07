@@ -7,3 +7,4 @@ TODO*
 \.virtualenvs
 \.bashrc
 \.config/nvim/\.undo
+\.config/custom/

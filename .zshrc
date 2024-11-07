@@ -1,3 +1,6 @@
+# Load local not commited changes
+[ -f ~/.config/custom/.local_extras.zsh ] && source ~/.config/custom/.local_extras.zsh
+
 # Adding oh my posh
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pure.omp.json)"
