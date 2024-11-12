@@ -1,9 +1,11 @@
+local local_infos = require("local_additions")
+
 return {
     "epwalsh/obsidian.nvim",
     version = "*",
     lazy = true,
     event = {
-        "BufReadPre " .. vim.fn.expand("~") .. "/obsidian/*.md",
+        "BufReadPre *.md",
     },
     dependencies = {
         "nvim-lua/plenary.nvim",
@@ -12,12 +14,7 @@ return {
         "nvim-treesitter/nvim-treesitter",
     },
     opts = {
-        workspaces = {
-            {
-                name = "slip_box",
-                path = "~/obsidian/slip_box",
-            },
-        },
+        workspaces = local_infos.workspaces,
         completion = {
             nvim_cmp = true,
             min_chars = 2,
