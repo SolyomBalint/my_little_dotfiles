@@ -48,21 +48,21 @@ end
 return {
     {
         "ray-x/lsp_signature.nvim",
-        event = "InsertEnter",
         opts = {
             bind = true,
             handler_opts = {
                 border = "rounded",
             },
+            hint_inline = function()
+                return "inline"
+            end,
+            floating_window = false,
+            hint_prefix = " ",
         },
         config = function(_, opts)
             require("lsp_signature").setup(opts)
             vim.keymap.set({ "n" }, "<C-k>", function()
                 require("lsp_signature").toggle_float_win()
-            end, { silent = true, noremap = true, desc = "SIG: toggle signature" })
-
-            vim.keymap.set({ "n" }, "<Leader>k", function()
-                vim.lsp.buf.signature_help()
             end, { silent = true, noremap = true, desc = "SIG: toggle signature" })
 
             vim.api.nvim_create_autocmd("LspAttach", {

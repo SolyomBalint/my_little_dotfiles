@@ -2,6 +2,7 @@
 [ -f ~/.config/custom/.local_extras.zsh ] && source ~/.config/custom/.local_extras.zsh
 
 # Adding oh my posh
+export PATH=$PATH:~/.local/bin
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
   eval "$(oh-my-posh init zsh --config https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pure.omp.json)"
 fi
@@ -55,6 +56,7 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
 setopt hist_find_no_dups
+setopt inc_append_history
 
 # Tool integrations
 
@@ -75,7 +77,6 @@ export JAVA_HOME="/usr/"
 ## texlive things
 export PATH=$PATH:/usr/local/texlive/2024/bin/x86_64-linux
 export PATH="$HOME/.tmuxifier/bin:$PATH"
-export PATH=$PATH:~/yazi/target/release/
 
 # Aliases
 
@@ -101,8 +102,7 @@ alias intellij="~/jetbrains/intellij/idea-IU-242.21829.142/bin/idea"
 alias zed="~/.local/zed.app/bin/zed"
 
 ## yazi things TODO these should be exported to PATH instead of making aliases, this is true fro the above parts as well
-alias yazi="~/yazi/yazi/target/release/yazi"
-alias ya="~/yazi/yazi/target/release/ya"
+export PATH=$PATH:~/yazi/target/release
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
