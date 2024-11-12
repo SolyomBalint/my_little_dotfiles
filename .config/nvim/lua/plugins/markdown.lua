@@ -8,12 +8,9 @@ return {
             "nvim-tree/nvim-web-devicons",
         },
         config = function()
-            vim.keymap.set(
-                "n",
-                "<C-m>",
-                ":Markview toggleAll<CR>",
-                { noremap = true, desc = "MARKVIEW: Toggle markview" }
-            )
+            require("markview").setup({
+                initial_state = false,
+            })
         end,
     },
 }

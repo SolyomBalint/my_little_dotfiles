@@ -43,3 +43,6 @@ vim.opt.undofile = true
 vim.diagnostic.config({
     virtual_text = false,
 })
+
+-- Obisdian settings
+vim.opt.conceallevel = 1
