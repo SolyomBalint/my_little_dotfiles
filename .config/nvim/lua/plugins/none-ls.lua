@@ -21,9 +21,6 @@ return {
                                 local save_cursor = vim.fn.getpos(".")
                                 vim.cmd([[%s/\s\+$//e]])
                                 vim.fn.setpos(".", save_cursor)
-                                vim.lsp.buf.format({
-                                    async = false,
-                                })
                             end,
                         })
                     end
@@ -55,6 +52,10 @@ return {
                     diagnostics.mypy.with({ filetypes = { "python" } }),
                 },
             })
+
+            vim.keymap.set("n", "<leader>f", function()
+                vim.lsp.buf.format({})
+            end, { desc = "NONE: format buffer" })
         end,
     },
 }

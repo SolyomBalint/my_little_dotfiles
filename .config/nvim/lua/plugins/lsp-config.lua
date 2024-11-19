@@ -44,7 +44,6 @@ local on_attach = function()
         { noremap = true, desc = "FZF: List code actions" }
     )
 end
-
 return {
     {
         "ray-x/lsp_signature.nvim",
@@ -53,9 +52,7 @@ return {
             handler_opts = {
                 border = "rounded",
             },
-            hint_inline = function()
-                return "inline"
-            end,
+            hint_enable = true,
             floating_window = false,
             hint_prefix = " ",
         },
