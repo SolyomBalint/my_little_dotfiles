@@ -83,14 +83,48 @@ return {
     },
     {
         "williamboman/mason-lspconfig.nvim",
+        dependencies = "onsails/lspkind.nvim",
         lazy = false,
         config = function()
             require("mason-lspconfig").setup({
                 auto_install = true,
                 ensure_installed = { "clangd", "lua_ls", "cmake", "bashls", "marksman", "pyright" },
             })
-            local capabilities = require("cmp_nvim_lsp").default_capabilities()
+            local capabilities = require("blink.cmp").get_lsp_capabilities()
+            -- setup() is also available as an alias
+            require("lspkind").init({
+                mode = "symbol_text",
 
+                preset = "codicons",
+
+                symbol_map = {
+                    Text = "󰉿",
+                    Method = "󰆧",
+                    Function = "󰊕",
+                    Constructor = "",
+                    Field = "󰜢",
+                    Variable = "󰀫",
+                    Class = "󰠱",
+                    Interface = "",
+                    Module = "",
+                    Property = "󰜢",
+                    Unit = "󰑭",
+                    Value = "󰎠",
+                    Enum = "",
+                    Keyword = "󰌋",
+                    Snippet = "",
+                    Color = "󰏘",
+                    File = "󰈙",
+                    Reference = "󰈇",
+                    Folder = "󰉋",
+                    EnumMember = "",
+                    Constant = "󰏿",
+                    Struct = "󰙅",
+                    Event = "",
+                    Operator = "󰆕",
+                    TypeParameter = "",
+                },
+            })
             require("mason-lspconfig").setup_handlers({
                 function(server_name)
                     require("lspconfig")[server_name].setup({
