@@ -34,8 +34,8 @@ zinit cdreplay -q
 zinit light zsh-users/zsh-autosuggestions
 
 ## Vim integration plugin
-zinit ice depth=1
-zinit light jeffreytse/zsh-vi-mode
+# zinit ice depth=1
+# zinit light jeffreytse/zsh-vi-mode
 
 ## fzf integratin plugin
 zinit light Aloxaf/fzf-tab
