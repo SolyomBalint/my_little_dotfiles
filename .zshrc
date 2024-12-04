@@ -85,7 +85,7 @@ alias ls='ls --color'
 
 ## fzf aliases
 alias fzfpreview='fzf --preview="bat --color=always {}"'
-alias fzfcd='cd $(fzf --preview="bat --color=always {}")'
+alias fzfcd='cd $(find . -type d -print | fzf --preview="bat --color=always {}")'
 alias fzfnvim='nvim $(fzf -m --preview="bat --color=always {}")'
 
 ## obsidian aliases
