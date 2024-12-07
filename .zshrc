@@ -69,14 +69,7 @@ bindkey '^f' autosuggest-accept
 # bindkey '^n' history-search-forward
 
 # Custom additions
-
-. "$HOME/.cargo/env"
 export EDITOR="nvim"
-export JAVA_HOME="/usr/"
-
-## texlive things
-export PATH=$PATH:/usr/local/texlive/2024/bin/x86_64-linux
-export PATH="$HOME/.tmuxifier/bin:$PATH"
 
 # Aliases
 
