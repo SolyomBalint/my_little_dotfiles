@@ -10,6 +10,7 @@
     ../../home/terminal
     ../../home/neovim
     ../../home/infotainment
+    ../../home/game_dev
   ];
 
   programs.git = {

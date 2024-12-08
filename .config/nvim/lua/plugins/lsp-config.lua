@@ -75,21 +75,12 @@ return {
         end,
     },
     {
-        "williamboman/mason.nvim",
+        "neovim/nvim-lspconfig",
         lazy = false,
-        config = function()
-            require("mason").setup()
-        end,
-    },
-    {
-        "williamboman/mason-lspconfig.nvim",
-        dependencies = "onsails/lspkind.nvim",
-        lazy = false,
-        config = function()
-            require("mason-lspconfig").setup({
-                auto_install = true,
-                ensure_installed = { "clangd", "lua_ls", "cmake", "bashls", "marksman", "pyright" },
-            })
+        dependencies = {  "onsails/lspkind.nvim", "saghen/blink.cmp" },
+        config = function ()
+            -- "clangd", "lua_ls", "cmake", "bashls", "marksman", "pyright"
+
             local capabilities = require("blink.cmp").get_lsp_capabilities()
             -- setup() is also available as an alias
             require("lspkind").init({
@@ -125,45 +116,43 @@ return {
                     TypeParameter = "",
                 },
             })
-            require("mason-lspconfig").setup_handlers({
-                function(server_name)
-                    require("lspconfig")[server_name].setup({
-                        capabilities = capabilities,
-                        on_attach = on_attach,
-                    })
-                end,
-                ["clangd"] = function()
-                    require("lspconfig").clangd.setup({
-                        cmd = {
-                            "clangd",
-                            "-j=4",
-                            "--offset-encoding=utf-16",
-                            "--clang-tidy",
-                            "--pretty",
-                            "--inlay-hints",
-                            "--background-index",
-                            "--pch-storage=memory",
-                            "--all-scopes-completion",
-                            "--header-insertion=never",
-                            "--function-arg-placeholders",
-                            "--completion-style=detailed",
-                            "--header-insertion-decorators",
-                        },
-                        filetypes = { "c", "cpp" },
-                        root_dir = require("lspconfig").util.root_pattern("src"),
-                        capabilities = capabilities,
-                        on_attach = function()
-                            -- require("clangd_extensions.inlay_hints").setup_autocmd()
-                            -- require("clangd_extensions.inlay_hints").set_inlay_hints()
-                            on_attach()
-                        end,
-                    })
-                end,
+            local lspconfig = require('lspconfig')
+            lspconfig.nil_ls.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
             })
-        end,
-    },
-    {
-        "neovim/nvim-lspconfig",
-        lazy = false,
+            lspconfig.lua_ls.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+            })
+        end
     },
 }
+
+                -- ["clangd"] = function()
+                --     require("lspconfig").clangd.setup({
+                --         cmd = {
+                --             "clangd",
+                --             "-j=4",
+                --             "--offset-encoding=utf-16",
+                --             "--clang-tidy",
+                --             "--pretty",
+                --             "--inlay-hints",
+                --             "--background-index",
+                --             "--pch-storage=memory",
+                --             "--all-scopes-completion",
+                --             "--header-insertion=never",
+                --             "--function-arg-placeholders",
+                --             "--completion-style=detailed",
+                --             "--header-insertion-decorators",
+                --         },
+                --         filetypes = { "c", "cpp" },
+                --         root_dir = require("lspconfig").util.root_pattern("src"),
+                --         capabilities = capabilities,
+                --         on_attach = function()
+                --             -- require("clangd_extensions.inlay_hints").setup_autocmd()
+                --             -- require("clangd_extensions.inlay_hints").set_inlay_hints()
+                --             on_attach()
+                --         end,
+                --     })
+                -- end,
