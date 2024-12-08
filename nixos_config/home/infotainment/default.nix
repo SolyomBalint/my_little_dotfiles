@@ -4,5 +4,6 @@
     signal-desktop
     obsidian
     prismlauncher
+    brave
   ];
 }

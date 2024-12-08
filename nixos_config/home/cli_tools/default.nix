@@ -12,8 +12,8 @@
     bottom
 
     # For sensors
-    pciutils
-    gtop # similiar to bottom
-    amdgpu_top
+    # pciutils
+    # gtop # similiar to bottom
+    # amdgpu_top
   ];
 }

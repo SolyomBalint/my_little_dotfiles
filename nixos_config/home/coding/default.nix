@@ -5,5 +5,6 @@
         python312Packages.pip
         gcc
         cargo
+        zulu17 # java openjdk
   ];
 }
