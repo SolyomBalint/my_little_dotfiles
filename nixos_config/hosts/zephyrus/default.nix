@@ -41,6 +41,7 @@
       enableUserService = true;
     };
   };
+  systemd.services.supergfxd.path = [ pkgs.pciutils ];
 
   system.stateVersion = "24.11";
 }

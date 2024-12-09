@@ -64,7 +64,7 @@
     zip
     gnutar
     ripgrep
-    xclip
+    wl-clipboard
   ];
 
   # Enable sound with pipewire.
