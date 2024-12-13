@@ -21,7 +21,7 @@
   networking.networkmanager.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  # services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -34,6 +34,12 @@
   };
 
   # Adding asusctl and supergfxctl
+  environment.systemPackages = with pkgs; [
+    pciutils
+    supergfxctl
+    asusctl
+  ];
+
   services.supergfxd.enable = true;
   services = {
     asusd = {
@@ -41,6 +47,7 @@
       enableUserService = true;
     };
   };
+
   systemd.services.supergfxd.path = [ pkgs.pciutils ];
 
   system.stateVersion = "24.11";
