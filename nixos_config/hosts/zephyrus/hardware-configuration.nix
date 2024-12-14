@@ -22,7 +22,7 @@
     "sd_mod"
     "sdhci_pci"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
@@ -54,8 +54,16 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Custom settings
-  environment.systemPackages = [
-    pkgs.amdvlk
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  environment.systemPackages = with pkgs; [
+    amdenc
+    amdvlk
+    amdgpu_top
   ];
-  hardware.amdgpu.amdvlk.enable = true;
+
+  hardware.amdgpu.amdvlk = {
+    enable = true;
+    support32Bit.enable = true;
+    supportExperimental.enable = true;
+  };
 }

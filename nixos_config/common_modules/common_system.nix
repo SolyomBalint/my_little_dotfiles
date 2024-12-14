@@ -48,12 +48,28 @@
     LC_TIME = "hu_HU.UTF-8";
   };
 
+  services.xserver = {
+    enable = true;
+    displayManager = {
+      gdm = {
+        enable = true;
+        wayland = true;
+      };
+    };
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
+  };
+
   services.printing.enable = true;
 
   programs.firefox.enable = true;
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+
+  fonts.packages = with pkgs; [ nerdfonts ];
 
   environment.systemPackages = with pkgs; [
     vim
@@ -67,6 +83,8 @@
     wl-clipboard
   ];
 
+  services.envfs.enable = true;
+
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -75,5 +93,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    jack.enable = true;
   };
 }

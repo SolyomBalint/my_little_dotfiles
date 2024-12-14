@@ -11,6 +11,13 @@
     fzf
     bottom
 
+    # PDF viewers
+    zathura
+    evince
+
+    # Music handling
+    playerctl
+
     # For sensors
     # pciutils
     # gtop # similiar to bottom
