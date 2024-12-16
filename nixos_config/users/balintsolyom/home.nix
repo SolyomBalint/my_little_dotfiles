@@ -1,5 +1,5 @@
 # Users home manager configuration
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   # Import home manager modules here
   imports = [

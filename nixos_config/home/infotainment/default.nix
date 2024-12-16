@@ -6,4 +6,5 @@
     prismlauncher
     discord
   ];
+
 }

@@ -5,6 +5,9 @@
     # Base package repository
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
+    # Extra Hardware support
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
     # Adding home mamanger 24.11 release
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
@@ -28,6 +31,7 @@
             username = "balintsolyom";
             specialArgs = {
               inherit username;
+              inherit inputs;
             };
           in
           nixpkgs.lib.nixosSystem {

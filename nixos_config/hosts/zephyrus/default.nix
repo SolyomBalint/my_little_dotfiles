@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -8,6 +8,7 @@
     ../../common_modules/desktop_envs/hyprland.nix
 
     ./hardware-configuration.nix
+    inputs.nixos-hardware.nixosModules.asus-zephyrus-ga402
   ];
 
   # Bootloader.
