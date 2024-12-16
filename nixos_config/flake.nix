@@ -24,6 +24,9 @@
       home-manager,
       ...
     }:
+    let
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+    in
     {
       nixosConfigurations = {
         balintnixos =
@@ -53,5 +56,6 @@
             ];
           };
       };
+      nixpkgs.devShells."x86_64-linux".default = import ../dev_envs/shell.nix { inherit pkgs; };
     };
 }

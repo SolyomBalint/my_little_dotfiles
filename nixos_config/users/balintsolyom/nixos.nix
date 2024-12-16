@@ -1,4 +1,4 @@
-{ username, pkgs, ... }:
+{ username, pkgs, inputs, ... }:
 
 {
   # Nixos global configuration for the current user.

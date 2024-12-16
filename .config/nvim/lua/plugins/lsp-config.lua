@@ -1,7 +1,6 @@
 local fzf = require("fzf-lua")
 
-local on_attach = function()
-    vim.keymap.set("n", "I", vim.lsp.buf.hover, { noremap = true, desc = "LSP: Hover" })
+local on_attach = function() vim.keymap.set("n", "I", vim.lsp.buf.hover, { noremap = true, desc = "LSP: Hover" })
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP: Go to definition" })
     vim.keymap.set(
         "n",
@@ -77,8 +76,8 @@ return {
     {
         "neovim/nvim-lspconfig",
         lazy = false,
-        dependencies = {  "onsails/lspkind.nvim", "saghen/blink.cmp" },
-        config = function ()
+        dependencies = { "onsails/lspkind.nvim", "saghen/blink.cmp" },
+        config = function()
             -- "clangd", "lua_ls", "cmake", "bashls", "marksman", "pyright"
 
             local capabilities = require("blink.cmp").get_lsp_capabilities()
@@ -116,8 +115,16 @@ return {
                     TypeParameter = "",
                 },
             })
-            local lspconfig = require('lspconfig')
-            lspconfig.nil_ls.setup({
+            local lspconfig = require("lspconfig")
+            lspconfig.nixd.setup({
+                cmd = { "nixd" },
+                settings = {
+                    nixd = {
+                        nixpkgs = {
+                            expr = "import <nixpkgs> {  }",
+                        },
+                    },
+                },
                 capabilities = capabilities,
                 on_attach = on_attach,
             })
@@ -125,34 +132,34 @@ return {
                 capabilities = capabilities,
                 on_attach = on_attach,
             })
-        end
+        end,
     },
 }
 
-                -- ["clangd"] = function()
-                --     require("lspconfig").clangd.setup({
-                --         cmd = {
-                --             "clangd",
-                --             "-j=4",
-                --             "--offset-encoding=utf-16",
-                --             "--clang-tidy",
-                --             "--pretty",
-                --             "--inlay-hints",
-                --             "--background-index",
-                --             "--pch-storage=memory",
-                --             "--all-scopes-completion",
-                --             "--header-insertion=never",
-                --             "--function-arg-placeholders",
-                --             "--completion-style=detailed",
-                --             "--header-insertion-decorators",
-                --         },
-                --         filetypes = { "c", "cpp" },
-                --         root_dir = require("lspconfig").util.root_pattern("src"),
-                --         capabilities = capabilities,
-                --         on_attach = function()
-                --             -- require("clangd_extensions.inlay_hints").setup_autocmd()
-                --             -- require("clangd_extensions.inlay_hints").set_inlay_hints()
-                --             on_attach()
-                --         end,
-                --     })
-                -- end,
+-- ["clangd"] = function()
+--     require("lspconfig").clangd.setup({
+--         cmd = {
+--             "clangd",
+--             "-j=4",
+--             "--offset-encoding=utf-16",
+--             "--clang-tidy",
+--             "--pretty",
+--             "--inlay-hints",
+--             "--background-index",
+--             "--pch-storage=memory",
+--             "--all-scopes-completion",
+--             "--header-insertion=never",
+--             "--function-arg-placeholders",
+--             "--completion-style=detailed",
+--             "--header-insertion-decorators",
+--         },
+--         filetypes = { "c", "cpp" },
+--         root_dir = require("lspconfig").util.root_pattern("src"),
+--         capabilities = capabilities,
+--         on_attach = function()
+--             -- require("clangd_extensions.inlay_hints").setup_autocmd()
+--             -- require("clangd_extensions.inlay_hints").set_inlay_hints()
+--             on_attach()
+--         end,
+--     })
+-- end,

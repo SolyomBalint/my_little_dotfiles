@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
   home.packages = with pkgs; [
     neovim
@@ -16,9 +21,16 @@
     neocmakelsp
     pyright
     marksman
-    nil
+    nixd
 
     # Diagnostic tools
     mypy
+
+    # Debuggers
+    gdb
+    python312Packages.debugpy
   ];
+
+  # Needed for nix lsp
+  nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 }
