@@ -22,6 +22,7 @@
     pyright
     marksman
     nixd
+    typescript-language-server
 
     # Diagnostic tools
     mypy

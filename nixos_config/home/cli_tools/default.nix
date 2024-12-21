@@ -15,6 +15,9 @@
     zathura
     evince
 
+    # ePUB viewers
+    calibre
+
     # Music handling
     playerctl
 

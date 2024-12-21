@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   imports = [
@@ -27,6 +32,7 @@
     pciutils
     supergfxctl
     asusctl
+    clinfo
   ];
 
   services.supergfxd.enable = true;

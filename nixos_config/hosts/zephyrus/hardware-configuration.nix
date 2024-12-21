@@ -14,6 +14,9 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # Update kernel to latest available
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
@@ -22,6 +25,8 @@
     "sd_mod"
     "sdhci_pci"
   ];
+
+  # For amd
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
@@ -59,6 +64,10 @@
     amdenc
     amdvlk
     amdgpu_top
+  ];
+  hardware.graphics.enable32Bit = true; # For 32 bit applications
+  hardware.opengl.extraPackages = with pkgs; [
+    rocmPackages.clr.icd
   ];
 
   hardware.amdgpu.amdvlk = {
