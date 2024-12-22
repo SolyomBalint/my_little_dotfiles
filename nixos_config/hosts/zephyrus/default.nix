@@ -10,7 +10,7 @@
     ../../common_modules/common_system.nix
     ../../common_modules/desktop_envs/gnome.nix
     ../../common_modules/desktop_envs/hyprland.nix
-    ../../common_modules/widget_frameworks/ags.nix
+    # ../../common_modules/widget_frameworks/ags.nix
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix

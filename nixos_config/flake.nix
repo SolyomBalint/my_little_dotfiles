@@ -5,6 +5,9 @@
     # Base package repository
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
+    # unstable
+    unstable_pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     # Extra Hardware support
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 

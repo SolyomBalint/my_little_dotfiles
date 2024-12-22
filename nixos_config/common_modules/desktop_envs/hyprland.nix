@@ -1,6 +1,8 @@
 { pkgs, ... }:
 {
   programs.hyprland.enable = true;
+  programs.xwayland.enable = true;
+  programs.hyprland.xwayland.enable = true;
   environment.systemPackages = with pkgs; [
     wofi # program starter
     waybar # Status bar config in: ~/.config/waybar
@@ -13,4 +15,5 @@
     hyprpaper # Adding backgrounds
     hyprsunset # Nightlight
   ];
+
 }

@@ -111,3 +111,6 @@ alias resetfirefox="sudo rm -f /usr/lib64/firefox/browser/defaults/preferences/f
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Gaming
+alias civ6="gamescope -w 1920 -h 1080 -r 60 -f -F fsr --steam -- steam steam://rungameid/289070"

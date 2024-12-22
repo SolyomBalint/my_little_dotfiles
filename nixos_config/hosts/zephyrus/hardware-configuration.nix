@@ -62,17 +62,19 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
   environment.systemPackages = with pkgs; [
     amdenc
-    amdvlk
+    # amdvlk
     amdgpu_top
   ];
-  hardware.graphics.enable32Bit = true; # For 32 bit applications
-  hardware.opengl.extraPackages = with pkgs; [
-    rocmPackages.clr.icd
-  ];
 
-  hardware.amdgpu.amdvlk = {
+  hardware.graphics = {
     enable = true;
-    support32Bit.enable = true;
-    supportExperimental.enable = true;
+    enable32Bit = true; # For 32 bit applications
+    extraPackages = with pkgs; [ rocmPackages.clr.icd ];
   };
+
+  # hardware.amdgpu.amdvlk = {
+  #   enable = true;
+  #   support32Bit.enable = true;
+  #   supportExperimental.enable = true;
+  # };
 }
