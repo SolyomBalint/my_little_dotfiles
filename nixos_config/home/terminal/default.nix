@@ -1,9 +1,10 @@
-{ config, pkgs, ... }:
+{ inputs, pkgs, ... }:
 {
   home.packages = with pkgs; [
-    kitty
+    # kitty
     tmux
     zsh
     oh-my-posh
+    inputs.ghostty.packages.x86_64-linux.default
   ];
 }

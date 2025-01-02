@@ -81,6 +81,7 @@
     gnutar
     ripgrep
     wl-clipboard
+    brightnessctl
   ];
 
   services.envfs.enable = true;

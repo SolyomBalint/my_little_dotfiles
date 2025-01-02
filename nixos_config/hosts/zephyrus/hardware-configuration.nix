@@ -72,6 +72,9 @@
     extraPackages = with pkgs; [ rocmPackages.clr.icd ];
   };
 
+  # for games
+  boot.kernel.sysctl."vm.max_map_count" = lib.mkForce 1048576;
+
   # hardware.amdgpu.amdvlk = {
   #   enable = true;
   #   support32Bit.enable = true;

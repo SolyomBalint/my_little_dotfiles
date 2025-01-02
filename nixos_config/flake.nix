@@ -18,6 +18,10 @@
       # Adding inheritance relation to avoid conflicts in for different nix packages
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    ghostty = {
+      url = "github:ghostty-org/ghostty";
+    };
   };
 
   outputs =
