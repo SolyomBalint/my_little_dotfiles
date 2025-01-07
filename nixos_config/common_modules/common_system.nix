@@ -57,7 +57,7 @@
       };
     };
     xkb = {
-      layout = "us";
+      layout = "us,hu";
       variant = "";
     };
   };

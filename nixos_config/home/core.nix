@@ -9,6 +9,7 @@
   home.packages = with pkgs; [
     kanagawa-gtk-theme
     kanagawa-icon-theme
+    libreoffice-qt6-fresh
   ];
 
   gtk = {
