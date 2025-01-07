@@ -29,24 +29,26 @@
       self,
       nixpkgs,
       home-manager,
+      unstable_pkgs,
       ...
     }:
-    # let
-    #   pkgs = nixpkgs.legacyPackages."x86_64-linux";
-    # in
     {
       nixosConfigurations = {
         balintnixos =
           let
             username = "balintsolyom";
+          in
+          nixpkgs.lib.nixosSystem rec {
+            system = "x86_64-linux";
             specialArgs = {
               inherit username;
               inherit inputs;
+              inherit system;
+              unstable_pkgs = import unstable_pkgs {
+                system = system;
+                config.allowUnfree = true;
+              };
             };
-          in
-          nixpkgs.lib.nixosSystem {
-            inherit specialArgs;
-            system = "x86_64-linux";
             modules = [
               ./hosts/zephyrus
               ./users/${username}/nixos.nix
@@ -57,7 +59,7 @@
                 home-manager.useGlobalPkgs = true;
                 home-manager.useUserPackages = true;
 
-                home-manager.extraSpecialArgs = inputs // specialArgs;
+                home-manager.extraSpecialArgs = specialArgs;
                 home-manager.users.${username} = import ./users/${username}/home.nix;
               }
             ];

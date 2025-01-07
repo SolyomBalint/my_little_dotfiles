@@ -1,11 +1,16 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  unstable_pkgs,
+  ...
+}:
 {
   home.packages = with pkgs; [
     neofetch
     stow
     gdb
     fd
-    yazi
+    unstable_pkgs.yazi
     bat
     delta
     fzf

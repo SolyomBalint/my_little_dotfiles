@@ -1,12 +1,13 @@
 {
-config,
+  config,
   pkgs,
   inputs,
+  unstable_pkgs,
   ...
 }:
 {
   home.packages = with pkgs; [
-    neovim
+    unstable_pkgs.neovim
 
     # Formatters
     stylua
