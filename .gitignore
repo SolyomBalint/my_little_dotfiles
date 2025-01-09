@@ -3,7 +3,7 @@ gdb
 \.config/yazi/plugins/
 TODO*
 \.config/custom/launch.json
-\.config/nvim/lazy-lock.json
+# \.config/nvim/lazy-lock.json
 \.config/nvim/lua/local_additions.lua
 \.virtualenvs
 \.bashrc

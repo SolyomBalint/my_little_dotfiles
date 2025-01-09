@@ -80,8 +80,8 @@ return {
         dependencies = { "onsails/lspkind.nvim", "saghen/blink.cmp" },
         config = function()
             local basic_lsp_list = { "lua_ls", "cmake", "neocmake", "marksman", "pyright", "ts_ls" }
-
             local capabilities = require("blink.cmp").get_lsp_capabilities()
+
             -- setup() is also available as an alias
             require("lspkind").init({
                 mode = "symbol_text",
