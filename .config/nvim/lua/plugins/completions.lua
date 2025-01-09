@@ -1,7 +1,11 @@
 return {
     {
         "saghen/blink.cmp",
-        dependencies = { "rafamadriz/friendly-snippets", { "L3MON4D3/LuaSnip", version = "v2.*" } },
+        dependencies = {
+            "rafamadriz/friendly-snippets",
+            "mikavilpas/blink-ripgrep.nvim",
+            { "L3MON4D3/LuaSnip", version = "v2.*" },
+        },
 
         version = "*",
 
@@ -36,7 +40,19 @@ return {
 
             snippets = { preset = "luasnip" },
             sources = {
-                default = { "lsp", "path", "snippets", "buffer" },
+                default = { "lsp", "path", "snippets", "buffer", "ripgrep" },
+                providers = {
+                    ripgrep = {
+                        module = "blink-ripgrep",
+                        name = "Ripgrep",
+                        opts = {
+                            prefix_min_len = 5,
+                            max_filesize = "1M",
+                            search_casing = "--ignore-case",
+                            fallback_to_regex_highlighting = true,
+                        },
+                    },
+                },
             },
         },
         opts_extend = { "sources.default" },

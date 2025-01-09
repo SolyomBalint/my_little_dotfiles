@@ -1,6 +1,7 @@
 {
   "LuaSnip": { "branch": "master", "commit": "c9b9a22904c97d0eb69ccb9bab76037838326817" },
   "aerial.nvim": { "branch": "master", "commit": "b3ec25ca8c347fafa976484a6cace162239112e1" },
+  "blink-ripgrep.nvim": { "branch": "main", "commit": "f707cce87f491404b9909fe56d513222af681c38" },
   "blink.cmp": { "branch": "main", "commit": "1cc3b1a908fbcfd15451c4772759549724f38524" },
   "clangd_extensions.nvim": { "branch": "main", "commit": "8f7b72100883e0e34400d9518d40a03f21e4d0a6" },
   "dashboard-nvim": { "branch": "master", "commit": "ae309606940d26d8c9df8b048a6e136b6bbec478" },
@@ -39,7 +40,6 @@
   "persistent-breakpoints.nvim": { "branch": "main", "commit": "4b199b1dcfd136cac8b0fa9c8dbbdeb81463f7a9" },
   "plenary.nvim": { "branch": "master", "commit": "2d9b06177a975543726ce5c73fca176cedbffe9d" },
   "rainbow-delimiters.nvim": { "branch": "master", "commit": "5578ca6709e0e9a0c76fc7c484b9951b428cbb71" },
-  "snacks.nvim": { "branch": "main", "commit": "14e89401da348f5d14509fca164fb7bcec83e597" },
   "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "36b5eaf3a3b31e3647abbc80669d7c8491d0dcf8" },
   "trouble.nvim": { "branch": "main", "commit": "46cf952fc115f4c2b98d4e208ed1e2dce08c9bf6" },
   "undotree": { "branch": "master", "commit": "2556c6800b210b2096b55b66e74b4cc1d9ebbe4f" },
