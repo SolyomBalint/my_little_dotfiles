@@ -33,6 +33,10 @@
       url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    astal_widget_config = {
+      url = "/etc/nixos/common_modules/widget_frameworks/astal_config";
+    };
   };
 
   outputs =
