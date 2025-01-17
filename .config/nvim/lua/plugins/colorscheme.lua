@@ -193,7 +193,7 @@ return {
             }
 
             require("ibl").setup({
-                exclude = { filetypes = { "dashboard" } },
+                -- exclude = { filetypes = { "dashboard" } },
                 scope = { highlight = highlights, show_start = false, show_end = false },
             })
 

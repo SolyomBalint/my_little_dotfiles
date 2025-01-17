@@ -1,6 +1,9 @@
 { pkgs, inputs, ... }:
 {
     environment.systemPackages = with pkgs; [
-        ags
+        inputs.ags.packages.x86_64-linux.default
+        inputs.astal.packages.${system}.default
+        gtk3
+        # gtk4
     ];
 }

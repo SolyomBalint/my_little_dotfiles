@@ -21,6 +21,7 @@
       "nix-command"
       "flakes"
     ];
+    auto-optimise-store = true;
   };
 
   nix.gc = {

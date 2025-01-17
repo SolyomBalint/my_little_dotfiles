@@ -22,6 +22,17 @@
     ghostty = {
       url = "github:ghostty-org/ghostty";
     };
+
+    astal = {
+      url = "github:aylur/astal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # AGS url, because currently only V1 is packaged
+    ags = {
+      url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -32,6 +43,10 @@
       unstable_pkgs,
       ...
     }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
     {
       nixosConfigurations = {
         balintnixos =
@@ -39,7 +54,6 @@
             username = "balintsolyom";
           in
           nixpkgs.lib.nixosSystem rec {
-            system = "x86_64-linux";
             specialArgs = {
               inherit username;
               inherit inputs;
@@ -64,6 +78,15 @@
               }
             ];
           };
+      };
+      packages.${system}.ags_bundle = inputs.astal.lib.mkLuaPackage {
+        inherit pkgs;
+        name = "astal_widget_config";
+        src = "~/.config/astal";
+
+        extraPackages = [
+
+        ];
       };
     };
 }

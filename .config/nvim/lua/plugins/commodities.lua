@@ -1,3 +1,5 @@
+local is_dim_enabled = false
+
 local handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}
     local suffix = (" 󰁂 %d "):format(endLnum - lnum)
@@ -50,7 +52,7 @@ return {
         enabled = false,
         init = function()
             vim.o.foldcolumn = "1" -- '0' is not bad
-            vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+            vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
             vim.o.foldlevelstart = 99
             vim.o.foldenable = true
             vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -98,6 +100,67 @@ return {
                     vim.lsp.buf.hover()
                 end
             end, { desc = "UFO: Closed folds preview" })
+        end,
+    },
+    {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        ---@type snacks.Config
+        opts = {
+            bigfile = {
+                enabled = true,
+                notify = true,
+                size = 1.5 * 1024 * 1024, -- 1.5MB
+            },
+            dashboard = {
+                enabled = true,
+                sections = {
+                    { section = "header" },
+                    { section = "keys", gap = 1, padding = 1 },
+                    {
+                        pane = 2,
+                        icon = " ",
+                        title = "Recent Files",
+                        section = "recent_files",
+                        indent = 2,
+                        padding = 1,
+                    },
+                    { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+                    {
+                        pane = 2,
+                        icon = " ",
+                        title = "Git Status",
+                        section = "terminal",
+                        enabled = function()
+                            return Snacks.git.get_root() ~= nil
+                        end,
+                        cmd = "git status --short --branch --renames",
+                        height = 10,
+                        padding = 1,
+                        ttl = 5 * 60,
+                        indent = 3,
+                    },
+                    { section = "startup" },
+                },
+            },
+            dim = { enabled = true },
+            git = { enabled = true },
+        },
+        config = function(_, opts)
+            local snacks = require("snacks")
+            snacks.setup(opts)
+
+            vim.keymap.set("n", "<C-s>d", function()
+                if is_dim_enabled then
+                    snacks.dim.disable()
+                    is_dim_enabled = false
+                    return
+                end
+                snacks.dim.enable()
+                is_dim_enabled = true
+            end, { desc = "SNACKS: activate dim" })
+            vim.keymap.set("n", "<C-s>gb", snacks.git.blame_line, { desc = "SNACKS: Git blame" })
         end,
     },
 }
