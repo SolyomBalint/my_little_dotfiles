@@ -35,7 +35,7 @@
     };
 
     astal_widget_config = {
-      url = "/etc/nixos/common_modules/widget_frameworks/astal_config";
+      url = "path:./common_modules/widget_frameworks/astal_config";
     };
   };
 
