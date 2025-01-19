@@ -15,6 +15,7 @@
     delta
     fzf
     bottom
+    jq
 
     # PDF viewers
     zathura

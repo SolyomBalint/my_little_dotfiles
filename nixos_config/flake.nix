@@ -35,7 +35,8 @@
     };
 
     astal_widget_config = {
-      url = "path:./common_modules/widget_frameworks/astal_config";
+      url = "github:SolyomBalint/my_little_astal_widgets";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

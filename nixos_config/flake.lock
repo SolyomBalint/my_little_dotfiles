@@ -86,17 +86,22 @@
     "astal_widget_config": {
       "inputs": {
         "astal": "astal_3",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-7NBgvEV3pnJaQh/MGFcXhd1lVd+gITlubzDSfeSfjks=",
-        "path": "./common_modules/widget_frameworks/astal_config",
-        "type": "path"
+        "lastModified": 1737290213,
+        "narHash": "sha256-0d8dABrg8DAxQxSTh261GeMzZE1mpwatFGCIDXD6P9E=",
+        "owner": "SolyomBalint",
+        "repo": "my_little_astal_widgets",
+        "rev": "9185722d0cab13e408d2362c2e8767fa5ad3e72f",
+        "type": "github"
       },
       "original": {
-        "path": "./common_modules/widget_frameworks/astal_config",
-        "type": "path"
+        "owner": "SolyomBalint",
+        "repo": "my_little_astal_widgets",
+        "type": "github"
       }
     },
     "flake-compat": {
@@ -193,16 +198,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1737062831,
-        "narHash": "sha256-Tbk1MZbtV2s5aG+iM99U8FqwxU/YNArMcWAv6clcsBc=",
-        "owner": "nixos",
+        "lastModified": 1736916166,
+        "narHash": "sha256-puPDoVKxkuNmYIGMpMQiK8bEjaACcCksolsG36gdaNQ=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5df43628fdf08d642be8ba5b3625a6c70731c19c",
+        "rev": "e24b4c09e963677b1beea49d411cd315a024ad3a",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
+        "owner": "NixOS",
+        "ref": "nixos-24.11",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -239,22 +244,6 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1736916166,
-        "narHash": "sha256-puPDoVKxkuNmYIGMpMQiK8bEjaACcCksolsG36gdaNQ=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "e24b4c09e963677b1beea49d411cd315a024ad3a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-24.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "ags": "ags",
@@ -263,7 +252,7 @@
         "ghostty": "ghostty",
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "unstable_pkgs": "unstable_pkgs"
       }
     },
