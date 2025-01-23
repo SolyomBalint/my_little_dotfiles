@@ -19,10 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ghostty = {
-      url = "github:ghostty-org/ghostty";
-    };
-
     astal = {
       url = "github:aylur/astal";
       inputs.nixpkgs.follows = "nixpkgs";
