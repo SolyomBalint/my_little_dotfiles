@@ -31,6 +31,10 @@
     # Debuggers
     gdb
     python312Packages.debugpy
+
+    # Avante needs this
+    gnumake
+    nodejs_23
   ];
 
   # Needed for nix lsp

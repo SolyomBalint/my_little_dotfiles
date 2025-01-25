@@ -79,7 +79,7 @@ return {
         lazy = false,
         dependencies = { "onsails/lspkind.nvim", "saghen/blink.cmp" },
         config = function()
-            local basic_lsp_list = { "lua_ls", "cmake", "neocmake", "marksman", "pyright", "ts_ls" }
+            local basic_lsp_list = { "cmake", "neocmake", "marksman", "pyright", "ts_ls" }
             local capabilities = require("blink.cmp").get_lsp_capabilities()
 
             -- setup() is also available as an alias
@@ -162,6 +162,23 @@ return {
                     -- require("clangd_extensions.inlay_hints").set_inlay_hints()
                     on_attach()
                 end,
+            })
+
+            lspconfig.lua_ls.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                filetypes = { "lua" },
+                settings = {
+                    Lua = {
+                        workspace = {
+                            library = {
+                                -- This temporary only for my local development, a not so hardcoded solutions would be
+                                -- nice
+                                vim.fn.expand("~/personal/projects/sources_for_lsps/astal/lang/lua/"),
+                            },
+                        },
+                    },
+                },
             })
         end,
     },

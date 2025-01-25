@@ -56,16 +56,26 @@ return {
             local rg_cmd = "rg -u --follow --hidden --with-filename --line-number --column --smart-case"
                 .. " --glob=!**/.git/* --glob=!**/build/* --glob=!**/.idea/*"
             vim.keymap.set("n", "<C-p>a", function()
-                fzf.files({
-                    cwd = vim.fn.input("Path to basedir: ", vim.fn.getcwd() .. "/", "file"),
-                    cmd = "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build",
-                })
+                Snacks.input(
+                    { prompt = "Path to basedir: ", default = vim.fn.getcwd() .. "/", completion = "file" },
+                    function(input)
+                        fzf.files({
+                            cwd = input,
+                            cmd = "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build",
+                        })
+                    end
+                )
             end, { noremap = true, desc = "FZF: search for files in input dir" })
             vim.keymap.set("n", "<leader>lg", function()
-                fzf.live_grep_glob({
-                    cwd = vim.fn.input("Path to basedir: ", vim.fn.getcwd() .. "/", "file"),
-                    cmd = rg_cmd,
-                })
+                Snacks.input(
+                    { prompt = "Path to basedir: ", default = vim.fn.getcwd() .. "/", completion = "file" },
+                    function(input)
+                        fzf.live_grep_glob({
+                            cwd = input,
+                            cmd = rg_cmd,
+                        })
+                    end
+                )
             end, { noremap = true, desc = "FZF: Live grep in input dir wiht glob support" })
             vim.keymap.set("v", "<C-p>v", function()
                 fzf.grep_visual({

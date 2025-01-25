@@ -113,6 +113,15 @@ return {
                 notify = true,
                 size = 1.5 * 1024 * 1024, -- 1.5MB
             },
+            input = {
+                enabled = true,
+                icon = " ",
+                icon_hl = "SnacksInputIcon",
+                icon_pos = "left",
+                prompt_pos = "title",
+                win = { style = "input" },
+                expand = true,
+            },
             dashboard = {
                 enabled = true,
                 sections = {
@@ -130,12 +139,26 @@ return {
                     {
                         pane = 2,
                         icon = " ",
-                        title = "Git Status",
+                        title = "Git Diff",
                         section = "terminal",
                         enabled = function()
                             return Snacks.git.get_root() ~= nil
                         end,
-                        cmd = "git status --short --branch --renames",
+                        cmd = "git --no-pager diff --stat -B -M -C",
+                        height = 10,
+                        padding = 1,
+                        ttl = 5 * 60,
+                        indent = 3,
+                    },
+                    {
+                        pane = 2,
+                        icon = "󰻫 ",
+                        title = "New Files",
+                        section = "terminal",
+                        enabled = function()
+                            return Snacks.git.get_root() ~= nil
+                        end,
+                        cmd = "git ls-files --others --exclude-standard",
                         height = 10,
                         padding = 1,
                         ttl = 5 * 60,
