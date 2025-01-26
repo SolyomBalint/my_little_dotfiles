@@ -12,9 +12,9 @@
   "theme.bar.floating": true,
   "theme.bar.buttons.workspaces.enableBorder": false,
   "bar.launcher.icon": "󰣇",
-  "menus.clock.time.military": false,
-  "menus.clock.weather.location": "Los Angeles",
-  "menus.clock.weather.unit": "imperial",
+  "menus.clock.time.military": true,
+  "menus.clock.weather.location": "1165, Budapest",
+  "menus.clock.weather.unit": "metric",
   "theme.bar.menus.background": "#000000",
   "theme.bar.background": "#000000",
   "theme.bar.buttons.media.icon": "#FFFFFF",
@@ -391,28 +391,53 @@
   "bar.launcher.autoDetectIcon": true,
   "theme.bar.buttons.dashboard.enableBorder": false,
   "bar.workspaces.show_icons": false,
-  "bar.workspaces.show_numbered": false,
+  "bar.workspaces.show_numbered": true,
   "bar.workspaces.workspaceMask": false,
   "bar.workspaces.numbered_active_indicator": "underline",
   "bar.network.label": true,
-  "theme.bar.buttons.modules.ram.enableBorder": false,
+  "theme.bar.buttons.modules.ram.enableBorder": true,
   "bar.customModules.ram.label": true,
-  "bar.customModules.ram.labelType": "percentage",
+  "bar.customModules.ram.labelType": "used/total",
   "theme.bar.buttons.modules.cpu.enableBorder": false,
-  "theme.bar.buttons.modules.cpuTemp.enableBorder": false,
+  "theme.bar.buttons.modules.cpuTemp.enableBorder": true,
   "bar.customModules.cpuTemp.unit": "metric",
-  "theme.bar.buttons.modules.kbLayout.enableBorder": false,
+  "theme.bar.buttons.modules.kbLayout.enableBorder": true,
   "bar.customModules.weather.unit": "imperial",
   "theme.bar.buttons.modules.weather.enableBorder": false,
   "theme.osd.enable": true,
   "theme.bar.layer": "top",
   "theme.bar.margin_bottom": "0em",
   "theme.bar.buttons.spacing": "0.25em",
-  "bar.customModules.cpuTemp.sensor": "",
+  "bar.customModules.cpuTemp.sensor": "/sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon6/temp1_input",
   "bar.customModules.ram.pollingInterval": 1000,
   "theme.bar.menus.opacity": 100,
   "theme.matugen": false,
   "theme.bar.transparent": false,
   "theme.bar.opacity": 55,
-  "bar.media.truncation_size": 27
+  "bar.media.truncation_size": 27,
+  "bar.layouts": {
+    "*": {
+      "left": [
+        "dashboard",
+        "workspaces",
+        "windowtitle"
+      ],
+      "middle": [
+        "media"
+      ],
+      "right": [
+        "kbinput",
+        "cputemp",
+        "volume",
+        "network",
+        "bluetooth",
+        "battery",
+        "systray",
+        "clock",
+        "notifications"
+      ]
+    }
+  },
+  "menus.clock.time.hideSeconds": false,
+  "bar.clock.format": "%a %b %d  %I:%M %p"
 }
