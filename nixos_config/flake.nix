@@ -3,7 +3,9 @@
 
   inputs = {
     # Base package repository
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-24.11";
+    };
 
     # unstable
     unstable_pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -19,7 +21,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    hyprpanel = {
+      url = "github:Jas-SinghFSU/HyprPanel";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # astal = {
     #   url = "github:aylur/astal";
     #   inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +52,13 @@
     }:
     let
       system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          inputs.hyprpanel.overlay
+        ];
+      };
     in
     {
       nixosConfigurations = {
@@ -55,11 +66,13 @@
           let
             username = "balintsolyom";
           in
+
           nixpkgs.lib.nixosSystem rec {
             specialArgs = {
               inherit username;
               inherit inputs;
               inherit system;
+              inherit pkgs;
               unstable_pkgs = import unstable_pkgs {
                 system = system;
                 config.allowUnfree = true;
@@ -68,8 +81,6 @@
             modules = [
               ./hosts/zephyrus
               ./users/${username}/nixos.nix
-
-              { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
 
               # Make home manager a NixOs module so it will always load
               home-manager.nixosModules.home-manager

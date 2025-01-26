@@ -14,6 +14,7 @@
     hypridle # Add idle mode config in: ~/.config/hypr/hyprlock.conf
     hyprpaper # Adding backgrounds
     hyprsunset # Nightlight
+    hyprpanel
   ];
 
 }

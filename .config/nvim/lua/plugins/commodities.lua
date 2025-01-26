@@ -153,7 +153,7 @@ return {
                     {
                         pane = 2,
                         icon = "󰻫 ",
-                        title = "New Files",
+                        title = "Untracked Files",
                         section = "terminal",
                         enabled = function()
                             return Snacks.git.get_root() ~= nil
