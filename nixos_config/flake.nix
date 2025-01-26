@@ -19,21 +19,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    astal = {
-      url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # AGS url, because currently only V1 is packaged
-    ags = {
-      url = "github:aylur/ags";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    astal_widget_config = {
-      url = "github:SolyomBalint/my_little_astal_widgets";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    # astal = {
+    #   url = "github:aylur/astal";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    #
+    # # AGS url, because currently only V1 is packaged
+    # ags = {
+    #   url = "github:aylur/ags";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+    #
+    # astal_widget_config = {
+    #   url = "github:SolyomBalint/my_little_astal_widgets";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   outputs =
@@ -68,6 +69,8 @@
               ./hosts/zephyrus
               ./users/${username}/nixos.nix
 
+              { nixpkgs.overlays = [ inputs.hyprpanel.overlay ]; }
+
               # Make home manager a NixOs module so it will always load
               home-manager.nixosModules.home-manager
               {
@@ -79,15 +82,6 @@
               }
             ];
           };
-      };
-      packages.${system}.ags_bundle = inputs.astal.lib.mkLuaPackage {
-        inherit pkgs;
-        name = "astal_widget_config";
-        src = "~/.config/astal";
-
-        extraPackages = [
-
-        ];
       };
     };
 }
