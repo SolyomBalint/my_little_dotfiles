@@ -1,6 +1,7 @@
 return {
     "yetone/avante.nvim",
     event = "VeryLazy",
+    enabled = false,
     -- lazy = false,
     keys = {
         { "<leader>aa", desc = "AVANTE: Load avante, and open chat" },

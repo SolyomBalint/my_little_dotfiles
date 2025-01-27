@@ -61,7 +61,7 @@ return {
                     function(input)
                         fzf.files({
                             cwd = input,
-                            cmd = "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build",
+                            cmd = "fdfind --follow --hidden --no-ignore-vcs -E !**/build/* -E build",
                         })
                     end
                 )

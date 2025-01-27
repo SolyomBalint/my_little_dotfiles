@@ -46,7 +46,7 @@ return {
                         extra_args = { "--line-length", "120" },
                     }), -- python formatting
                     formatting.isort.with({ filetypes = { "python" }, command = "isort" }), -- python import formatting
-                    formatting.clang_format.with({ filetypes = { "c", "cpp" }, command = "clang-format" }),
+                    formatting.clang_format.with({ filetypes = { "c", "cpp" }, command = "clang-format-17" }),
                     formatting.shfmt.with({ filetypes = { "sh", "zsh" }, command = "shfmt" }),
                     formatting.nixfmt.with({ filetypes = { "nix" }, command = "nixfmt" }),
 
