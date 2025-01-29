@@ -75,9 +75,9 @@ return {
     {
         "NeogitOrg/neogit",
         dependencies = {
-            "nvim-lua/plenary.nvim", -- required
+            "nvim-lua/plenary.nvim",  -- required
             "sindrets/diffview.nvim", -- optional - Diff integration
-            "ibhagwan/fzf-lua", -- optional
+            "ibhagwan/fzf-lua",       -- optional
         },
         config = function()
             local neogit = require("neogit")
@@ -88,10 +88,15 @@ return {
                 neogit.open,
                 { silent = true, noremap = true, desc = "NEOGIT: Open neogit in current root" }
             ) -- git open current
+
             vim.keymap.set("n", ";gop", function()
-                local cwd = vim.fn.input("Path to gitrepo: ", vim.fn.getcwd() .. "/", "file")
-                last_open_git_repo_path = cwd
-                neogit.open({ cwd = cwd })
+                Snacks.input(
+                    { prompt = "Path to gitrepo: ", default = vim.fn.getcwd() .. "/", completion = "file" },
+                    function(input)
+                        last_open_git_repo_path = input
+                        neogit.open({ cwd = input })
+                    end
+                )
             end, { silent = true, noremap = true, desc = "NEOGIT: Open neogit in given dir" }) -- git open path
             vim.keymap.set("n", ";gol", function()
                 neogit.open({ cwd = last_open_git_repo_path })
