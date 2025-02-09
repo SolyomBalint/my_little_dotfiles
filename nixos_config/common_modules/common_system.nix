@@ -74,6 +74,7 @@
 
   fonts.packages = with pkgs; [ nerdfonts ];
 
+  # Git is enabled from Home manager to config the user better
   environment.systemPackages = with pkgs; [
     vim
     wget
