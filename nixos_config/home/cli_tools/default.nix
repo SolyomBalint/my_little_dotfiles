@@ -31,5 +31,8 @@
     # pciutils
     # gtop # similiar to bottom
     # amdgpu_top
+
+    # Useful nix CLI tools
+    unstable_pkgs.nix-output-monitor
   ];
 }
