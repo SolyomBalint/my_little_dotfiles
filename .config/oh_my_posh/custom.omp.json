@@ -1,0 +1,149 @@
+{
+  "palette": {
+    "fujiWhite": "#DCD7BA",
+    "oldWhite": "#C8C093",
+    "white": "#FFFFFF",
+    "black": "#111111",
+    "sumiInk0": "#16161D",
+    "sumiInk1": "#1F1F28",
+    "sumiInk2": "#2A2A37",
+    "sumiInk3": "#363646",
+    "sumiInk4": "#54546D",
+    "waveBlue1": "#223249",
+    "waveBlue2": "#2D4F67",
+    "winterGreen": "#2B3328",
+    "winterYellow": "#49443C",
+    "winterRed": "#43242B",
+    "winterBlue": "#252535",
+    "autumnGreen": "#76946A",
+    "autumnRed": "#C34043",
+    "autumnYellow": "#DCA561",
+    "samuraiRed": "#E82424",
+    "roninYellow": "#FF9E3B",
+    "dragonBlue": "#658594",
+    "fujiGray": "#727169",
+    "springViolet1": "#938AA9",
+    "oniViolet": "#957FB8",
+    "crystalBlue": "#7E9CD8",
+    "springViolet2": "#9CABCA",
+    "springBlue": "#7FB4CA",
+    "lightBlue": "#A3D4D5",
+    "waveAqua1": "#6A9589",
+    "waveAqua2": "#7AA89F",
+    "springGreen": "#98BB6C",
+    "boatYellow1": "#938056",
+    "boatYellow2": "#C0A36E",
+    "carpYellow": "#E6C384",
+    "sakuraPink": "#D27E99",
+    "waveRed": "#E46876",
+    "peachRed": "#FF5D62",
+    "surimiOrange": "#FFA066",
+    "katanaGray": "#717C7C",
+    "git-foreground": "#193549",
+    "git": "#FFFB38",
+    "git-modified": "#FF9248",
+    "git-diverged": "#FF4500",
+    "git-ahead": "#B388FF",
+    "git-behind": "#B388FF",
+    "red": "#FF0000",
+    "green": "#00FF00",
+    "blue": "#0000FF"
+  },
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "final_space": true,
+  "shell_integration": true,
+  "enable_cursor_positioning": true,
+  "version": 3,
+  "blocks": [
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "segments": [
+        {
+          "type": "nix-shell",
+          "style": "diamond",
+          "leading_diamond": "<p:crystalBlue>󱄅 </>",
+          "foreground": "p:crystalBlue",
+          "background": "transparent",
+          "template": "(nix-{{ .Type }}) "
+        },
+        {
+          "type": "python",
+          "style": "diamond",
+          "leading_diamond": "<p:roninYellow> </>",
+          "foreground": "p:roninYellow",
+          "background": "transparent",
+          "template": "({{.Venv}}:{{.Full}})",
+          "properties": {
+            "display_mode": "environment"
+          }
+        },
+        {
+          "type": "session",
+          "style": "diamond",
+          "trailing_diamond": "<p:oldWhite></>",
+          "foreground": "p:autumnGreen",
+          "background": "transparent",
+          "template": "{{ .UserName }}@{{ .HostName }} "
+        },
+        {
+          "type": "path",
+          "style": "diamond",
+          "trailing_diamond": " <p:oldWhite>|</> ",
+          "foreground": "p:waveAqua2",
+          "background": "transparent",
+          "properties": {
+            "style": "full"
+          }
+        },
+        {
+          "type": "git",
+          "style": "diamond",
+          "trailing_diamond": "<p:oldWhite>|</>",
+          "foreground": "p:katanaGray",
+          "background": "transparent",
+          "properties": {
+            "fetch_status": true,
+            "fetch_upstream_icon": true,
+            "source": "cli"
+          }
+        },
+        {
+          "type": "status",
+          "style": "diamond",
+          "foreground": "p:fujiWhite",
+          "trailing_diamond": " <p:oldWhite>|</> ",
+          "background": "transparent",
+          "template": "{{ if eq .Code 0 }}<p:springGreen>󰄬</>{{ else }}<p:peachRed></> {{.Code}}{{ end }} ",
+          "properties": {
+            "always_enabled": false
+          }
+        },
+        {
+          "type": "executiontime",
+          "style": "diamond",
+          "trailing_diamond": " <p:oldWhite>|</> ",
+          "template": "| <p:oniViolet> {{ .FormattedMs }}</>",
+          "properties": {
+            "threshold": 500,
+            "style": "austin",
+            "always_enabled": false
+          }
+        }
+      ]
+    },
+    {
+      "type": "prompt",
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "type": "text",
+          "style": "plain",
+          "foreground": "p:carpYellow",
+          "template": "$"
+        }
+      ]
+    }
+  ]
+}

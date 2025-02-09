@@ -15,6 +15,7 @@
     isort
     shfmt
     nixfmt-rfc-style
+    unstable_pkgs.nodePackages_latest.prettier
 
     # LSPs
     lua-language-server

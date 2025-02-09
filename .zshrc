@@ -4,7 +4,7 @@
 # Adding oh my posh
 export PATH=$PATH:~/.local/bin
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config https://github.com/JanDeDobbeleer/oh-my-posh/blob/main/themes/pure.omp.json)"
+  eval "$(oh-my-posh init zsh --config ~/.config/oh_my_posh/custom.omp.json)"
 fi
 
 # Setup zinit plugin manager
@@ -81,19 +81,6 @@ alias fzfpreview='fzf --preview="bat --color=always {}"'
 alias fzfcd='cd $(find . -type d -print | fzf --preview="bat --color=always {}")'
 alias fzfnvim='nvim $(fzf -m --preview="bat --color=always {}")'
 
-## obsidian aliases
-alias obsidian="~/obsidian/appimage/Obsidian-1.6.7.AppImage"
-
-## Terminal emulators
-alias wezterm='flatpak run org.wezfurlong.wezterm'
-
-## Tmux aliasese
-alias tmuxifierbase="tmuxifier load-session base"
-
-## Editors
-alias intellij="~/jetbrains/intellij/idea-IU-242.21829.142/bin/idea"
-alias zed="~/.local/zed.app/bin/zed"
-
 ## yazi things TODO these should be exported to PATH instead of making aliases, this is true fro the above parts as well
 export PATH=$PATH:~/yazi/target/release
 function y() {
@@ -105,12 +92,9 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-## Fedora Specific
-alias resetfirefox="sudo rm -f /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js"
+# Gaming
+alias civ6="gamescope -w 1920 -h 1080 -r 60 -f -F fsr --steam -- steam steam://rungameid/289070"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# Gaming
-alias civ6="gamescope -w 1920 -h 1080 -r 60 -f -F fsr --steam -- steam steam://rungameid/289070"

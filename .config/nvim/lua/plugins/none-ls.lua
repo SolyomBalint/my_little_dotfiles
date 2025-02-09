@@ -44,11 +44,12 @@ return {
                         filetypes = { "python" },
                         command = "black",
                         extra_args = { "--line-length", "120" },
-                    }), -- python formatting
+                    }),                                                                     -- python formatting
                     formatting.isort.with({ filetypes = { "python" }, command = "isort" }), -- python import formatting
                     formatting.clang_format.with({ filetypes = { "c", "cpp" }, command = "clang-format" }),
                     formatting.shfmt.with({ filetypes = { "sh", "zsh" }, command = "shfmt" }),
                     formatting.nixfmt.with({ filetypes = { "nix" }, command = "nixfmt" }),
+                    formatting.prettier.with({ filetypes = { "json" }, command = "prettier" }),
 
                     diagnostics.mypy.with({ filetypes = { "python" } }),
                 },
