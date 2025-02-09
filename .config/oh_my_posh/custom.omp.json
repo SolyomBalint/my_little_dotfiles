@@ -121,9 +121,8 @@
         },
         {
           "type": "executiontime",
-          "style": "diamond",
-          "trailing_diamond": " <p:oldWhite>|</> ",
-          "template": "| <p:oniViolet> {{ .FormattedMs }}</>",
+          "style": "plain",
+          "template": "<p:oniViolet> {{ .FormattedMs }}</>",
           "properties": {
             "threshold": 500,
             "style": "austin",
