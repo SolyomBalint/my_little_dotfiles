@@ -15,6 +15,7 @@ end
 return {
     "epwalsh/obsidian.nvim",
     version = "*",
+    enabled = false,
     lazy = true,
     event = {
         "BufReadPre *.md",
