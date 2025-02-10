@@ -100,3 +100,6 @@ export PATH=$PATH:~/built_from_source_programs/shfmt/bin
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Source home-manager
+. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
