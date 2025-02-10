@@ -140,7 +140,7 @@ return {
 
             lspconfig.clangd.setup({
                 cmd = {
-                    "clangd",
+                    "clangd-17",
                     "-j=4",
                     "--offset-encoding=utf-16",
                     "--clang-tidy",
