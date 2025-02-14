@@ -13,6 +13,9 @@
     cargo
     zulu17 # java openjdk
 
+    # For damn university
+    pkgs.jetbrains.idea-ultimate
+
     unstable_pkgs.devenv
     unstable_pkgs.direnv
   ];
