@@ -79,7 +79,6 @@
     vim
     wget
     curl
-    gcc
     unzip
     zip
     gnutar

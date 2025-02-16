@@ -47,7 +47,7 @@ return {
                     }), -- python formatting
                     formatting.isort.with({ filetypes = { "python" }, command = "isort" }), -- python import formatting
                     formatting.clang_format.with({
-                        filetypes = { "c", "cpp" },
+                        filetypes = { "c", "cpp", "glsl" },
                         command = "clang-format",
                     }),
                     formatting.shfmt.with({ filetypes = { "sh", "zsh" }, command = "shfmt" }),

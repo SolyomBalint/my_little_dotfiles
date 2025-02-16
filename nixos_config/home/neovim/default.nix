@@ -6,8 +6,8 @@
   ...
 }:
 {
-  home.packages = with pkgs; [
-    unstable_pkgs.neovim
+  home.packages = with unstable_pkgs; [
+    neovim
 
     # Formatters
     stylua
@@ -15,16 +15,17 @@
     isort
     shfmt
     nixfmt-rfc-style
-    unstable_pkgs.nodePackages_latest.prettier
+    nodePackages_latest.prettier
 
     # LSPs
     lua-language-server
-    unstable_pkgs.llvmPackages_latest.clang-tools
+    llvmPackages_latest.clang-tools
     neocmakelsp
     pyright
     marksman
     nixd
     typescript-language-server
+    glsl_analyzer
 
     # Diagnostic tools
     mypy

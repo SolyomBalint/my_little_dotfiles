@@ -8,7 +8,6 @@
   home.packages = with pkgs; [
     neofetch
     stow
-    gdb
     fd
     unstable_pkgs.yazi
     bat
