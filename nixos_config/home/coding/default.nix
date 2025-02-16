@@ -18,5 +18,6 @@
 
     unstable_pkgs.devenv
     unstable_pkgs.direnv
+    unstable_pkgs.distrobox
   ];
 }

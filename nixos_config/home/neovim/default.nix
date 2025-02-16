@@ -19,7 +19,7 @@
 
     # LSPs
     lua-language-server
-    llvmPackages_19.clang-tools
+    unstable_pkgs.llvmPackages_latest.clang-tools
     neocmakelsp
     pyright
     marksman

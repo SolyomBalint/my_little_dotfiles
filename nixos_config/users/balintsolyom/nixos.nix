@@ -19,4 +19,7 @@
 
   # For zen
   services.flatpak.enable = true;
+
+  virtualisation.docker.enable = true;
+  users.users.${username}.extraGroups = [ "docker" ];
 }
