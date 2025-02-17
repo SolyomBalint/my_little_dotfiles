@@ -73,6 +73,9 @@ export EDITOR="nvim"
 
 # Aliases
 
+## Nix aliases
+alias home-update="home-manager switch --flake ~/my_little_dotfiles/.config/home-manager"
+
 ## Misc
 alias ls='ls --color'
 
@@ -103,3 +106,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # Source home-manager
 . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+
+# direnv hook
+eval "$(direnv hook zsh)"
