@@ -152,7 +152,37 @@ return {
         "rcarriga/nvim-dap-ui",
         dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
         config = function()
-            require("dapui").setup()
+            local dapui = require("dapui")
+            dapui.setup({
+                layouts = {
+                    {
+                        elements = {
+                            {
+                                id = "scopes",
+                                size = 0.5,
+                            },
+                            {
+                                id = "breakpoints",
+                                size = 0.5,
+                            },
+                        },
+                        position = "left",
+                        size = 40,
+                    },
+                    {
+                        elements = {
+                            {
+                                id = "console",
+                                size = 1.0,
+                            },
+                        },
+                        position = "bottom",
+                        size = 10,
+                    },
+                },
+            })
+
+            vim.keymap.set("n", "<leader>duf", dapui.float_element, { desc = "DAPUI: Open float windows" })
         end,
     },
     {
