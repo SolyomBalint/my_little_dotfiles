@@ -17,7 +17,9 @@ return {
                 ["<C-f>"] = { "select_and_accept" },
                 ["<C-p>"] = { "select_prev" },
                 ["<C-n>"] = { "select_next" },
-                cmdline = {
+            },
+            cmdline = {
+                keymap = {
                     preset = "default",
                     ["<C-p>"] = { "select_prev" },
                     ["<C-n>"] = { "select_next" },
@@ -35,7 +37,7 @@ return {
                         columns = {
                             { "kind_icon" },
                             { "kind" },
-                            { "label", "label_description", gap = 1 },
+                            { "label",      "label_description", gap = 1 },
                             { "source_name" },
                         },
                     },
