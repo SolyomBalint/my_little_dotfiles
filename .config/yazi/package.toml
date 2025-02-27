@@ -25,5 +25,5 @@ hash = "f28138c2e11e87962b66d583fef724c3"
 
 [[flavor.deps]]
 use = "dangooddd/kanagawa"
-rev = "d98f0c3"
-hash = "cada780385f75abbcfbf5343256b441"
+rev = "31167ed"
+hash = "a04e157148549bacbb2831aab0e6e8cb"

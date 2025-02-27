@@ -15,6 +15,7 @@
     fzf
     bottom
     jq
+    dos2unix
 
     # PDF viewers
     zathura
