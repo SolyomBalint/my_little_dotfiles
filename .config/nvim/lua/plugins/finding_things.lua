@@ -1,3 +1,5 @@
+local searchPlace = vim.fn.getcwd()
+
 return {
     {
         "ThePrimeagen/harpoon",
@@ -54,34 +56,51 @@ return {
 
             fzf.setup({})
             local rg_cmd = "rg -u --follow --hidden --with-filename --line-number --column --smart-case"
-                .. " --glob=!**/.git/* --glob=!**/build/* --glob=!**/.idea/*"
+                .. " --glob=!**/.git/* --glob=!**/build/* --glob=!**/.idea/* --glob=!**/.cache/*"
             vim.keymap.set("n", "<C-p>a", function()
-                Snacks.input(
-                    { prompt = "Path to basedir: ", default = vim.fn.getcwd() .. "/", completion = "file" },
-                    function(input)
+                Snacks.input({
+                    prompt = "Path to basedir: ",
+                    default = searchPlace .. (searchPlace:sub(-1) == "/" and "" or "/"),
+                    completion = "file",
+                }, function(input)
+                    if input ~= nil then
+                        searchPlace = input
                         fzf.files({
                             cwd = input,
                             cmd = "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build",
                         })
                     end
-                )
+                end)
             end, { noremap = true, desc = "FZF: search for files in input dir" })
             vim.keymap.set("n", "<leader>lg", function()
-                Snacks.input(
-                    { prompt = "Path to basedir: ", default = vim.fn.getcwd() .. "/", completion = "file" },
-                    function(input)
+                Snacks.input({
+                    prompt = "Path to basedir: ",
+                    default = searchPlace .. (searchPlace:sub(-1) == "/" and "" or "/"),
+                    completion = "file",
+                }, function(input)
+                    if input ~= nil then
+                        searchPlace = input
                         fzf.live_grep_glob({
                             cwd = input,
                             cmd = rg_cmd,
                         })
                     end
-                )
+                end)
             end, { noremap = true, desc = "FZF: Live grep in input dir wiht glob support" })
             vim.keymap.set("v", "<C-p>v", function()
-                fzf.grep_visual({
-                    cwd = vim.fn.input("Path to basedir: ", vim.fn.getcwd() .. "/", "file"),
-                    cmd = rg_cmd,
-                })
+                Snacks.input({
+                    prompt = "Path to basedir: ",
+                    default = searchPlace .. (searchPlace:sub(-1) == "/" and "" or "/"),
+                    completion = "file",
+                }, function(input)
+                    if input ~= nil then
+                        searchPlace = input
+                        fzf.grep_visual({
+                            cwd = input,
+                            cmd = rg_cmd,
+                        })
+                    end
+                end)
             end, { noremap = true, desc = "FZF: Grep for the highlighted word in input dir" })
             vim.keymap.set(
                 "n",

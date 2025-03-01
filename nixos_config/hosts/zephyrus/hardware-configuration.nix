@@ -64,20 +64,27 @@
     amdenc
     # amdvlk
     amdgpu_top
+    vulkan-tools
+    vulkan-loader
   ];
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # For 32 bit applications
-    extraPackages = with pkgs; [ rocmPackages.clr.icd ];
+    extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+      vulkan-loader
+      vulkan-validation-layers
+      vulkan-extension-layer
+    ];
   };
 
   # for games
   boot.kernel.sysctl."vm.max_map_count" = lib.mkForce 1048576;
 
-  # hardware.amdgpu.amdvlk = {
-  #   enable = true;
-  #   support32Bit.enable = true;
-  #   supportExperimental.enable = true;
-  # };
+  hardware.amdgpu.amdvlk = {
+    enable = true;
+    support32Bit.enable = true;
+    supportExperimental.enable = true;
+  };
 }

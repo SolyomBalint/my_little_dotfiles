@@ -85,39 +85,16 @@ return {
                     cwd = "${workspaceFolder}",
                     stopAtBeginningOfMainSubprogram = false,
                 },
-                {
-                    name = "Select and attach to process",
-                    type = "gdb",
-                    request = "attach",
-                    program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                    end,
-                    pid = function()
-                        local name = vim.fn.input("Executable name (filter): ")
-                        return require("dap.utils").pick_process({ filter = name })
-                    end,
-                    cwd = "${workspaceFolder}",
-                },
-                {
-                    name = "Attach to gdbserver :1234",
-                    type = "gdb",
-                    request = "attach",
-                    target = "localhost:1234",
-                    program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-                    end,
-                    cwd = "${workspaceFolder}",
-                },
             }
 
             dap.configurations.c = dap.configurations.cpp
             vim.keymap.set("n", "<leader>drl", dap.run_last, { noremap = true, desc = "DAP: Run last session" })
-            vim.keymap.set("n", "<F5>", function()
-                if vim.fn.filereadable(vim.fn.expand("~/.config/custom/launch.json")) then
-                    require("dap.ext.vscode").load_launchjs(vim.fn.expand("~/.config/custom/launch.json"), {})
-                end
-                dap.continue()
-            end, { noremap = true, desc = "DAP: Run debugger and read launch.json" })
+            vim.keymap.set(
+                "n",
+                "<F5>",
+                dap.continue,
+                { noremap = true, desc = "DAP: Run debugger and read launch.json" }
+            )
         end,
     },
     {
