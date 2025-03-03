@@ -11,7 +11,10 @@
     unstable_pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Extra Hardware support
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Adding home mamanger 24.11 release
     home-manager = {
@@ -25,21 +28,6 @@
       url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # astal = {
-    #   url = "github:aylur/astal";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    #
-    # # AGS url, because currently only V1 is packaged
-    # ags = {
-    #   url = "github:aylur/ags";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    #
-    # astal_widget_config = {
-    #   url = "github:SolyomBalint/my_little_astal_widgets";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs =
@@ -52,13 +40,6 @@
     }:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [
-          inputs.hyprpanel.overlay
-        ];
-      };
     in
     {
       nixosConfigurations = {
@@ -72,10 +53,12 @@
               inherit username;
               inherit inputs;
               inherit system;
-              inherit pkgs;
               unstable_pkgs = import unstable_pkgs {
                 system = system;
                 config.allowUnfree = true;
+                overlays = [
+                  inputs.hyprpanel.overlay
+                ];
               };
             };
             modules = [
