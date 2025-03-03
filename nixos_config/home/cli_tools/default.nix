@@ -34,5 +34,7 @@
 
     # Useful nix CLI tools
     unstable_pkgs.nix-output-monitor
+
+    firejail
   ];
 }

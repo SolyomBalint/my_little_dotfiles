@@ -2,6 +2,7 @@
   pkgs,
   lib,
   username,
+  unstable_pkgs,
   ...
 }:
 {
@@ -67,8 +68,6 @@
 
   services.printing.enable = true;
 
-  programs.firefox.enable = true;
-
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
@@ -85,6 +84,7 @@
     ripgrep
     wl-clipboard
     brightnessctl
+    unstable_pkgs.librewolf
   ];
 
   services.envfs.enable = true;

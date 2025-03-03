@@ -6,6 +6,7 @@
   lib,
   pkgs,
   modulesPath,
+  unstable_pkgs,
   ...
 }:
 
@@ -24,6 +25,7 @@
     "usb_storage"
     "sd_mod"
     "sdhci_pci"
+    "amdgpu"
   ];
 
   # For amd
@@ -59,32 +61,47 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # Custom settings
+  systemd.tmpfiles.rules = [
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
+
   services.xserver.videoDrivers = [ "amdgpu" ];
   environment.systemPackages = with pkgs; [
     amdenc
-    # amdvlk
     amdgpu_top
     vulkan-tools
-    vulkan-loader
+    clinfo
+    vulkan-validation-layers
+    virtualglLib
+    amdvlk
+    gpu-viewer
   ];
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # For 32 bit applications
     extraPackages = with pkgs; [
-      rocmPackages.clr.icd
       vulkan-loader
       vulkan-validation-layers
       vulkan-extension-layer
+      unstable_pkgs.mesa
     ];
   };
 
   # for games
   boot.kernel.sysctl."vm.max_map_count" = lib.mkForce 1048576;
 
-  hardware.amdgpu.amdvlk = {
-    enable = true;
-    support32Bit.enable = true;
-    supportExperimental.enable = true;
+  hardware.amdgpu = {
+    opencl.enable = true;
+    initrd.enable = true;
+    amdvlk = {
+      enable = true;
+      package = unstable_pkgs.amdvlk;
+      support32Bit = {
+        enable = true;
+        package = unstable_pkgs.driversi686Linux.amdvlk;
+      };
+      supportExperimental.enable = true;
+    };
   };
 }
