@@ -1,4 +1,13 @@
 local is_dim_enabled = false
+local highlight_group = {
+    "KanagawaDelimiterLightGrey", -- Outermost delimiter Check out custom files
+    "KanagawaDelimiterDeepPurple",
+    "KanagawaDelimiterBrightCyan",
+    "KanagawaDelimiterYellow",
+    "KanagawaDelimiterTeal",
+    "KanagawaDelimiterRed",
+    "KanagawaDelimiterOrange", -- Innermost delimiter
+}
 
 local handler = function(virtText, lnum, endLnum, width, truncate)
     local newVirtText = {}
@@ -169,6 +178,19 @@ return {
             },
             dim = { enabled = true },
             git = { enabled = true },
+            quickfile = { enabled = true },
+            scroll = { enabled = true },
+            indent = {
+                enabled = true,
+                hl = highlight_group,
+                scope = {
+                    hl = highlight_group,
+                },
+                animate = {
+                    enabled = true,
+                    style = "up_down",
+                },
+            },
         },
         config = function(_, opts)
             local snacks = require("snacks")
@@ -185,5 +207,11 @@ return {
             end, { desc = "SNACKS: activate dim" })
             vim.keymap.set("n", "<C-s>gb", snacks.git.blame_line, { desc = "SNACKS: Git blame" })
         end,
+    },
+
+    {
+        "chentoast/marks.nvim",
+        event = "VeryLazy",
+        opts = {},
     },
 }
