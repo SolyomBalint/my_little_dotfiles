@@ -30,7 +30,6 @@
   # Adding asusctl and supergfxctl
   environment.systemPackages = with pkgs; [
     pciutils
-    supergfxctl
     asusctl
     clinfo
   ];

@@ -13,7 +13,6 @@
     # Extra Hardware support
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Adding home mamanger 24.11 release

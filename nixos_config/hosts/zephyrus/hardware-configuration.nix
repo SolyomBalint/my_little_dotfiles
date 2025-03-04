@@ -71,9 +71,7 @@
     amdgpu_top
     vulkan-tools
     clinfo
-    vulkan-validation-layers
     virtualglLib
-    amdvlk
     gpu-viewer
   ];
 
@@ -94,6 +92,7 @@
   hardware.amdgpu = {
     opencl.enable = true;
     initrd.enable = true;
+    legacySupport.enable = true;
     amdvlk = {
       enable = true;
       package = unstable_pkgs.amdvlk;
