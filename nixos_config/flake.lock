@@ -86,18 +86,19 @@
         "type": "github"
       }
     },
-    "nixos-facter-modules": {
+    "nixos-hardware": {
       "locked": {
-        "lastModified": 1738752252,
-        "narHash": "sha256-/nA3tDdp/2g0FBy8966ppC2WDoyXtUWaHkZWL+N3ZKc=",
-        "owner": "numtide",
-        "repo": "nixos-facter-modules",
-        "rev": "60f8b8f3f99667de6a493a44375e5506bf0c48b1",
+        "lastModified": 1741792691,
+        "narHash": "sha256-f0BVt1/cvA0DQ/q3rB+HY4g4tKksd03ZkzI4xehC2Ew=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "e1f12151258b12c567f456d8248e4694e9390613",
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
-        "repo": "nixos-facter-modules",
+        "owner": "NixOS",
+        "ref": "master",
+        "repo": "nixos-hardware",
         "type": "github"
       }
     },
@@ -121,7 +122,7 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprpanel": "hyprpanel",
-        "nixos-facter-modules": "nixos-facter-modules",
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "unstable_pkgs": "unstable_pkgs"
       }

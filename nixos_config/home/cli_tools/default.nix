@@ -17,6 +17,7 @@
     jq
     dos2unix
     nmap
+    gnome-multi-writer
 
     # PDF viewers
     zathura
