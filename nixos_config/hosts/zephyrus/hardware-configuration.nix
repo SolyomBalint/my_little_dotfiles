@@ -6,7 +6,6 @@
   lib,
   pkgs,
   modulesPath,
-  unstable_pkgs,
   ...
 }:
 
@@ -32,20 +31,16 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/2157982d-4aad-4565-b686-52741ac935e5";
+      fsType = "ext4";
+    };
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/d253247c-e4ad-447b-a807-bb59c32611c3";
-    fsType = "ext4";
-  };
-
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/DA7D-C6AC";
-    fsType = "vfat";
-    options = [
-      "fmask=0077"
-      "dmask=0077"
-    ];
-  };
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/DA7D-C6AC";
+      fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
+    };
 
   swapDevices = [ ];
 
@@ -66,41 +61,4 @@
   ];
 
   services.xserver.videoDrivers = [ "amdgpu" ];
-  environment.systemPackages = with pkgs; [
-    amdenc
-    amdgpu_top
-    vulkan-tools
-    clinfo
-    virtualglLib
-    gpu-viewer
-  ];
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true; # For 32 bit applications
-    # extraPackages = with pkgs; [
-    #   vulkan-loader
-    #   vulkan-validation-layers
-    #   vulkan-extension-layer
-    #   unstable_pkgs.mesa
-    # ];
-  };
-
-  # for games
-  boot.kernel.sysctl."vm.max_map_count" = lib.mkForce 1048576;
-
-  hardware.amdgpu = {
-    opencl.enable = true;
-    initrd.enable = true;
-    legacySupport.enable = true;
-    # amdvlk = {
-    #   enable = true;
-    #   package = unstable_pkgs.amdvlk;
-    #   support32Bit = {
-    #     enable = true;
-    #     package = unstable_pkgs.driversi686Linux.amdvlk;
-    #   };
-    #   supportExperimental.enable = true;
-    # };
-  };
 }

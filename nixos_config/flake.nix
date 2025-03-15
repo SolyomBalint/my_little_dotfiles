@@ -4,20 +4,12 @@
   inputs = {
     # Base package repository
     nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-24.11";
-    };
-
-    # unstable
-    unstable_pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-
-    # Extra Hardware support
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
+      url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
     # Adding home mamanger 24.11 release
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager";
 
       # Adding inheritance relation to avoid conflicts in for different nix packages
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,7 +26,6 @@
       self,
       nixpkgs,
       home-manager,
-      unstable_pkgs,
       ...
     }:
     let
@@ -42,7 +33,7 @@
     in
     {
       nixosConfigurations = {
-        balintnixos =
+        nixos =
           let
             username = "balintsolyom";
           in
@@ -52,13 +43,6 @@
               inherit username;
               inherit inputs;
               inherit system;
-              unstable_pkgs = import unstable_pkgs {
-                system = system;
-                config.allowUnfree = true;
-                overlays = [
-                  inputs.hyprpanel.overlay
-                ];
-              };
             };
             modules = [
               ./hosts/zephyrus

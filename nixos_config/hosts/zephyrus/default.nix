@@ -14,7 +14,6 @@
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.asus-zephyrus-ga402
   ];
 
   # Bootloader.
@@ -27,10 +26,8 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Adding asusctl and supergfxctl
   environment.systemPackages = with pkgs; [
     pciutils
-    asusctl
     clinfo
   ];
 
@@ -42,7 +39,5 @@
     };
   };
 
-  systemd.services.supergfxd.path = [ pkgs.pciutils ];
-
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }

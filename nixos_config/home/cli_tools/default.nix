@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  unstable_pkgs,
   ...
 }:
 {
@@ -9,7 +8,7 @@
     neofetch
     stow
     fd
-    unstable_pkgs.yazi
+    yazi
     bat
     delta
     fzf
@@ -35,7 +34,7 @@
     # amdgpu_top
 
     # Useful nix CLI tools
-    unstable_pkgs.nix-output-monitor
+    nix-output-monitor
 
     firejail
     android-tools

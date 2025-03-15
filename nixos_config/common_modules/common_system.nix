@@ -2,7 +2,6 @@
   pkgs,
   lib,
   username,
-  unstable_pkgs,
   ...
 }:
 {
@@ -71,8 +70,7 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-  fonts.packages = with pkgs; [ nerdfonts ];
-
+  fonts.packages = [ ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
   # Git is enabled from Home manager to config the user better
   environment.systemPackages = with pkgs; [
     vim
@@ -84,7 +82,7 @@
     ripgrep
     wl-clipboard
     brightnessctl
-    unstable_pkgs.librewolf
+    librewolf
   ];
 
   services.envfs.enable = true;

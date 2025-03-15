@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  unstable_pkgs,
   ...
 }:
 {
@@ -18,14 +17,14 @@
     pkgs.jetbrains.idea-ultimate
 
     # For development
-    unstable_pkgs.devenv
-    unstable_pkgs.direnv
-    unstable_pkgs.distrobox
+    devenv
+    direnv
+    distrobox
 
     # For raspberry
-    unstable_pkgs.rpi-imager
+    rpi-imager
 
     # For UML/SYSML modelling
-    gaphor
+    # gaphor
   ];
 }

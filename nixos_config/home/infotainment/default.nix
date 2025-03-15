@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  unstable_pkgs,
   ...
 }:
 {
@@ -11,7 +10,5 @@
     prismlauncher
     discord
     spotify
-    unstable_pkgs.wineWow64Packages.waylandFull
-    unstable_pkgs.lutris
   ];
 }

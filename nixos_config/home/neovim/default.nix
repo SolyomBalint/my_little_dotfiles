@@ -2,11 +2,10 @@
   config,
   pkgs,
   inputs,
-  unstable_pkgs,
   ...
 }:
 {
-  home.packages = with unstable_pkgs; [
+  home.packages = with pkgs; [
     neovim
 
     # Formatters
