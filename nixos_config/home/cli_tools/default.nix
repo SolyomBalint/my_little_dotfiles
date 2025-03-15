@@ -16,6 +16,7 @@
     bottom
     jq
     dos2unix
+    nmap
 
     # PDF viewers
     zathura
@@ -36,5 +37,6 @@
     unstable_pkgs.nix-output-monitor
 
     firejail
+    android-tools
   ];
 }

@@ -14,7 +14,7 @@
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.asus-zephyrus-ga402
+    # inputs.nixos-hardware.nixosModules.asus-zephyrus-ga402
   ];
 
   # Bootloader.

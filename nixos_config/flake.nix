@@ -11,9 +11,11 @@
     unstable_pkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Extra Hardware support
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-    };
+    # nixos-hardware = {
+    #   url = "github:NixOS/nixos-hardware/master";
+    # };
+
+    nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     # Adding home mamanger 24.11 release
     home-manager = {
@@ -61,6 +63,13 @@
               };
             };
             modules = [
+
+              # enable the NixOS Facter module
+              inputs.nixos-facter-modules.nixosModules.facter
+
+              # configure the facter report
+              { config.facter.reportPath = ./hosts/zephyrus/facter.json; }
+
               ./hosts/zephyrus
               ./users/${username}/nixos.nix
 

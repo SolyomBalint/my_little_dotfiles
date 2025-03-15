@@ -78,12 +78,12 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # For 32 bit applications
-    extraPackages = with pkgs; [
-      vulkan-loader
-      vulkan-validation-layers
-      vulkan-extension-layer
-      unstable_pkgs.mesa
-    ];
+    # extraPackages = with pkgs; [
+    #   vulkan-loader
+    #   vulkan-validation-layers
+    #   vulkan-extension-layer
+    #   unstable_pkgs.mesa
+    # ];
   };
 
   # for games
@@ -93,14 +93,14 @@
     opencl.enable = true;
     initrd.enable = true;
     legacySupport.enable = true;
-    amdvlk = {
-      enable = true;
-      package = unstable_pkgs.amdvlk;
-      support32Bit = {
-        enable = true;
-        package = unstable_pkgs.driversi686Linux.amdvlk;
-      };
-      supportExperimental.enable = true;
-    };
+    # amdvlk = {
+    #   enable = true;
+    #   package = unstable_pkgs.amdvlk;
+    #   support32Bit = {
+    #     enable = true;
+    #     package = unstable_pkgs.driversi686Linux.amdvlk;
+    #   };
+    #   supportExperimental.enable = true;
+    # };
   };
 }

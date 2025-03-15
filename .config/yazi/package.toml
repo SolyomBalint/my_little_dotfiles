@@ -1,27 +1,27 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "5186af7"
-hash = "ae9e1d0c6bfd68cdebc98cc684c22b45"
+rev = "ceb053f"
+hash = "9dce00232a0e0e2502565c7aa2b0ed4e"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:max-preview"
-rev = "5186af7"
+rev = "ceb053f"
 hash = "a8025f2bb311e869069364fba01abffc"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "5186af7"
-hash = "af11685de39c366ec1137fcbccacdbff"
+rev = "ceb053f"
+hash = "a670c03eb3760812e044a24f94cedc55"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "5186af7"
-hash = "771f18427fb75fb19990ce602bb322f4"
+rev = "ceb053f"
+hash = "bcbf72738d4b7fb9a03cac84465b9ba4"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "5186af7"
-hash = "f28138c2e11e87962b66d583fef724c3"
+rev = "ceb053f"
+hash = "2f1053f89d1a301a648ab181d0948e38"
 
 [[flavor.deps]]
 use = "dangooddd/kanagawa"
