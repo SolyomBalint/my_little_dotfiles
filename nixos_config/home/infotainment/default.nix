@@ -10,5 +10,6 @@
     prismlauncher
     discord
     spotify
+    lutris
   ];
 }

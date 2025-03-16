@@ -26,6 +26,8 @@
     auto-optimise-store = true;
   };
 
+  # For windows dual-boot clock preservation
+  time.hardwareClockInLocalTime = true;
   nix.gc = {
     automatic = lib.mkDefault true;
     dates = lib.mkDefault "weakly";

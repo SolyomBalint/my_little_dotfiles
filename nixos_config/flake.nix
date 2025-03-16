@@ -7,7 +7,10 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
-    # Adding home mamanger 24.11 release
+    nixpkgs_stable = {
+      url = "github:NixOS/nixpkgs/nixos-24.11";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
 
@@ -19,6 +22,10 @@
       url = "github:Jas-SinghFSU/HyprPanel";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+    };
   };
 
   outputs =
@@ -26,6 +33,7 @@
       self,
       nixpkgs,
       home-manager,
+      nixpkgs_stable,
       ...
     }:
     let
@@ -33,7 +41,7 @@
     in
     {
       nixosConfigurations = {
-        nixos =
+        balintnixos =
           let
             username = "balintsolyom";
           in
@@ -43,6 +51,13 @@
               inherit username;
               inherit inputs;
               inherit system;
+              nixpkgs_stable = import nixpkgs_stable {
+                system = system;
+                config.allowUnfree = true;
+                overlays = [
+                  inputs.hyprpanel.overlay
+                ];
+              };
             };
             modules = [
               ./hosts/zephyrus

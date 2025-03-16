@@ -1,9 +1,11 @@
 {
   config,
   pkgs,
+  nixpkgs_stable,
   ...
 }:
 {
+  programs.java.enable = true;
   # Packages used by the user globally
   home.packages = with pkgs; [
     # General
@@ -11,7 +13,6 @@
     python312Packages.pip
     gcc
     cargo
-    zulu17 # java openjdk
 
     # For damn university
     pkgs.jetbrains.idea-ultimate
@@ -25,6 +26,7 @@
     rpi-imager
 
     # For UML/SYSML modelling
-    # gaphor
+    nixpkgs_stable.gaphor
+    drawio
   ];
 }

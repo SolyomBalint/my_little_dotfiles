@@ -2,16 +2,23 @@
   username,
   pkgs,
   inputs,
+  nixpkgs_stable,
   ...
 }:
 
 {
   # Nixos global configuration for the current user.
   programs.gamescope.enable = true;
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
 
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
   environment.systemPackages = with pkgs; [
+    libdrm
     mangohud
   ];
 
