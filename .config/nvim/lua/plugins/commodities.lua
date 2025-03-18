@@ -179,7 +179,7 @@ return {
             dim = { enabled = true },
             git = { enabled = true },
             quickfile = { enabled = true },
-            scroll = { enabled = true },
+            scroll = { enabled = false },
             indent = {
                 enabled = true,
                 hl = highlight_group,

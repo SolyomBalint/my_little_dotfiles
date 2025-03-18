@@ -128,6 +128,7 @@ return {
                 fzf.dap_breakpoints,
                 { noremap = true, desc = "FZF: List dap breakpoints" }
             )
+            vim.keymap.set("n", "<C-p>m", fzf.marks, { noremap = true, desc = "FZF: List marks" })
             vim.keymap.set("n", "<C-p>b", fzf.buffers, { noremap = true, desc = "FZF: List open buffers" })
             vim.keymap.set("n", "<C-p>k", fzf.keymaps, { noremap = true, desc = "FZF: Search loaded keymaps" })
             -- TODO think this through
