@@ -70,11 +70,17 @@
     clinfo
     virtualglLib
     gpu-viewer
+    dxvk_2
   ];
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true; # For 32 bit applications
+    extraPackages = with pkgs; [
+      vulkan-loader
+      vulkan-validation-layers
+      vulkan-extension-layer
+    ];
   };
 
   # for games
@@ -84,5 +90,14 @@
     opencl.enable = true;
     initrd.enable = true;
     legacySupport.enable = true;
+    amdvlk = {
+      enable = true;
+      package = pkgs.amdvlk;
+      support32Bit = {
+        enable = true;
+        package = pkgs.driversi686Linux.amdvlk;
+      };
+      supportExperimental.enable = true;
+    };
   };
 }

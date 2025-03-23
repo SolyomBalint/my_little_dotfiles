@@ -10,6 +10,8 @@
     prismlauncher
     discord
     spotify
+    wineWowPackages.waylandFull
     lutris
+    protonup-qt
   ];
 }
