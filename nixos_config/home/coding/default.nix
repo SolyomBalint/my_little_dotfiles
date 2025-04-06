@@ -2,6 +2,7 @@
   config,
   pkgs,
   nixpkgs_stable,
+  inputs,
   ...
 }:
 {
@@ -21,8 +22,6 @@
   # Packages used by the user globally
   home.packages = with pkgs; [
     # General
-    python312Full
-    python312Packages.pip
     gcc
     cargo
 
@@ -37,6 +36,7 @@
     # For raspberry
     rpi-imager
 
+    inputs.claude-desktop.packages.${system}.claude-desktop
     # For UML/SYSML modelling
     nixpkgs_stable.gaphor
     drawio
@@ -44,7 +44,7 @@
       let
         base = pkgs.appimageTools.defaultFhsEnvArgs;
       in
-      pkgs.buildFHSUserEnv (
+      pkgs.buildFHSEnv (
         base
         // {
           name = "fhs";
@@ -58,10 +58,13 @@
             (base.targetPkgs pkgs)
             ++ (with pkgs; [
               pkg-config
+              python313Packages.python
+              python313Packages.pip
+              python313Packages.virtualenv
               # Feel free to add more packages here if needed.
             ]);
           profile = "export FHS=1";
-          runScript = "bash";
+          runScript = "zsh";
           extraOutputsToInstall = [ "dev" ];
         }
       )

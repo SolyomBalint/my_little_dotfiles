@@ -26,6 +26,14 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
+
+    # For claude desktop
+    flake-utils.url = "github:numtide/flake-utils";
+    claude-desktop = {
+      url = "github:k3d3/claude-desktop-linux-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
   outputs =

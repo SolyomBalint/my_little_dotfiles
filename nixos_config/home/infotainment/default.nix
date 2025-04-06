@@ -13,5 +13,6 @@
     wineWowPackages.waylandFull
     lutris
     protonup-qt
+    protonmail-desktop
   ];
 }

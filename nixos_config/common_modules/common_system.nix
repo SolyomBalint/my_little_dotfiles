@@ -72,7 +72,9 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-  fonts.packages = [ ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  fonts.packages =
+    [ ]
+    ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
   # Git is enabled from Home manager to config the user better
   environment.systemPackages = with pkgs; [
     vim
@@ -80,6 +82,7 @@
     curl
     unzip
     zip
+    gzip
     gnutar
     ripgrep
     wl-clipboard
