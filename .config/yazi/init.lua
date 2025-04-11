@@ -17,11 +17,11 @@ Status:children_add(function()
 end, 500, Status.RIGHT)
 
 -- ~/.config/yazi/init.lua
-THEME.git = THEME.git or {}
-THEME.git.modified_sign = "M"
-THEME.git.added_sign = "A"
-THEME.git.untracked_sign = "U"
-THEME.git.deleted_sign = "D"
-THEME.git.ignored_sign = "I"
-THEME.git.updated_sign = "u"
+th.git = th.git or {}
+th.git.modified_sign = "M"
+th.git.added_sign = "A"
+th.git.untracked_sign = "U"
+th.git.deleted_sign = "D"
+th.git.ignored_sign = "I"
+th.git.updated_sign = "u"
 require("git"):setup()

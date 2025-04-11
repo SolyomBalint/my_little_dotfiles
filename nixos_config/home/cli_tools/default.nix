@@ -1,14 +1,16 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }:
 {
+
   home.packages = with pkgs; [
     neofetch
     stow
     fd
-    yazi
+    inputs.yazi.packages.${pkgs.system}.default
     bat
     delta
     fzf
