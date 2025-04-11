@@ -126,7 +126,19 @@ return {
                     "--header-insertion-decorators",
                 },
                 filetypes = { "c", "cpp" },
-                root_dir = require("lspconfig").util.root_pattern("src"),
+                root_dir = function(fname)
+                    return lspconfig.util.root_pattern(
+                        ".clangd",
+                        ".clang-tidy",
+                        ".clang-format",
+                        "compile_commands.json",
+                        "build/compile_commands.json",
+                        "compile_flags.txt",
+                        "configure.ac" -- AutoTools
+                    )(fname) or vim.fs.dirname(
+                        vim.fs.find(".git", { path = fname, upward = true })[1]
+                    )
+                end,
                 capabilities = capabilities,
                 on_attach = function()
                     -- require("clangd_extensions.inlay_hints").setup_autocmd()
