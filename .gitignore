@@ -9,3 +9,5 @@ TODO*
 \.bashrc
 \.config/nvim/\.undo
 \.config/custom/
+\.config/hyprpanel/modules.json
+\.config/hyprpanel/modules.scss
