@@ -1,6 +1,7 @@
 return {
     "yetone/avante.nvim",
     event = "VeryLazy",
+    enabled = false,
     -- lazy = false,
     keys = {
         { "<leader>aa", desc = "AVANTE: Load avante, and open chat" },
@@ -13,9 +14,9 @@ return {
         "nvim-lua/plenary.nvim",
         "MunifTanjim/nui.nvim",
         --- The below dependencies are optional,
-        "ibhagwan/fzf-lua",            -- for file_selector provider fzf
+        "ibhagwan/fzf-lua", -- for file_selector provider fzf
         "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-        "zbirenbaum/copilot.lua",      -- for providers='copilot'
+        "zbirenbaum/copilot.lua", -- for providers='copilot'
         {
             -- support for image pasting
             "HakonHarnes/img-clip.nvim",

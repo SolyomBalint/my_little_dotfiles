@@ -7,22 +7,21 @@
 }:
 {
   programs.java.enable = true;
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscode.fhsWithPackages (
-      ps: with ps; [
-        gcc
-        gdb
-        openssl.dev
-        pkg-config
-      ]
-    );
-  };
+  # programs.vscode = {
+  #   enable = true;
+  #   package = pkgs.vscode.fhsWithPackages (
+  #     ps: with ps; [
+  #       gcc
+  #       gdb
+  #       openssl.dev
+  #       pkg-config
+  #     ]
+  #   );
+  # };
 
   # Packages used by the user globally
   home.packages = with pkgs; [
     # General
-    gcc
     cargo
 
     # For damn university
