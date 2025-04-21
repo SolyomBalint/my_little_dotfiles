@@ -68,5 +68,7 @@
         }
       )
     )
+    # GTK UI design
+    glade
   ];
 }

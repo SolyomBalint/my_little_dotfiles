@@ -9,7 +9,6 @@ return {
             auto_install = true,
             highlight = {
                 enable = true,
-                disable = { "latex" },
             },
             indent = { enable = true },
         })

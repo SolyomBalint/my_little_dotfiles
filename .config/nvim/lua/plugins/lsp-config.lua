@@ -18,18 +18,12 @@ local on_attach = function()
         vim.diagnostic.open_float,
         { noremap = true, desc = "DIAGNOSTIC: Open errors in floating window" }
     )
-    vim.keymap.set(
-        "n",
-        "<leader>gt",
-        vim.diagnostic.goto_next,
-        { noremap = true, desc = "DIAGNOSTIC: Go to next diagnostic" }
-    )
-    vim.keymap.set(
-        "n",
-        "<leader>gp",
-        vim.diagnostic.goto_prev,
-        { noremap = true, desc = "DIAGNOSTIC: Go to previous diagnostic" }
-    )
+    vim.keymap.set("n", "<leader>gt", function()
+        vim.diagnostic.jump({ count = 1, float = true })
+    end, { noremap = true, desc = "DIAGNOSTIC: Go to next diagnostic" })
+    vim.keymap.set("n", "<leader>gp", function()
+        vim.diagnostic.jump({ count = -1, float = true })
+    end, { noremap = true, desc = "DIAGNOSTIC: Go to previous diagnostic" })
     vim.keymap.set("n", "<leader>tp", vim.lsp.buf.typehierarchy, { noremap = true, desc = "LSP: Get type hierarchy" })
 
     vim.keymap.set("n", "<leader>ic", fzf.lsp_incoming_calls, { noremap = true, desc = "FZF: List incoming calls" })
@@ -46,12 +40,14 @@ local on_attach = function()
 end
 return {
     {
+        -- LSP config plugin provides default inits for language servers while neovim does not, hence this plugin is
+        -- still useful
         "neovim/nvim-lspconfig",
         lazy = false,
-        dependencies = { "onsails/lspkind.nvim", "saghen/blink.cmp" },
+        dependencies = { "onsails/lspkind.nvim" },
         config = function()
-            local basic_lsp_list = { "glsl_analyzer", "neocmake", "marksman", "pyright", "ts_ls" }
-            local capabilities = require("blink.cmp").get_lsp_capabilities()
+            local basic_lsp_list =
+            { "clangd", "glsl_analyzer", "neocmake", "marksman", "pyright", "ts_ls", "nixd", "lua_ls" }
 
             -- setup() is also available as an alias
             require("lspkind").init({
@@ -87,29 +83,38 @@ return {
                     TypeParameter = "",
                 },
             })
-            local lspconfig = require("lspconfig")
-            -- Setting up lsp-s with basic setup
-            for _, lsp in ipairs(basic_lsp_list) do
-                lspconfig[lsp].setup({
-                    capabilities = capabilities,
-                    on_attach = on_attach,
-                })
-            end
 
-            lspconfig.nixd.setup({
-                cmd = { "nixd" },
-                settings = {
-                    nixd = {
-                        nixpkgs = {
-                            expr = "import <nixpkgs> {  }",
+            -- This way the default on attach functions can do their thing in the plugin
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+                callback = function(args)
+                    local buffer = args.buf
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    on_attach()
+
+                    -- if client ~= nil then
+                    --     if client.name == "clangd" then
+                    --         require("clangd_extensions.inlay_hints").setup_autocmd()
+                    --         require("clangd_extensions.inlay_hints").set_inlay_hints()
+                    --     end
+                    -- end
+                end,
+            })
+
+            -- Default settings for every lsp
+            vim.lsp.config("*", {
+                capabilities = {
+                    textDocument = {
+                        semanticTokens = {
+                            multilineTokenSupport = true,
                         },
                     },
                 },
-                capabilities = capabilities,
+                root_markers = { ".git" },
                 on_attach = on_attach,
             })
 
-            lspconfig.clangd.setup({
+            vim.lsp.config("clangd", {
                 cmd = {
                     "clangd",
                     "-j=4",
@@ -126,43 +131,22 @@ return {
                     "--header-insertion-decorators",
                 },
                 filetypes = { "c", "cpp" },
-                root_dir = function(fname)
-                    return lspconfig.util.root_pattern(
-                        ".clangd",
-                        ".clang-tidy",
-                        ".clang-format",
-                        "compile_commands.json",
-                        "build/compile_commands.json",
-                        "compile_flags.txt",
-                        "configure.ac" -- AutoTools
-                    )(fname) or vim.fs.dirname(
-                        vim.fs.find(".git", { path = fname, upward = true })[1]
-                    )
-                end,
-                capabilities = capabilities,
-                on_attach = function()
-                    -- require("clangd_extensions.inlay_hints").setup_autocmd()
-                    -- require("clangd_extensions.inlay_hints").set_inlay_hints()
-                    on_attach()
-                end,
-            })
-
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-                on_attach = on_attach,
-                filetypes = { "lua" },
-                settings = {
-                    Lua = {
-                        workspace = {
-                            library = {
-                                -- This temporary only for my local development, a not so hardcoded solutions would be
-                                -- nice
-                                vim.fn.expand("~/personal/projects/sources_for_lsps/astal/lang/lua/"),
-                            },
-                        },
-                    },
+                root_markers = {
+                    ".clangd",
+                    ".clang-tidy",
+                    ".clang-format",
+                    "compile_commands.json",
+                    "build/compile_commands.json",
+                    "compile_flags.txt",
+                    "configure.ac", -- AutoTools
+                    ".git",
                 },
             })
+
+            -- Setting up lsp-s with basic setup
+            for _, lsp in ipairs(basic_lsp_list) do
+                vim.lsp.enable(lsp)
+            end
         end,
     },
 }

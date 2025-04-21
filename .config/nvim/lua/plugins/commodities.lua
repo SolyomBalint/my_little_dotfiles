@@ -56,62 +56,6 @@ return {
         },
     },
     {
-        "kevinhwang91/nvim-ufo",
-        dependencies = "kevinhwang91/promise-async",
-        enabled = false,
-        init = function()
-            vim.o.foldcolumn = "1" -- '0' is not bad
-            vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
-            vim.o.foldlevelstart = 99
-            vim.o.foldenable = true
-            vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
-        end,
-        config = function()
-            local ftMap = {
-                vim = "indent",
-                python = { "indent" },
-                git = "",
-            }
-            require("ufo").setup({
-                fold_virt_text_handler = handler,
-                open_fold_hl_timeout = 150,
-                close_fold_kinds_for_ft = {
-                    default = { "imports", "comment" },
-                    json = { "array" },
-                    c = { "comment", "region" },
-                },
-                preview = {
-                    win_config = {
-                        border = { "", "─", "", "", "", "─", "", "" },
-                        winhighlight = "Normal:Folded",
-                        winblend = 0,
-                    },
-                    mappings = {
-                        scrollU = "<C-u>",
-                        scrollD = "<C-d>",
-                        jumpTop = "[",
-                        jumpBot = "]",
-                    },
-                },
-                provider_selector = function(bufnr, filetype, buftype)
-                    return { "treesitter", "indent" }
-                end,
-            })
-            vim.keymap.set("n", "zR", require("ufo").openAllFolds, { desc = "UFO: Open all folds" })
-            vim.keymap.set("n", "zM", require("ufo").closeAllFolds, { desc = "UFO: Close all folds" })
-            vim.keymap.set("n", "zr", require("ufo").openFoldsExceptKinds, { desc = "UFO: Open all folds except kind" })
-            vim.keymap.set("n", "zm", function()
-                require("ufo").closeFoldsWith(1)
-            end, { desc = "UFO: Close all folds below level 1" })
-            vim.keymap.set("n", "K", function()
-                local winid = require("ufo").peekFoldedLinesUnderCursor()
-                if not winid then
-                    vim.lsp.buf.hover()
-                end
-            end, { desc = "UFO: Closed folds preview" })
-        end,
-    },
-    {
         "folke/snacks.nvim",
         priority = 1000,
         lazy = false,
@@ -208,7 +152,6 @@ return {
             vim.keymap.set("n", "<C-s>gb", snacks.git.blame_line, { desc = "SNACKS: Git blame" })
         end,
     },
-
     {
         "chentoast/marks.nvim",
         event = "VeryLazy",
