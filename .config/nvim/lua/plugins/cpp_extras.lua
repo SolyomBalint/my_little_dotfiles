@@ -1,6 +1,4 @@
 return {
-	"p00f/clangd_extensions.nvim",
-	config = function()
-		require("clangd_extensions").setup({})
-	end,
+    "p00f/clangd_extensions.nvim",
+    ft = { "c", "cpp" },
 }
