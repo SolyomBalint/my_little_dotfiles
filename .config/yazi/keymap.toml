@@ -15,11 +15,6 @@ run = [ '''
 ''', "yank" ]
 
 [[manager.prepend_keymap]]
-on   = "T"
-run  = "plugin --sync max-preview"
-desc = "Maximize or restore preview"
-
-[[manager.prepend_keymap]]
 on   = "f"
 run  = "plugin jump-to-char"
 desc = "Jump to char"
