@@ -20,7 +20,6 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Turning file numbering on
 vim.opt.relativenumber = true
-vim.o.statuscolumn = "%C %s %r"
 
 -- Setting the system clipboard
 vim.o.clipboard = "unnamedplus"

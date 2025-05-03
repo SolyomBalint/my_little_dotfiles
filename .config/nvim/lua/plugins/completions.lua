@@ -27,6 +27,7 @@ return {
                     preset = "default",
                     ["<C-p>"] = { "select_prev" },
                     ["<C-n>"] = { "select_next" },
+                    ["<C-f>"] = { "select_and_accept" },
                 },
             },
 

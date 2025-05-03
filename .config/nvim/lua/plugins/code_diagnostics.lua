@@ -60,4 +60,17 @@ return {
             },
         },
     },
+    {
+        "rmagatti/goto-preview",
+        dependencies = { "rmagatti/logger.nvim" },
+        event = "BufEnter",
+        config = true,
+        opts = {
+            references = {
+                provider = "fzf_lua",
+            },
+            resizing_mappings = true,
+            default_mappings = true,
+        },
+    },
 }

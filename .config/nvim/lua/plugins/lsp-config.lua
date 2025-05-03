@@ -47,7 +47,7 @@ return {
         dependencies = { "onsails/lspkind.nvim" },
         config = function()
             local basic_lsp_list =
-            { "clangd", "glsl_analyzer", "neocmake", "marksman", "pyright", "ts_ls", "nixd", "lua_ls" }
+                { "clangd", "glsl_analyzer", "neocmake", "marksman", "pyright", "ts_ls", "nixd", "lua_ls" }
 
             -- setup() is also available as an alias
             require("lspkind").init({
@@ -91,13 +91,6 @@ return {
                     local buffer = args.buf
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
                     on_attach()
-
-                    -- if client ~= nil then
-                    --     if client.name == "clangd" then
-                    --         require("clangd_extensions.inlay_hints").setup_autocmd()
-                    --         require("clangd_extensions.inlay_hints").set_inlay_hints()
-                    --     end
-                    -- end
                 end,
             })
 

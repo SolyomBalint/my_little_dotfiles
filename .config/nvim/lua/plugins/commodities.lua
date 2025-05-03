@@ -61,6 +61,9 @@ return {
         lazy = false,
         ---@type snacks.Config
         opts = {
+            statuscolumn = {
+                enabled = true,
+            },
             bigfile = {
                 enabled = true,
                 notify = true,

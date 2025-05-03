@@ -33,6 +33,9 @@
     gdb
     python312Packages.debugpy
 
+    # Tree sitter
+    gcc
+
     # Avante needs this
     gnumake
     nodejs_23
