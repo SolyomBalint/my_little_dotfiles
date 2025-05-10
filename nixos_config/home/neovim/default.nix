@@ -38,7 +38,7 @@
 
     # Avante needs this
     gnumake
-    nodejs_23
+    nodejs_24
   ];
 
   # Needed for nix lsp

@@ -6,7 +6,10 @@ return {
             local diags = require("tiny-inline-diagnostic")
             diags.setup({
                 options = {
-                    show_source = true,
+                    show_source = {
+                        enabled = true,
+                        if_many = true,
+                    },
                     multilines = true,
                     -- show_all_diags_on_cursorline = true,
                     -- multiple_diag_under_cursor = true,

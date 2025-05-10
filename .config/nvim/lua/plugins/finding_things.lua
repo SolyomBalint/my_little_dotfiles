@@ -5,11 +5,11 @@ return {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         keys = {
-            { "<C-e>",     desc = "HP: Load and open harpoon" },
-            { ";1",        desc = "HP: Load harpoon and switch to file 1" },
-            { ";2",        desc = "HP: Load harpoon and switch to file 2" },
-            { ";3",        desc = "HP: Load harpoon and switch to file 3" },
-            { ";4",        desc = "HP: Load harpoon and switch to file 4" },
+            { "<C-e>", desc = "HP: Load and open harpoon" },
+            { ";1", desc = "HP: Load harpoon and switch to file 1" },
+            { ";2", desc = "HP: Load harpoon and switch to file 2" },
+            { ";3", desc = "HP: Load harpoon and switch to file 3" },
+            { ";4", desc = "HP: Load harpoon and switch to file 4" },
             { "<leader>a", desc = "HP: Load harpoon add file to it" },
         },
         dependencies = { "nvim-lua/plenary.nvim" },
@@ -56,8 +56,7 @@ return {
 
             fzf.setup({})
             local rg_cmd = "rg -u --follow --hidden --with-filename --line-number --column --smart-case"
-                ..
-                " --glob=!**/.git/* --glob=!**/build/* --glob=!**/.idea/* --glob=!**/.cache/* --glob=!**/.devenv/* --glob=!**/.direnv/*"
+                .. " --glob=!**/.git/* --glob=!**/build/* --glob=!**/.idea/* --glob=!**/.cache/* --glob=!**/.devenv/* --glob=!**/.direnv/*"
             vim.keymap.set("n", "<C-p>a", function()
                 Snacks.input({
                     prompt = "Path to basedir: ",
@@ -68,8 +67,7 @@ return {
                         searchPlace = input
                         fzf.files({
                             cwd = input,
-                            cmd =
-                            "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build -E !**/.git/* -E .git -E !**/.devenv/* -E .devenv",
+                            cmd = "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build -E !**/.git/* -E .git -E !**/.devenv/* -E .devenv",
                         })
                     end
                 end)

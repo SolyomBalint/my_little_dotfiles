@@ -1,52 +1,74 @@
 return {
-    "yetone/avante.nvim",
-    event = "VeryLazy",
-    enabled = false,
-    -- lazy = false,
-    keys = {
-        { "<leader>aa", desc = "AVANTE: Load avante, and open chat" },
+    {
+        "yetone/avante.nvim",
+        event = "VeryLazy",
+        enabled = true,
+        -- lazy = false,
+        keys = {
+            { "<leader>aa", desc = "AVANTE: Load avante, and open chat" },
+        },
+        version = false,
+        opts = {},
+        build = "make",
+        dependencies = {
+            "stevearc/dressing.nvim",
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim",
+            --- The below dependencies are optional,
+            "ibhagwan/fzf-lua", -- for file_selector provider fzf
+            "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+            "zbirenbaum/copilot.lua", -- for providers='copilot'
+        },
+        config = function()
+            vim.opt.laststatus = 3
+            require("copilot").setup({})
+            require("avante").setup({
+                provider = "copilot",
+            })
+        end,
     },
-    version = false,
-    opts = {},
-    build = "make",
-    dependencies = {
-        "stevearc/dressing.nvim",
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        --- The below dependencies are optional,
-        "ibhagwan/fzf-lua", -- for file_selector provider fzf
-        "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-        "zbirenbaum/copilot.lua", -- for providers='copilot'
-        {
-            -- support for image pasting
-            "HakonHarnes/img-clip.nvim",
-            event = "VeryLazy",
-            opts = {
-                -- recommended settings
-                default = {
-                    embed_image_as_base64 = false,
-                    prompt_for_file_name = false,
-                    drag_and_drop = {
-                        insert_mode = true,
-                    },
-                    -- required for Windows users
-                    use_absolute_path = true,
+    {
+        "ravitemer/mcphub.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        enabled = false,
+        cmd = "MCPHub",
+        build = "bundled_build.lua", -- Bundles mcp-hub locally
+        config = function()
+            require("mcphub").setup({
+                use_bundled_binary = true, -- Use local binary
+                port = 37373, -- Port for MCP Hub Express API
+                config = vim.fn.expand("~/.config/mcphub/servers.json"), -- Config file path
+
+                native_servers = {}, -- add your native servers here
+                auto_approve = false,
+                extensions = {
+                    avante = {},
                 },
-            },
-        },
-        {
-            "MeanderingProgrammer/render-markdown.nvim",
-            opts = {
-                file_types = { "markdown", "Avante" },
-            },
-            ft = { "markdown", "Avante" },
-        },
+
+                ui = {
+                    window = {
+                        width = 0.8, -- Window width (0-1 ratio)
+                        height = 0.8, -- Window height (0-1 ratio)
+                        border = "rounded", -- Window border style
+                        relative = "editor", -- Window positioning
+                        zindex = 50, -- Window stack order
+                    },
+                },
+
+                -- Event callbacks
+                on_ready = function(hub) end, -- Called when hub is ready
+                on_error = function(err) end, -- Called on errors
+
+                -- Logging configuration
+                log = {
+                    level = vim.log.levels.WARN, -- Minimum log level
+                    to_file = false, -- Enable file logging
+                    file_path = nil, -- Custom log file path
+                    prefix = "MCPHub", -- Log message prefix
+                },
+            })
+        end,
     },
-    config = function()
-        vim.opt.laststatus = 3
-        require("copilot").setup({})
-        require("avante").setup({
-            provider = "copilot",
-        })
-    end,
 }

@@ -59,6 +59,12 @@ return {
                         "Unix",
                     },
                 },
+                black = {
+                    prepend_args = {
+                        "--line-length",
+                        "120",
+                    },
+                },
             },
         },
         init = function()
