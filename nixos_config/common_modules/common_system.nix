@@ -67,6 +67,9 @@
     };
   };
 
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+
   services.printing.enable = true;
 
   programs.zsh.enable = true;
