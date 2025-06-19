@@ -1,4 +1,5 @@
-nixos_config
+nixos_config/
 \.git
 \.gitignore
 README.md
+\.stow-global-ignore
