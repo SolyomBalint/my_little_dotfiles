@@ -24,6 +24,27 @@ return {
             require("copilot").setup({})
             require("avante").setup({
                 provider = "copilot",
+                system_prompt = function()
+                    local hub = require("mcphub").get_hub_instance()
+                    return hub and hub:get_active_servers_prompt() or ""
+                end,
+                custom_tools = function()
+                    return {
+                        require("mcphub.extensions.avante").mcp_tool(),
+                    }
+                end,
+                disabled_tools = {
+                    "list_files",
+                    "search_files",
+                    "read_file",
+                    "create_file",
+                    "rename_file",
+                    "delete_file",
+                    "create_dir",
+                    "rename_dir",
+                    "delete_dir",
+                    "bash",
+                },
             })
         end,
     },
@@ -32,41 +53,21 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
-        enabled = false,
-        cmd = "MCPHub",
-        build = "bundled_build.lua", -- Bundles mcp-hub locally
+        build = "bundled_build.lua",
         config = function()
             require("mcphub").setup({
-                use_bundled_binary = true, -- Use local binary
-                port = 37373, -- Port for MCP Hub Express API
-                config = vim.fn.expand("~/.config/mcphub/servers.json"), -- Config file path
+                config = vim.fn.expand("~/.config/mcphub/servers.json"),
+                port = 37373,
+                shutdown_delay = 60 * 10 * 000,
+                use_bundled_binary = true,
+                mcp_request_timeout = 60000,
 
-                native_servers = {}, -- add your native servers here
                 auto_approve = false,
+                auto_toggle_mcp_servers = true,
                 extensions = {
-                    avante = {},
-                },
-
-                ui = {
-                    window = {
-                        width = 0.8, -- Window width (0-1 ratio)
-                        height = 0.8, -- Window height (0-1 ratio)
-                        border = "rounded", -- Window border style
-                        relative = "editor", -- Window positioning
-                        zindex = 50, -- Window stack order
+                    avante = {
+                        make_slash_commands = true,
                     },
-                },
-
-                -- Event callbacks
-                on_ready = function(hub) end, -- Called when hub is ready
-                on_error = function(err) end, -- Called on errors
-
-                -- Logging configuration
-                log = {
-                    level = vim.log.levels.WARN, -- Minimum log level
-                    to_file = false, -- Enable file logging
-                    file_path = nil, -- Custom log file path
-                    prefix = "MCPHub", -- Log message prefix
                 },
             })
         end,
