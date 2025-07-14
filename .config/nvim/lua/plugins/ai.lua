@@ -11,7 +11,7 @@ return {
         opts = {},
         build = "make",
         dependencies = {
-            "stevearc/dressing.nvim",
+            "stevearc/snacks.nvim",
             "nvim-lua/plenary.nvim",
             "MunifTanjim/nui.nvim",
             --- The below dependencies are optional,

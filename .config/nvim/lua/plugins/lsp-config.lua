@@ -47,7 +47,7 @@ return {
         dependencies = { "onsails/lspkind.nvim" },
         config = function()
             local basic_lsp_list =
-                { "clangd", "glsl_analyzer", "neocmake", "marksman", "pyright", "ts_ls", "nixd", "lua_ls" }
+                { "clangd", "glsl_analyzer", "neocmake", "marksman", "pyright", "ts_ls", "nixd", "lua_ls", "tinymist" }
 
             -- setup() is also available as an alias
             require("lspkind").init({
@@ -133,6 +133,14 @@ return {
                     "compile_flags.txt",
                     "configure.ac", -- AutoTools
                     ".git",
+                },
+            })
+
+            vim.lsp.config("tinymist", {
+                settings = {
+                    formatterMode = "typstyle",
+                    exportPdf = "onType",
+                    semanticTokens = "disable",
                 },
             })
 
