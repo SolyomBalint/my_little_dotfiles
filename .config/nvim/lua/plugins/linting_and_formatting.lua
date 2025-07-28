@@ -21,10 +21,6 @@ return {
                 python = { "isort", "black" },
                 c = { "clang-format" },
                 cpp = { "clang-format" },
-                glsl = { "clang-format" },
-                nix = { "nixfmt" },
-                sh = { "shfmt" },
-                zsh = { "shfmt" },
                 yaml = { "prettier" },
                 json = { "prettier" },
                 css = { "prettier" },
@@ -43,9 +39,6 @@ return {
             notify_on_error = true,
             notify_no_formatters = true,
             formatters = {
-                shfmt = {
-                    prepend_args = { "-i", "2" },
-                },
                 stylua = {
                     -- inherit = false, overwrite whole cmd
                     prepend_args = {

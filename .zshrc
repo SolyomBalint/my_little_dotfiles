@@ -75,7 +75,6 @@ export EDITOR="nvim"
 
 ## Misc
 alias ls='ls --color'
-alias dungeonmaptool='wine ~/.wine/drive_c/Program\ Files/Dungeondraft/Dungeondraft.exe'
 
 ## fzf aliases
 alias fzfpreview='fzf --preview="bat --color=always {}"'
@@ -92,9 +91,6 @@ function y() {
 	fi
 	rm -f -- "$tmp"
 }
-
-# Gaming
-alias civ6="gamescope -w 1920 -h 1080 -r 60 -f -F fsr --steam -- steam steam://rungameid/289070"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"

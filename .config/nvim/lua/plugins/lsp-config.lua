@@ -46,8 +46,7 @@ return {
         lazy = false,
         dependencies = { "onsails/lspkind.nvim" },
         config = function()
-            local basic_lsp_list =
-                { "clangd", "glsl_analyzer", "neocmake", "marksman", "pyright", "ts_ls", "nixd", "lua_ls", "tinymist" }
+            local basic_lsp_list = { "clangd", "neocmake", "marksman", "pyright", "lua_ls", "tinymist" }
 
             -- setup() is also available as an alias
             require("lspkind").init({
