@@ -86,9 +86,13 @@ return {
                         name = "Ripgrep",
                         opts = {
                             prefix_min_len = 5,
-                            max_filesize = "1M",
-                            search_casing = "--ignore-case",
                             fallback_to_regex_highlighting = true,
+                            backend = {
+                                ripgrep = {
+                                    max_filesize = "1M",
+                                    search_casing = "--ignore-case",
+                                },
+                            },
                         },
                     },
                 },

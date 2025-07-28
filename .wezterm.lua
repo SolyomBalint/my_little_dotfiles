@@ -16,6 +16,8 @@ config.window_background_image_hsb = {
     brightness = 0.1,
 }
 
+config.default_prog = { "/usr/bin/zsh" }
+
 -- This is to make using neovim easier, refer ti tge keyboard concepts docs for more information.
 config.use_dead_keys = false
 
