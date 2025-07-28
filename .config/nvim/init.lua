@@ -12,6 +12,9 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- For MCP servers
+vim.fn.serverstart("/tmp/nvim")
+
 require("custom_functions")
 require("custom_struct")
 require("options")
