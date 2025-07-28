@@ -1,4 +1,4 @@
-nixos_config/
+nixos_config
 \.git
 \.gitignore
 README.md
