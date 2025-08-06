@@ -13,7 +13,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- For MCP servers
-vim.fn.serverstart("/tmp/nvim")
+if vim.fn.serverlist()[1] == nil then
+    vim.fn.serverstart("/tmp/nvim")
+end
 
 require("custom_functions")
 require("custom_struct")
