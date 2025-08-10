@@ -12,10 +12,24 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- For MCP servers
-if vim.fn.serverlist()[1] == nil then
+local function check_nvim_server_file()
+    local server_file = "/tmp/nvim"
+    local file_exists = vim.loop.fs_stat(server_file) ~= nil
+    return file_exists
+end
+
+if not check_nvim_server_file() then
     vim.fn.serverstart("/tmp/nvim")
 end
+
+vim.filetype.add({
+    extension = {
+        tpp = "cpp",
+        tcc = "cpp",
+        ipp = "cpp",
+        inl = "cpp",
+    },
+})
 
 require("custom_functions")
 require("custom_struct")

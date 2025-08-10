@@ -80,7 +80,7 @@ return {
                 }, function(input)
                     if input ~= nil then
                         searchPlace = input
-                        fzf.live_grep_glob({
+                        fzf.live_grep({
                             cwd = input,
                             cmd = rg_cmd,
                         })
