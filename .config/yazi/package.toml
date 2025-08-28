@@ -1,24 +1,24 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:full-border"
-rev = "e95c7b3"
+rev = "d7588f6"
 hash = "3996fc74044bc44144b323686f887e1"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:jump-to-char"
-rev = "e95c7b3"
+rev = "d7588f6"
 hash = "d2f04875bbd4ed3dd5696e8c4b094fde"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "e95c7b3"
+rev = "d7588f6"
 hash = "63b6c222bf2103b3023389dde5e2ecfe"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:chmod"
-rev = "e95c7b3"
+rev = "d7588f6"
 hash = "1adc12c2b2b025411ab61eb8f0879574"
 
 [[flavor.deps]]
 use = "dangooddd/kanagawa"
-rev = "1f3b3c7"
-hash = "16ea0ff3583131788d57d5f7d34d0f61"
+rev = "a0b1d9d"
+hash = "abfb0b2371259b2c8adfc7b617c3d7e5"
