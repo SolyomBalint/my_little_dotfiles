@@ -10,6 +10,6 @@
     zsh
     oh-my-posh
     ghostty
-    # wezterm
+    wezterm
   ];
 }

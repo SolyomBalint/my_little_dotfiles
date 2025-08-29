@@ -19,6 +19,7 @@
     dos2unix
     nmap
     gnome-multi-writer
+    claude-code
 
     # PDF viewers
     zathura

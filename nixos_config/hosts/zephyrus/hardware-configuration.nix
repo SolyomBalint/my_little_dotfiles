@@ -31,8 +31,9 @@
   boot.initrd.kernelModules = [ "amdgpu" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/2157982d-4aad-4565-b686-52741ac935e5";
+    device = "/dev/disk/by-uuid/b9bed804-f07d-4b15-9ddd-aa8cb31a9b91";
     fsType = "ext4";
   };
 

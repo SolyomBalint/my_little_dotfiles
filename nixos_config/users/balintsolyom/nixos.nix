@@ -13,9 +13,9 @@
   programs.steam = {
     enable = true;
     gamescopeSession.enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-    localNetworkGameTransfers.openFirewall = true;
+    # remotePlay.openFirewall = true;
+    # dedicatedServer.openFirewall = true;
+    # localNetworkGameTransfers.openFirewall = true;
   };
   environment.systemPackages = with pkgs; [
     libdrm
@@ -25,7 +25,7 @@
   programs.gamemode.enable = true;
 
   # For zen
-  services.flatpak.enable = true;
+  # services.flatpak.enable = true;
 
   virtualisation.docker.enable = true;
   users.users.${username}.extraGroups = [ "docker" ];

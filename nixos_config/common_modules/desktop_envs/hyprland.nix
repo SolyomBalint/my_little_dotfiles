@@ -3,14 +3,9 @@
   programs.hyprland.enable = true;
   programs.xwayland.enable = true;
   programs.hyprland.xwayland.enable = true;
-  nixpkgs = {
-    overlays = [
-      inputs.hyprpanel.overlay
-    ];
-  };
   environment.systemPackages = with pkgs; [
     wofi # program starter
-    waybar # Status bar config in: ~/.config/waybar
+    # waybar # Status bar config in: ~/.config/waybar
     font-awesome # Needed by waybar
     hyprshot # screen shot tool
     swaynotificationcenter # notification daemon /swaync

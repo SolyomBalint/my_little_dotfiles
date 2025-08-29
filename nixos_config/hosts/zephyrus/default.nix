@@ -14,7 +14,7 @@
 
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    inputs.nixos-hardware.nixosModules.asus-zephyrus-ga402
+    #inputs.nixos-hardware.nixosModules.asus-zephyrus-ga402
   ];
 
   # Bootloader.
@@ -44,5 +44,5 @@
     };
   };
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }

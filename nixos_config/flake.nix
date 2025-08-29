@@ -8,7 +8,7 @@
     };
 
     nixpkgs_stable = {
-      url = "github:NixOS/nixpkgs/nixos-24.11";
+      url = "github:NixOS/nixpkgs/nixos-25.05";
     };
 
     home-manager = {
@@ -18,24 +18,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprpanel = {
-      url = "github:Jas-SinghFSU/HyprPanel";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
 
-    # For claude desktop
-    flake-utils.url = "github:numtide/flake-utils";
-    claude-desktop = {
-      url = "github:k3d3/claude-desktop-linux-flake";
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
 
     yazi.url = "github:sxyazi/yazi";
+
+    # The flake is faulty atm
+    # systems.url = "github:nix-systems/x86_64-linux";
+    # flake-utils.url = "github:numtide/flake-utils";
+    # flake-utils.inputs.systems.follows = "systems";
+    # claude-desktop = {
+    #   url = "github:SolyomBalint/claude-desktop-linux-flake";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.flake-utils.follows = "flake-utils";
+    # };
   };
 
   outputs =
@@ -65,7 +67,6 @@
                 system = system;
                 config.allowUnfree = true;
                 overlays = [
-                  inputs.hyprpanel.overlay
                 ];
               };
             };

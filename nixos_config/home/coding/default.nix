@@ -25,17 +25,18 @@
     cargo
 
     # For damn university
-    pkgs.jetbrains.idea-ultimate
+    # pkgs.jetbrains.idea-ultimate
+
+    # inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
 
     # For development
     devenv
     direnv
-    distrobox
+    # distrobox
 
     # For raspberry
     rpi-imager
 
-    inputs.claude-desktop.packages.${system}.claude-desktop
     # For UML/SYSML modelling
     nixpkgs_stable.gaphor
     drawio
@@ -69,6 +70,6 @@
       )
     )
     # GTK UI design
-    glade
+    # glade
   ];
 }

@@ -76,8 +76,7 @@
   users.defaultUserShell = pkgs.zsh;
 
   fonts.packages =
-    [ ]
-    ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+    [ ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
   # Git is enabled from Home manager to config the user better
   environment.systemPackages = with pkgs; [
     vim
@@ -90,13 +89,12 @@
     ripgrep
     wl-clipboard
     brightnessctl
-    librewolf
   ];
 
   services.envfs.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;

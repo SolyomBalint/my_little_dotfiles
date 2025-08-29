@@ -11,8 +11,7 @@
     discord
     spotify
     wineWowPackages.waylandFull
-    lutris
-    protonup-qt
-    protonmail-desktop
+    firefox
+    inputs.zen-browser.packages."${system}".twilight
   ];
 }
