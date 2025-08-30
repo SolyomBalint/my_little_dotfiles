@@ -29,6 +29,7 @@ return {
                 json = { "prettier" },
                 css = { "prettier" },
                 markdown = { "prettier" },
+                typst = { "typstyle" },
             },
 
             default_format_opts = {

@@ -20,6 +20,7 @@
     nmap
     gnome-multi-writer
     claude-code
+    nettools
 
     # PDF viewers
     zathura

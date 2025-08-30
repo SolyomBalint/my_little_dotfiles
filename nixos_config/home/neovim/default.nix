@@ -15,6 +15,7 @@
     shfmt
     nixfmt-rfc-style
     nodePackages_latest.prettier
+    typstyle
 
     # LSPs
     lua-language-server
@@ -25,6 +26,7 @@
     nixd
     typescript-language-server
     glsl_analyzer
+    tinymist
 
     # Diagnostic tools
     mypy
@@ -39,6 +41,10 @@
     # Avante needs this
     gnumake
     nodejs_24
+
+    # document generation
+    typst
+    texliveFull
   ];
 
   # Needed for nix lsp
