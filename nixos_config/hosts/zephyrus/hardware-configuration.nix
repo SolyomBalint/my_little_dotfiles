@@ -14,6 +14,23 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  # could be useful for finding gpu cards, but not needed rn
+  # services.udev.extraRules =
+  #   let
+  #     amdIgpuId = builtins.readFile (
+  #       pkgs.runCommand "get-amd-igpu-id"
+  #         {
+  #           buildInputs = [ pkgs.pciutils ];
+  #         }
+  #         ''
+  #           lspci -d ::03xx | grep 'Radeon 680' | cut -f1 -d' ' | tr -d '\n' > $out
+  #         ''
+  #     );
+  #   in
+  #   ''
+  #     KERNEL=="card*", KERNELS=="0000:${amdIgpuId}", SUBSYSTEM=="drm", SUBSYSTEMS=="pci", SYMLINK+="dri/amd-igpu"
+  #   '';
+
   # Update kernel to latest available
   boot.kernelPackages = pkgs.linuxPackages_latest;
 

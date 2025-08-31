@@ -2,6 +2,9 @@
 {
   programs.hyprland.enable = true;
   programs.xwayland.enable = true;
+  programs.hyprlock.enable = true;
+  services.hypridle.enable = true;
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
   programs.hyprland.xwayland.enable = true;
   environment.systemPackages = with pkgs; [
     wofi # program starter
@@ -10,11 +13,13 @@
     hyprshot # screen shot tool
     swaynotificationcenter # notification daemon /swaync
     libnotify # needed by swaync, should be part of gnome, but making sure
-    hyprlock # Lock screen config in: ~/.config/hypr/hyprlock.conf
-    hypridle # Add idle mode config in: ~/.config/hypr/hyprlock.conf
     hyprpaper # Adding backgrounds
     hyprsunset # Nightlight
     hyprpanel # Widget framework implemenatation for statusbar
+    hyprpolkitagent # Polkit auth
+    hyprpicker # pick colors from screean
+    wl-screenrec # screen rec
+    slurp # select region
   ];
 
 }
