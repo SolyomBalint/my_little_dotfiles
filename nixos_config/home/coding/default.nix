@@ -27,12 +27,13 @@
     # For damn university
     # pkgs.jetbrains.idea-ultimate
 
-    # inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
+    inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
 
     # For development
     devenv
     direnv
     # distrobox
+    unityhub
 
     # For raspberry
     rpi-imager
