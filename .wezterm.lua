@@ -18,7 +18,7 @@ config.window_background_image_hsb = {
 
 config.default_prog = { "/usr/bin/zsh" }
 
--- This is to make using neovim easier, refer ti tge keyboard concepts docs for more information.
+-- This is to make using neovim easier, refer to the keyboard concepts docs for more information.
 config.use_dead_keys = false
 
 -- Key Settings
@@ -59,15 +59,15 @@ config.default_gui_startup_args = { "connect", "unix" }
 
 -- Performance settings
 config.enable_wayland = true
-for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
-    if gpu.backend == "Vulkan" then
-        -- TODO make sure that if there is no discrete gpu this still works
-        if gpu.device_type == "DiscreteGpu" then
-            config.webgpu_preferred_adapter = gpu
-            break
-        end
-    end
-end
+-- for _, gpu in ipairs(wezterm.gui.enumerate_gpus()) do
+--     if gpu.backend == "Vulkan" then
+--         -- TODO make sure that if there is no discrete gpu this still works
+--         if gpu.device_type == "DiscreteGpu" then
+--             config.webgpu_preferred_adapter = gpu
+--             break
+--         end
+--     end
+-- end
 
 config.front_end = "WebGpu"
 return config
