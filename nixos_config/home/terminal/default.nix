@@ -11,5 +11,6 @@
     oh-my-posh
     ghostty
     wezterm
+    python313
   ];
 }
