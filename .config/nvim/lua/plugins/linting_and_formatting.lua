@@ -53,7 +53,7 @@ return {
                         "--indent-type",
                         "Spaces",
                         "--column-width",
-                        "120",
+                        "80",
                         "--indent-width",
                         "4",
                         "--line-endings",
@@ -63,7 +63,7 @@ return {
                 black = {
                     prepend_args = {
                         "--line-length",
-                        "120",
+                        "80",
                     },
                 },
             },
