@@ -443,5 +443,6 @@
   "bar.customModules.cpu.pollingInterval": 100,
   "bar.customModules.storage.paths": [
     "/"
-  ]
+  ],
+  "bar.customModules.cpuTemp.showUnit": true
 }

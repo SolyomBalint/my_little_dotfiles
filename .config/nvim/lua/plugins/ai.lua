@@ -1,76 +1,87 @@
 return {
     {
-        "yetone/avante.nvim",
-        event = "VeryLazy",
-        enabled = true,
-        -- lazy = false,
-        keys = {
-            { "<leader>aa", desc = "AVANTE: Load avante, and open chat" },
-        },
-        version = false,
-        opts = {},
-        build = "make",
-        dependencies = {
-            "stevearc/snacks.nvim",
-            "nvim-lua/plenary.nvim",
-            "MunifTanjim/nui.nvim",
-            --- The below dependencies are optional,
-            "ibhagwan/fzf-lua", -- for file_selector provider fzf
-            "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-            "zbirenbaum/copilot.lua", -- for providers='copilot'
-        },
-        config = function()
-            vim.opt.laststatus = 3
-            require("copilot").setup({})
-            require("avante").setup({
-                provider = "copilot",
-                system_prompt = function()
-                    local hub = require("mcphub").get_hub_instance()
-                    return hub and hub:get_active_servers_prompt() or ""
-                end,
-                custom_tools = function()
-                    return {
-                        require("mcphub.extensions.avante").mcp_tool(),
-                    }
-                end,
-                disabled_tools = {
-                    "list_files",
-                    "search_files",
-                    "read_file",
-                    "create_file",
-                    "rename_file",
-                    "delete_file",
-                    "create_dir",
-                    "rename_dir",
-                    "delete_dir",
-                    "bash",
-                },
-            })
-        end,
-    },
-    {
-        "ravitemer/mcphub.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        build = "bundled_build.lua",
-        config = function()
-            require("mcphub").setup({
-                config = vim.fn.expand("~/.config/mcphub/servers.json"),
-                port = 37373,
-                shutdown_delay = 60 * 10 * 000,
-                use_bundled_binary = true,
-                mcp_request_timeout = 60000,
+        "coder/claudecode.nvim",
+        dependencies = { "folke/snacks.nvim" },
+        opts = {
+            port_range = { min = 10000, max = 65535 },
+            auto_start = true,
+            log_level = "info",
+            terminal_cmd = nil, -- Custom terminal command (default: "claude")
+            -- For local installations: "~/.claude/local/claude"
+            -- For native binary: use output from 'which claude'
 
-                auto_approve = false,
-                auto_toggle_mcp_servers = true,
-                extensions = {
-                    avante = {
-                        make_slash_commands = true,
-                    },
+            focus_after_send = false,
+            git_repo_cwd = true,
+
+            -- Selection Tracking
+            track_selection = true,
+            visual_demotion_delay_ms = 50,
+
+            -- Terminal Configuration
+            terminal = {
+                split_width_percentage = 0.30,
+                provider = "snacks",
+                auto_close = true,
+                snacks_win_opts = {
+                    position = "bottom",
+                    height = 0.4,
+                    width = 1.0,
+                    border = "single",
                 },
-            })
-        end,
+            },
+
+            -- Diff Integration
+            diff_opts = {
+                auto_close_on_accept = true,
+                vertical_split = false,
+                open_in_current_tab = true,
+                keep_terminal_focus = false, -- If true, moves focus back to terminal after diff opens
+            },
+        },
+        keys = {
+            { "<leader>a", nil, desc = "AI/Claude Code" },
+            { "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+            { "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+            {
+                "<leader>ar",
+                "<cmd>ClaudeCode --resume<cr>",
+                desc = "Resume Claude",
+            },
+            {
+                "<leader>aC",
+                "<cmd>ClaudeCode --continue<cr>",
+                desc = "Continue Claude",
+            },
+            {
+                "<leader>am",
+                "<cmd>ClaudeCodeSelectModel<cr>",
+                desc = "Select Claude model",
+            },
+            {
+                "<leader>ab",
+                "<cmd>ClaudeCodeAdd %<cr>",
+                desc = "Add current buffer",
+            },
+            {
+                "<leader>as",
+                "<cmd>ClaudeCodeSend<cr>",
+                mode = "v",
+                desc = "Send to Claude",
+            },
+            {
+                "<leader>as",
+                "<cmd>ClaudeCodeTreeAdd<cr>",
+                desc = "Add file",
+                ft = { "NvimTree", "neo-tree", "oil", "minifiles" },
+            },
+            -- Diff management
+            {
+                "<leader>aa",
+                "<cmd>ClaudeCodeDiffAccept<cr>",
+                desc = "Accept diff",
+            },
+            { "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+        },
     },
     {
         "piersolenski/wtf.nvim",
