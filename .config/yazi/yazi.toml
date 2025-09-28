@@ -13,22 +13,10 @@ edit = [
 ]
 
 open = [
-    { run = 'xdg-open $1', block = false, orphan = true, for = "linux" },
-]
-
-openpdf = [
-    { run = 'zathura $1', block = false, orphan = true, for = "linux" },
-    { run = 'evince $1', block = false, orphan = true, for = "linux" },
-]
-
-openhtml = [
-    { run = 'librewolf $1', block = false, orphan = true, for = "linux" },
-]
-
-[open]
-prepend_rules = [
-    { name = '*.pdf', use = "openpdf" },
-    { name = '*.htm*', use = "openhtml" },
+    { run = 'xdg-open $1', block = false, orphan = true, desc = "open with xdg-open", for = "linux" },
+    { run = 'zathura $1', block = false, orphan = true, desc = "open pdf with zathura", for = "linux" },
+    { run = 'evince $1', block = false, orphan = true, desc = "open pdf with evince", for = "linux" },
+    { run = 'zen $1', block = false, orphan = true, desc ="open html in zen", for = "linux" },
 ]
 
 [[plugin.prepend_fetchers]]
