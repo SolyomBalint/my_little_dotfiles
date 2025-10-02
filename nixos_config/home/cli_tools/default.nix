@@ -42,5 +42,8 @@
 
     firejail
     android-tools
+
+    #AI
+    claude-monitor
   ];
 }

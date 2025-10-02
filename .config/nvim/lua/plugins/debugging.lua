@@ -4,11 +4,36 @@ local keys_registered = false
 
 local function add_debug_keymaps()
     local dap = require("dap")
-    vim.keymap.set("n", "<leader>dr", dap.restart, { noremap = true, desc = "DAP: Restart current session" })
-    vim.keymap.set("n", "<leader>dt", dap.terminate, { noremap = true, desc = "DAP: Terninate current session" })
-    vim.keymap.set("n", "<F11>", dap.step_into, { noremap = true, desc = "DAP: Step into function at cursor" })
-    vim.keymap.set("n", "<F10>", dap.step_over, { noremap = true, desc = "DAP: Step over cursor" })
-    vim.keymap.set("n", "<F9>", dap.step_out, { noremap = true, desc = "DAP: Step out of current cursor" })
+    vim.keymap.set(
+        "n",
+        "<leader>dr",
+        dap.restart,
+        { noremap = true, desc = "DAP: Restart current session" }
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>dt",
+        dap.terminate,
+        { noremap = true, desc = "DAP: Terninate current session" }
+    )
+    vim.keymap.set(
+        "n",
+        "<F11>",
+        dap.step_into,
+        { noremap = true, desc = "DAP: Step into function at cursor" }
+    )
+    vim.keymap.set(
+        "n",
+        "<F10>",
+        dap.step_over,
+        { noremap = true, desc = "DAP: Step over cursor" }
+    )
+    vim.keymap.set(
+        "n",
+        "<F9>",
+        dap.step_out,
+        { noremap = true, desc = "DAP: Step out of current cursor" }
+    )
     vim.keymap.set(
         "n",
         "<leader>dc",
@@ -70,7 +95,11 @@ return {
             dap.adapters.gdb = {
                 type = "executable",
                 command = "gdb",
-                args = { "--interpreter=dap", "--eval-command", "set print pretty on" },
+                args = {
+                    "--interpreter=dap",
+                    "--eval-command",
+                    "set print pretty on",
+                },
             }
 
             --C/C++ native debugging setup
@@ -80,7 +109,11 @@ return {
                     type = "gdb",
                     request = "launch",
                     program = function()
-                        return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+                        return vim.fn.input(
+                            "Path to executable: ",
+                            vim.fn.getcwd() .. "/",
+                            "file"
+                        )
                     end,
                     cwd = "${workspaceFolder}",
                     stopAtBeginningOfMainSubprogram = false,
@@ -88,13 +121,16 @@ return {
             }
 
             dap.configurations.c = dap.configurations.cpp
-            vim.keymap.set("n", "<leader>drl", dap.run_last, { noremap = true, desc = "DAP: Run last session" })
             vim.keymap.set(
                 "n",
-                "<F5>",
-                dap.continue,
-                { noremap = true, desc = "DAP: Run debugger and read launch.json" }
+                "<leader>drl",
+                dap.run_last,
+                { noremap = true, desc = "DAP: Run last session" }
             )
+            vim.keymap.set("n", "<F5>", dap.continue, {
+                noremap = true,
+                desc = "DAP: Run debugger and read launch.json",
+            })
         end,
     },
     {
@@ -105,18 +141,14 @@ return {
                 load_breakpoints_event = { "BufReadPost" },
             })
             local pb = require("persistent-breakpoints.api")
-            vim.keymap.set(
-                "n",
-                "<Leader>db",
-                pb.toggle_breakpoint,
-                { noremap = true, desc = "PERSBP: Toggle persistent breakpoint" }
-            )
-            vim.keymap.set(
-                "n",
-                "<Leader>cb",
-                pb.set_conditional_breakpoint,
-                { noremap = true, desc = "PERSBP: Toggle persistent conditional breakpoint" }
-            )
+            vim.keymap.set("n", "<Leader>db", pb.toggle_breakpoint, {
+                noremap = true,
+                desc = "PERSBP: Toggle persistent breakpoint",
+            })
+            vim.keymap.set("n", "<Leader>cb", pb.set_conditional_breakpoint, {
+                noremap = true,
+                desc = "PERSBP: Toggle persistent conditional breakpoint",
+            })
             vim.keymap.set(
                 "n",
                 "<leader>cab",
@@ -159,11 +191,17 @@ return {
                 },
             })
 
-            vim.keymap.set("n", "<leader>duf", dapui.float_element, { desc = "DAPUI: Open float windows" })
+            vim.keymap.set(
+                "n",
+                "<leader>duf",
+                dapui.float_element,
+                { desc = "DAPUI: Open float windows" }
+            )
         end,
     },
     {
         "mfussenegger/nvim-dap-python",
+        enabled = false,
         dependencies = { "mfussenegger/nvim-dap" },
         config = function()
             require("dap-python").setup("python")
@@ -171,7 +209,10 @@ return {
     },
     {
         "theHamsta/nvim-dap-virtual-text",
-        dependencies = { "rcarriga/nvim-dap-ui", "nvim-treesitter/nvim-treesitter" },
+        dependencies = {
+            "rcarriga/nvim-dap-ui",
+            "nvim-treesitter/nvim-treesitter",
+        },
         config = function()
             require("nvim-dap-virtual-text").setup({
                 enabled = true, -- enable this plugin (the default)
@@ -190,16 +231,25 @@ return {
                 --- @param node userdata tree-sitter node identified as variable definition of reference (see `:h tsnode`)
                 --- @param options nvim_dap_virtual_text_options Current options for nvim-dap-virtual-text
                 --- @return string|nil A text how the virtual text should be displayed or nil, if this variable shouldn't be displayed
-                display_callback = function(variable, buf, stackframe, node, options)
+                display_callback = function(
+                    variable,
+                    buf,
+                    stackframe,
+                    node,
+                    options
+                )
                     -- by default, strip out new line characters
                     if options.virt_text_pos == "inline" then
                         return " = " .. variable.value:gsub("%s+", " ")
                     else
-                        return variable.name .. " = " .. variable.value:gsub("%s+", " ")
+                        return variable.name
+                            .. " = "
+                            .. variable.value:gsub("%s+", " ")
                     end
                 end,
                 -- position of virtual text, see `:h nvim_buf_set_extmark()`, default tries to inline the virtual text. Use 'eol' to set to end of line
-                virt_text_pos = vim.fn.has("nvim-0.10") == 1 and "inline" or "eol",
+                virt_text_pos = vim.fn.has("nvim-0.10") == 1 and "inline"
+                    or "eol",
 
                 -- experimental features:
                 all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.

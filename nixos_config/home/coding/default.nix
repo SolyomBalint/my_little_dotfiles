@@ -7,22 +7,13 @@
 }:
 {
   programs.java.enable = true;
-  # programs.vscode = {
-  #   enable = true;
-  #   package = pkgs.vscode.fhsWithPackages (
-  #     ps: with ps; [
-  #       gcc
-  #       gdb
-  #       openssl.dev
-  #       pkg-config
-  #     ]
-  #   );
-  # };
 
   # Packages used by the user globally
   home.packages = with pkgs; [
     # General
     cargo
+    zed-editor-fhs
+    vscode-fhs
 
     # For damn university
     # pkgs.jetbrains.idea-ultimate
@@ -40,7 +31,7 @@
 
     # For UML/SYSML modelling
     nixpkgs_stable.gaphor
-    drawio
+    # drawio
     (
       let
         base = pkgs.appimageTools.defaultFhsEnvArgs;
