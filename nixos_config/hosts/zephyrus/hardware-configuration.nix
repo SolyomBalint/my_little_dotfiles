@@ -92,7 +92,7 @@
     amdgpu_top
     vulkan-tools
     clinfo
-    virtualglLib
+    # virtualglLib
     gpu-viewer
     dxvk_2
   ];
@@ -114,14 +114,5 @@
     opencl.enable = true;
     initrd.enable = true;
     legacySupport.enable = true;
-    amdvlk = {
-      enable = true;
-      package = pkgs.amdvlk;
-      support32Bit = {
-        enable = true;
-        package = pkgs.driversi686Linux.amdvlk;
-      };
-      supportExperimental.enable = true;
-    };
   };
 }

@@ -14,11 +14,9 @@
     cargo
     zed-editor-fhs
     vscode-fhs
+    nixpkgs_stable.jetbrains.idea-ultimate
 
-    # For damn university
-    # pkgs.jetbrains.idea-ultimate
-
-    inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
+    # inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
 
     # For development
     devenv

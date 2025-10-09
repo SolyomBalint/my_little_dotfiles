@@ -19,7 +19,6 @@
     dos2unix
     nmap
     gnome-multi-writer
-    claude-code
     nettools
 
     # PDF viewers
@@ -45,5 +44,6 @@
 
     #AI
     claude-monitor
+    claude-code
   ];
 }
