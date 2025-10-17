@@ -5,6 +5,8 @@
 }:
 {
   home.packages = with pkgs; [
+    httrack
+    brave
     signal-desktop
     obsidian
     prismlauncher

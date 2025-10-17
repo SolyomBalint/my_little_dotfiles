@@ -76,6 +76,7 @@ export EDITOR="nvim"
 ## Misc
 alias ls='ls --color'
 alias dungeonmaptool='wine ~/.wine/drive_c/Program\ Files/Dungeondraft/Dungeondraft.exe'
+export PATH=$PATH:~/personal/computer_engineering_msc_bme/slidev/node_modules/.bin
 
 ## fzf aliases
 alias fzfpreview='fzf --preview="bat --color=always {}"'

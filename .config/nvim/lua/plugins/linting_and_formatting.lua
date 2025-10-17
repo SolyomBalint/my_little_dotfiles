@@ -28,7 +28,7 @@ return {
                 yaml = { "prettier" },
                 json = { "prettier" },
                 css = { "prettier" },
-                markdown = { "prettier" },
+                -- markdown = { "prettier" },
                 typst = { "typstyle" },
             },
 
@@ -36,7 +36,9 @@ return {
                 lsp_format = "fallback",
             },
             format_on_save = function(bufnr)
-                if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+                if
+                    vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat
+                then
                     return
                 end
                 return { timeout_ms = 2000, lsp_format = "fallback" }
@@ -99,14 +101,18 @@ return {
                 python = { "mypy" },
             }
 
-            local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+            local lint_augroup =
+                vim.api.nvim_create_augroup("lint", { clear = true })
 
-            vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-                group = lint_augroup,
-                callback = function()
-                    lint.try_lint()
-                end,
-            })
+            vim.api.nvim_create_autocmd(
+                { "BufEnter", "BufWritePost", "InsertLeave" },
+                {
+                    group = lint_augroup,
+                    callback = function()
+                        lint.try_lint()
+                    end,
+                }
+            )
         end,
     },
 }
