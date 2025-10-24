@@ -26,7 +26,8 @@
     evince
 
     # ePUB viewers
-    calibre
+    # TODO Broken right now
+    # calibre
 
     # Music handling
     playerctl

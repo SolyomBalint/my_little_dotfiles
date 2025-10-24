@@ -3,6 +3,8 @@
 show_hidden = true
 show_symlink = true
 linemode = 'mtime'
+sort_by = "extension"
+sort_dir_first = true
 
 [preview]
 wrap = "yes"

@@ -16,6 +16,7 @@
     vscode-fhs
     nixpkgs_stable.jetbrains.idea-ultimate
 
+    #TODO broken right now
     # inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
 
     # For development
@@ -25,7 +26,8 @@
     unityhub
 
     # For raspberry
-    rpi-imager
+    #TODO latest cmake broke this package
+    # rpi-imager
 
     # For UML/SYSML modelling
     nixpkgs_stable.gaphor
