@@ -15,7 +15,10 @@
   };
 
   # for minecraft
-  networking.firewall.allowedTCPPorts = [ 25565 ];
+  networking.firewall.allowedTCPPorts = [
+    25565
+    8123
+  ];
   nix.settings.trusted-users = [ username ];
 
   nix.settings = {
