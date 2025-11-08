@@ -16,5 +16,7 @@
     wineWowPackages.waylandFull
     firefox
     inputs.zen-browser.packages."${system}".twilight
+    blender-hip # hardware accelerated
+    lutris
   ];
 }
