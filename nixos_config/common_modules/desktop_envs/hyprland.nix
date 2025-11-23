@@ -12,7 +12,6 @@
     hyprshot # screen shot tool
     swaynotificationcenter # notification daemon /swaync
     libnotify # needed by swaync, should be part of gnome, but making sure
-    hyprpaper # Adding backgrounds
     hyprsunset # Nightlight
     hyprpolkitagent # Polkit auth
     hyprpicker # pick colors from screean
