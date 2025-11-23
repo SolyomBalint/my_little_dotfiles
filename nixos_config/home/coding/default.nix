@@ -16,9 +16,6 @@
     vscode-fhs
     nixpkgs_stable.jetbrains.idea-ultimate
 
-    #TODO broken right now
-    inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
-
     # For development
     devenv
     direnv
@@ -31,7 +28,9 @@
 
     # For UML/SYSML modelling
     nixpkgs_stable.gaphor
+
     # drawio
+
     (
       let
         base = pkgs.appimageTools.defaultFhsEnvArgs;

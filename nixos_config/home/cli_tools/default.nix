@@ -46,5 +46,6 @@
     #AI
     claude-monitor
     claude-code
+    codex
   ];
 }
