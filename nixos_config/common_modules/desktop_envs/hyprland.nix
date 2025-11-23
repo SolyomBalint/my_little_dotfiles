@@ -8,14 +8,12 @@
   programs.hyprland.xwayland.enable = true;
   environment.systemPackages = with pkgs; [
     wofi # program starter
-    # waybar # Status bar config in: ~/.config/waybar
     font-awesome # Needed by waybar
     hyprshot # screen shot tool
     swaynotificationcenter # notification daemon /swaync
     libnotify # needed by swaync, should be part of gnome, but making sure
     hyprpaper # Adding backgrounds
     hyprsunset # Nightlight
-    hyprpanel # Widget framework implemenatation for statusbar
     hyprpolkitagent # Polkit auth
     hyprpicker # pick colors from screean
     wl-screenrec # screen rec

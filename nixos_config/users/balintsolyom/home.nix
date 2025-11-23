@@ -11,6 +11,7 @@
     ../../home/neovim
     ../../home/infotainment
     ../../home/game_dev
+    ../../home/desktop_env
   ];
 
   programs.git = {
