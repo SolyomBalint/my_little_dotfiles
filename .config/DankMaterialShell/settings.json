@@ -1,12 +1,12 @@
 {
-  "currentThemeName": "blue",
+  "currentThemeName": "dynamic",
   "customThemeFile": "",
-  "matugenScheme": "scheme-monochrome",
+  "matugenScheme": "scheme-tonal-spot",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "eDP-2",
   "popupTransparency": 1,
   "dockTransparency": 1,
-  "widgetBackgroundColor": "sch",
+  "widgetBackgroundColor": "s",
   "widgetColorMode": "default",
   "cornerRadius": 12,
   "use24HourClock": true,
@@ -100,7 +100,7 @@
   "keyboardLayoutNameCompactMode": false,
   "runningAppsCurrentWorkspace": false,
   "runningAppsGroupByApp": false,
-  "clockDateFormat": "",
+  "clockDateFormat": "yyyy.M.dd | dddd",
   "lockDateFormat": "",
   "mediaSize": 1,
   "appLauncherViewMode": "list",
@@ -109,10 +109,10 @@
   "appLauncherGridColumns": 4,
   "spotlightCloseNiriOverview": true,
   "weatherLocation": "Budapest, Közép-Magyarország",
-  "weatherCoordinates": "47.4978789,19.0402383",
+  "weatherCoordinates": "47.4813896,19.1460941",
   "useAutoLocation": false,
   "weatherEnabled": true,
-  "networkPreference": "auto",
+  "networkPreference": "ethernet",
   "vpnLastConnected": "",
   "iconTheme": "System Default",
   "launcherLogoMode": "compositor",
@@ -145,7 +145,7 @@
   "batteryLockTimeout": 0,
   "batterySuspendTimeout": 0,
   "batterySuspendBehavior": 0,
-  "lockBeforeSuspend": false,
+  "lockBeforeSuspend": true,
   "preventIdleForMedia": false,
   "loginctlLockIntegration": true,
   "launchPrefix": "",
@@ -157,7 +157,7 @@
   "gtkThemingEnabled": false,
   "qtThemingEnabled": false,
   "syncModeWithPortal": true,
-  "terminalsAlwaysDark": false,
+  "terminalsAlwaysDark": true,
   "showDock": false,
   "dockAutoHide": false,
   "dockGroupByApp": false,
@@ -221,9 +221,30 @@
       ],
       "showOnLastDisplay": true,
       "leftWidgets": [
-        "launcherButton",
-        "workspaceSwitcher",
-        "focusedWindow"
+        {
+          "id": "launcherButton",
+          "enabled": true
+        },
+        {
+          "id": "workspaceSwitcher",
+          "enabled": true
+        },
+        {
+          "id": "privacyIndicator",
+          "enabled": true
+        },
+        {
+          "id": "keyboard_layout_name",
+          "enabled": true
+        },
+        {
+          "id": "separator",
+          "enabled": true
+        },
+        {
+          "id": "focusedWindow",
+          "enabled": true
+        }
       ],
       "centerWidgets": [
         "music",
@@ -231,13 +252,43 @@
         "weather"
       ],
       "rightWidgets": [
-        "systemTray",
-        "clipboard",
-        "cpuUsage",
-        "memUsage",
-        "notificationButton",
-        "battery",
-        "controlCenterButton"
+        {
+          "id": "systemTray",
+          "enabled": true
+        },
+        {
+          "id": "cpuTemp",
+          "enabled": true
+        },
+        {
+          "id": "cpuUsage",
+          "enabled": true
+        },
+        {
+          "id": "memUsage",
+          "enabled": true
+        },
+        {
+          "id": "spacer",
+          "enabled": true,
+          "size": 55
+        },
+        {
+          "id": "clipboard",
+          "enabled": true
+        },
+        {
+          "id": "battery",
+          "enabled": true
+        },
+        {
+          "id": "controlCenterButton",
+          "enabled": true
+        },
+        {
+          "id": "notificationButton",
+          "enabled": true
+        }
       ],
       "spacing": 4,
       "innerPadding": 4,
