@@ -11,3 +11,5 @@ TODO*
 \.config/custom/
 \.config/hyprpanel/modules.json
 \.config/hyprpanel/modules.scss
+\.config/DankMaterialShell/plugins/
+

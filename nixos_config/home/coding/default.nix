@@ -15,6 +15,8 @@
     zed-editor-fhs
     vscode-fhs
     nixpkgs_stable.jetbrains.idea-ultimate
+    rstudio
+    R
 
     # For development
     devenv
