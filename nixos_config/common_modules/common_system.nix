@@ -58,16 +58,15 @@
 
   services.xserver = {
     enable = true;
-    displayManager = {
-      gdm = {
-        enable = true;
-        wayland = true;
-      };
-    };
     xkb = {
       layout = "us,hu";
       variant = "";
     };
+  };
+
+  services.displayManager.gdm = {
+    enable = true;
+    wayland = true;
   };
 
   hardware.bluetooth.enable = true;

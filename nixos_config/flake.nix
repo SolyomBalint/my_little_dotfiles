@@ -8,7 +8,7 @@
     };
 
     nixpkgs_stable = {
-      url = "github:NixOS/nixpkgs/nixos-25.05";
+      url = "github:NixOS/nixpkgs/nixos-25.11";
     };
 
     home-manager = {
@@ -55,9 +55,6 @@
       nixpkgs_stable,
       ...
     }:
-    let
-      system = "x86_64-linux";
-    in
     {
       nixosConfigurations = {
         balintnixos =
@@ -69,9 +66,8 @@
             specialArgs = {
               inherit username;
               inherit inputs;
-              inherit system;
               nixpkgs_stable = import nixpkgs_stable {
-                system = system;
+                localSystem = "x86_64-linux";
                 config.allowUnfree = true;
                 overlays = [
                 ];

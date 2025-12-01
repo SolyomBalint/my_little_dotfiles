@@ -16,7 +16,11 @@
 
   programs.git = {
     enable = true;
-    userName = "SolyomBalint";
-    userEmail = "balint.solyom01@gmail.com";
+    settings = {
+      user = {
+        name = "SolyomBalint";
+        email = "balint.solyom01@gmail.com";
+      };
+    };
   };
 }

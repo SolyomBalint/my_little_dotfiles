@@ -15,7 +15,7 @@
     spotify
     wineWowPackages.waylandFull
     firefox
-    inputs.zen-browser.packages."${system}".twilight
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight
     blender-hip # hardware accelerated
     lutris
   ];

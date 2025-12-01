@@ -10,7 +10,7 @@
     neofetch
     stow
     fd
-    inputs.yazi.packages.${pkgs.system}.default
+    inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default
     bat
     delta
     fzf
