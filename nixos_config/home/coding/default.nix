@@ -5,6 +5,15 @@
   inputs,
   ...
 }:
+let
+  rstudio_with_packages = pkgs.rstudioWrapper.override {
+    packages = with pkgs.rPackages; [
+      car
+      lmtest
+      tidyverse
+    ];
+  };
+in
 {
   programs.java.enable = true;
 
@@ -15,7 +24,7 @@
     zed-editor-fhs
     vscode-fhs
     nixpkgs_stable.jetbrains.idea-ultimate
-    rstudio
+    rstudio_with_packages
     R
 
     # For development

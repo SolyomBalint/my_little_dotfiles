@@ -1,17 +1,42 @@
 local fzf = require("fzf-lua")
 
 local on_attach = function()
-    vim.keymap.set("n", "I", vim.lsp.buf.hover, { noremap = true, desc = "LSP: Hover" })
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "LSP: Go to definition" })
+    vim.keymap.set(
+        "n",
+        "I",
+        vim.lsp.buf.hover,
+        { noremap = true, desc = "LSP: Hover" }
+    )
+    vim.keymap.set(
+        "n",
+        "gd",
+        vim.lsp.buf.definition,
+        { noremap = true, desc = "LSP: Go to definition" }
+    )
     vim.keymap.set(
         "n",
         "<leader>wa",
         vim.lsp.buf.add_workspace_folder,
         { noremap = true, desc = "LSP: Add workspace folder" }
     )
-    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "LSP: Go to declaration" })
-    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { noremap = true, desc = "LSP: Go to implementation" })
-    vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { noremap = true, desc = "LSP: Rename" })
+    vim.keymap.set(
+        "n",
+        "gD",
+        vim.lsp.buf.declaration,
+        { noremap = true, desc = "LSP: Go to declaration" }
+    )
+    vim.keymap.set(
+        "n",
+        "gi",
+        vim.lsp.buf.implementation,
+        { noremap = true, desc = "LSP: Go to implementation" }
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>rn",
+        vim.lsp.buf.rename,
+        { noremap = true, desc = "LSP: Rename" }
+    )
     vim.keymap.set(
         "n",
         "<leader>of",
@@ -24,13 +49,43 @@ local on_attach = function()
     vim.keymap.set("n", "<leader>gp", function()
         vim.diagnostic.jump({ count = -1, float = true })
     end, { noremap = true, desc = "DIAGNOSTIC: Go to previous diagnostic" })
-    vim.keymap.set("n", "<leader>tp", vim.lsp.buf.typehierarchy, { noremap = true, desc = "LSP: Get type hierarchy" })
+    vim.keymap.set(
+        "n",
+        "<leader>tp",
+        vim.lsp.buf.typehierarchy,
+        { noremap = true, desc = "LSP: Get type hierarchy" }
+    )
 
-    vim.keymap.set("n", "<leader>ic", fzf.lsp_incoming_calls, { noremap = true, desc = "FZF: List incoming calls" })
-    vim.keymap.set("n", "<leader>ot", fzf.lsp_outgoing_calls, { noremap = true, desc = "FZF: List outgoing call" })
-    vim.keymap.set("n", "<leader>rf", fzf.lsp_references, { noremap = true, desc = "FZF: List references" })
-    vim.keymap.set("n", "<leader>td", fzf.lsp_typedefs, { noremap = true, desc = "FZF: List type definitons" })
-    vim.keymap.set("n", "<leader>ds", fzf.lsp_document_symbols, { noremap = true, desc = "FZF: List document symbols" })
+    vim.keymap.set(
+        "n",
+        "<leader>ic",
+        fzf.lsp_incoming_calls,
+        { noremap = true, desc = "FZF: List incoming calls" }
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>ot",
+        fzf.lsp_outgoing_calls,
+        { noremap = true, desc = "FZF: List outgoing call" }
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>rf",
+        fzf.lsp_references,
+        { noremap = true, desc = "FZF: List references" }
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>td",
+        fzf.lsp_typedefs,
+        { noremap = true, desc = "FZF: List type definitons" }
+    )
+    vim.keymap.set(
+        "n",
+        "<leader>ds",
+        fzf.lsp_document_symbols,
+        { noremap = true, desc = "FZF: List document symbols" }
+    )
     vim.keymap.set(
         { "n", "v" },
         "<leader>ca",
@@ -46,8 +101,17 @@ return {
         lazy = false,
         dependencies = { "onsails/lspkind.nvim" },
         config = function()
-            local basic_lsp_list =
-                { "clangd", "glsl_analyzer", "neocmake", "marksman", "pyright", "ts_ls", "nixd", "lua_ls", "tinymist" }
+            local basic_lsp_list = {
+                "clangd",
+                "glsl_analyzer",
+                "neocmake",
+                "marksman",
+                "pyright",
+                "ts_ls",
+                "nixd",
+                "lua_ls",
+                "tinymist",
+            }
 
             -- setup() is also available as an alias
             require("lspkind").init({
@@ -111,16 +175,14 @@ return {
                 cmd = {
                     "clangd",
                     "-j=4",
-                    "--offset-encoding=utf-16",
                     "--clang-tidy",
                     "--pretty",
-                    "--inlay-hints",
                     "--background-index",
                     "--pch-storage=memory",
                     "--all-scopes-completion",
                     "--header-insertion=never",
-                    "--function-arg-placeholders",
                     "--completion-style=detailed",
+                    "--query-driver=/nix/store/*/bin/gcc,/nix/store/*/bin/g++,/nix/store/*/bin/clang,/nix/store/*/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
                     "--header-insertion-decorators",
                 },
                 filetypes = { "c", "cpp" },

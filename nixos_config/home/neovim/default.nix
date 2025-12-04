@@ -14,12 +14,12 @@
     isort
     shfmt
     nixfmt-rfc-style
-    nodePackages_latest.prettier
+    prettier
     typstyle
 
     # LSPs
     lua-language-server
-    llvmPackages_latest.clang-tools
+    # llvmPackages_latest.clang-tools
     neocmakelsp
     pyright
     marksman
@@ -35,8 +35,7 @@
     gdb
     python312Packages.debugpy
 
-    # Tree sitter
-    gcc
+    gcc15
 
     # Avante needs this
     gnumake
