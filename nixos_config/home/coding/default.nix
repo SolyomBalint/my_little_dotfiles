@@ -40,6 +40,7 @@ in
     # For UML/SYSML modelling
     nixpkgs_stable.gaphor
 
+    inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
     # drawio
 
     (

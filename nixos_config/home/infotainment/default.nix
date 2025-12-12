@@ -8,7 +8,7 @@
   home.packages = with pkgs; [
     httrack
     brave
-    signal-desktop
+    # signal-desktop
     obsidian
     prismlauncher
     discord
