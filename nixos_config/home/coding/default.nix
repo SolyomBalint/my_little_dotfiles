@@ -11,6 +11,7 @@ let
       car
       lmtest
       tidyverse
+      forecast
     ];
   };
 in
