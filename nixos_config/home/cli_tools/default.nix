@@ -25,10 +25,6 @@
     zathura
     evince
 
-    # ePUB viewers
-    # TODO Broken right now
-    # calibre
-
     # Music handling
     playerctl
 
@@ -46,6 +42,5 @@
     #AI
     claude-monitor
     claude-code
-    codex
   ];
 }

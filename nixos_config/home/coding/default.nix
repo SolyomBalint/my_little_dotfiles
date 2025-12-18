@@ -5,16 +5,6 @@
   inputs,
   ...
 }:
-let
-  rstudio_with_packages = pkgs.rstudioWrapper.override {
-    packages = with pkgs.rPackages; [
-      car
-      lmtest
-      tidyverse
-      forecast
-    ];
-  };
-in
 {
   programs.java.enable = true;
 
@@ -25,24 +15,13 @@ in
     zed-editor-fhs
     vscode-fhs
     nixpkgs_stable.jetbrains.idea-ultimate
-    rstudio_with_packages
-    R
 
     # For development
     devenv
     direnv
     # distrobox
-    unityhub
-
-    # For raspberry
-    #TODO latest cmake broke this package
-    # rpi-imager
-
-    # For UML/SYSML modelling
-    nixpkgs_stable.gaphor
 
     inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
-    # drawio
 
     (
       let
