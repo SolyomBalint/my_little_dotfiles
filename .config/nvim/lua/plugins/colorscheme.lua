@@ -77,7 +77,7 @@ return {
                         },
                     },
                 },
-                theme = "wave", -- Load "wave" theme when 'background' option is not set
+                theme = "dragon", -- Load "wave" theme when 'background' option is not set
                 background = { -- map the value of 'background' option to a theme
                     dark = "dragon", -- try "dragon" !
                 },
@@ -91,12 +91,21 @@ return {
                         -- Save an hlgroup with dark background and dimmed foreground
                         -- so that you can use it where your still want darker windows.
                         -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-                        NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+                        NormalDark = {
+                            fg = theme.ui.fg_dim,
+                            bg = theme.ui.bg_m3,
+                        },
 
                         -- Popular plugins that open floats will link to NormalFloat by default;
                         -- set their background accordingly if you wish to keep them dark and borderless
-                        LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-                        MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
+                        LazyNormal = {
+                            bg = theme.ui.bg_m3,
+                            fg = theme.ui.fg_dim,
+                        },
+                        MasonNormal = {
+                            bg = theme.ui.bg_m3,
+                            fg = theme.ui.fg_dim,
+                        },
                         Pmenu = { fg = theme.ui.shade0, bg = theme.ui.bg_p1 }, -- add `blend = vim.o.pumblend` to enable transparency
                         PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
                         PmenuSbar = { bg = theme.ui.bg_m1 },
@@ -154,9 +163,13 @@ return {
                 },
             }
 
-            vim.api.nvim_create_user_command("ToggleBracketHighlight", function()
-                rainbow_delimiters.toggle(0)
-            end, {})
+            vim.api.nvim_create_user_command(
+                "ToggleBracketHighlight",
+                function()
+                    rainbow_delimiters.toggle(0)
+                end,
+                {}
+            )
         end,
     },
 }
