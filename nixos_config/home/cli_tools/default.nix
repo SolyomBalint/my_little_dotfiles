@@ -40,7 +40,6 @@
     android-tools
 
     #AI
-    claude-monitor
-    claude-code
+    # claude-code
   ];
 }

@@ -14,14 +14,14 @@
     cargo
     zed-editor-fhs
     vscode-fhs
-    nixpkgs_stable.jetbrains.idea-ultimate
+    nixpkgs_stable.jetbrains.idea
 
     # For development
     devenv
     direnv
     # distrobox
 
-    inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
+    inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-with-fhs
 
     (
       let
