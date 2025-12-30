@@ -24,9 +24,28 @@
 
   programs.gamemode.enable = true;
 
-  # For zen
-  # services.flatpak.enable = true;
-
   virtualisation.docker.enable = true;
-  users.users.${username}.extraGroups = [ "docker" ];
+
+  services.samba = {
+    package = pkgs.samba4Full;
+    usershares.enable = true;
+    enable = true;
+    openFirewall = true;
+  };
+
+  # To be discoverable with windows
+  services.samba-wsdd = {
+    enable = true;
+    openFirewall = true;
+  };
+
+  # Make sure your user is in the samba group
+  users.users.${username} = {
+    isNormalUser = true;
+    extraGroups = [
+      "samba"
+      "docker"
+    ];
+  };
+
 }

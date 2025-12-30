@@ -287,16 +287,20 @@
         {
           "id": "separator",
           "enabled": true
-        },
-        {
-          "id": "focusedWindow",
-          "enabled": true
         }
       ],
       "centerWidgets": [
         "music",
         "clock",
-        "weather"
+        "weather",
+        {
+          "id": "dankPomodoroTimer",
+          "enabled": true
+        },
+        {
+          "id": "idleInhibitor",
+          "enabled": true
+        }
       ],
       "rightWidgets": [
         {
@@ -428,5 +432,6 @@
   "systemMonitorVariants": [],
   "desktopWidgetPositions": {},
   "desktopWidgetGridSettings": {},
-  "configVersion": 3
+  "configVersion": 4,
+  "desktopWidgetInstances": []
 }

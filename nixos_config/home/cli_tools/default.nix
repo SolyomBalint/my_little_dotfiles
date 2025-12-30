@@ -37,6 +37,7 @@
     nix-output-monitor
 
     firejail
+    rpi-imager
     android-tools
 
     #AI

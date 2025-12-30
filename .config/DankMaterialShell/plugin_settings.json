@@ -2,5 +2,9 @@
   "dankBatteryAlerts": {
     "enabled": true,
     "warningThreshold": 25
+  },
+  "dankPomodoroTimer": {
+    "enabled": true,
+    "longBreakDuration": "20"
   }
 }
