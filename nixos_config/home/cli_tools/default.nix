@@ -39,8 +39,9 @@
     firejail
     rpi-imager
     android-tools
+    filebot
 
     #AI
-    # claude-code
+    claude-code
   ];
 }

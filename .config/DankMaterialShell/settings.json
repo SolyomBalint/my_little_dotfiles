@@ -119,8 +119,6 @@
   "appLauncherGridColumns": 4,
   "spotlightCloseNiriOverview": true,
   "niriOverviewOverlayEnabled": true,
-  "weatherLocation": "Budapest, Közép-Magyarország",
-  "weatherCoordinates": "47.4813896,19.1460941",
   "useAutoLocation": false,
   "weatherEnabled": true,
   "networkPreference": "wifi",
@@ -432,6 +430,6 @@
   "systemMonitorVariants": [],
   "desktopWidgetPositions": {},
   "desktopWidgetGridSettings": {},
-  "configVersion": 4,
+  "configVersion": 5,
   "desktopWidgetInstances": []
 }
