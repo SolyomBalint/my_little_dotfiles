@@ -43,5 +43,6 @@
 
     #AI
     claude-code
+    poppler-utils
   ];
 }

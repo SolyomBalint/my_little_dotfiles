@@ -8,7 +8,7 @@
   home.packages = with pkgs; [
     httrack
     brave
-    # signal-desktop
+    signal-desktop
     obsidian
     prismlauncher
     discord
@@ -17,6 +17,8 @@
     firefox
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight
     blender-hip # hardware accelerated
+    mnemosyne
+    anki
     lutris
   ];
 }

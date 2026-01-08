@@ -30,7 +30,11 @@ config.keys = {
         mods = "LEADER",
         action = wezterm.action.ToggleFullScreen,
     },
-    { key = "L", mods = "CTRL|SHIFT", action = wezterm.action.ShowDebugOverlay },
+    {
+        key = "L",
+        mods = "CTRL|SHIFT",
+        action = wezterm.action.ShowDebugOverlay,
+    },
     {
         key = "v",
         mods = "LEADER",
@@ -39,7 +43,9 @@ config.keys = {
     {
         key = "h",
         mods = "LEADER",
-        action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+        action = wezterm.action.SplitHorizontal({
+            domain = "CurrentPaneDomain",
+        }),
     },
     {
         key = "f",
