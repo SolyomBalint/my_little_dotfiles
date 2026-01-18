@@ -16,6 +16,23 @@
     hyprpicker # pick colors from screean
     wl-screenrec # screen rec
     slurp # select region
+    kdePackages.kdeconnect-kde
   ];
+
+  # Firewall needed for kde connect
+  networking.firewall = {
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      }
+    ];
+  };
 
 }

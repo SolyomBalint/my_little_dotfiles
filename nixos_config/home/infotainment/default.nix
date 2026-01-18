@@ -16,7 +16,6 @@
     wineWowPackages.waylandFull
     firefox
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight
-    blender-hip # hardware accelerated
     mnemosyne
     anki
     lutris
