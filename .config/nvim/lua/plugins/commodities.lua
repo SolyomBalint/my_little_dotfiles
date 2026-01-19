@@ -27,7 +27,8 @@ local handler = function(virtText, lnum, endLnum, width, truncate)
             chunkWidth = vim.fn.strdisplaywidth(chunkText)
             -- str width returned from truncate() may less than 2nd argument, need padding
             if curWidth + chunkWidth < targetWidth then
-                suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+                suffix = suffix
+                    .. (" "):rep(targetWidth - curWidth - chunkWidth)
             end
             break
         end
@@ -91,7 +92,14 @@ return {
                         indent = 2,
                         padding = 1,
                     },
-                    { pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+                    {
+                        pane = 2,
+                        icon = " ",
+                        title = "Projects",
+                        section = "projects",
+                        indent = 2,
+                        padding = 1,
+                    },
                     {
                         pane = 2,
                         icon = " ",
@@ -123,7 +131,6 @@ return {
                     { section = "startup" },
                 },
             },
-            dim = { enabled = true },
             git = { enabled = true },
             quickfile = { enabled = true },
             scroll = { enabled = true },
@@ -152,7 +159,12 @@ return {
                 snacks.dim.enable()
                 is_dim_enabled = true
             end, { desc = "SNACKS: activate dim" })
-            vim.keymap.set("n", "<C-s>gb", snacks.git.blame_line, { desc = "SNACKS: Git blame" })
+            vim.keymap.set(
+                "n",
+                "<C-s>gb",
+                snacks.git.blame_line,
+                { desc = "SNACKS: Git blame" }
+            )
         end,
     },
     {

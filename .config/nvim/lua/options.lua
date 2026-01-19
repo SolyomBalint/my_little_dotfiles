@@ -24,9 +24,7 @@ vim.opt.relativenumber = true
 -- Setting the system clipboard
 vim.o.clipboard = "unnamedplus"
 vim.g.mapleader = " "
-
--- setting line length limit
-vim.o.textwidth = 120
+vim.g.maplocalleader = "\\"
 
 -- spell checking
 vim.opt.spelllang = "en_gb"
@@ -34,6 +32,9 @@ vim.opt.spell = true
 
 -- adding colour columns
 vim.o.colorcolumn = "80,120"
+
+-- setting line length limit
+vim.o.textwidth = 80
 
 -- Setting undo persistency
 vim.opt.undofile = true

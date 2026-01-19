@@ -49,10 +49,14 @@ return {
                         components = {
                             label = {
                                 text = function(ctx)
-                                    return require("colorful-menu").blink_components_text(ctx)
+                                    return require("colorful-menu").blink_components_text(
+                                        ctx
+                                    )
                                 end,
                                 highlight = function(ctx)
-                                    return require("colorful-menu").blink_components_highlight(ctx)
+                                    return require("colorful-menu").blink_components_highlight(
+                                        ctx
+                                    )
                                 end,
                             },
                         },
@@ -79,8 +83,21 @@ return {
             },
             snippets = { preset = "luasnip" },
             sources = {
-                default = { "lsp", "path", "snippets", "buffer", "ripgrep" },
+                default = {
+                    "lazydev",
+                    "lsp",
+                    "path",
+                    "snippets",
+                    "buffer",
+                    "ripgrep",
+                },
                 providers = {
+                    lazydev = {
+                        name = "LazyDev",
+                        module = "lazydev.integrations.blink",
+                        -- make lazydev completions top priority (see `:h blink.cmp`)
+                        score_offset = 100,
+                    },
                     ripgrep = {
                         module = "blink-ripgrep",
                         name = "Ripgrep",

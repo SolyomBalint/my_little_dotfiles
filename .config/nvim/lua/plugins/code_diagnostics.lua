@@ -14,8 +14,18 @@ return {
                 -- optionally use on_attach to set keymaps when aerial has attached to a buffer
                 on_attach = function(bufnr)
                     -- Jump forwards/backwards with '{' and '}'
-                    vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-                    vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+                    vim.keymap.set(
+                        "n",
+                        "{",
+                        "<cmd>AerialPrev<CR>",
+                        { buffer = bufnr }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "}",
+                        "<cmd>AerialNext<CR>",
+                        { buffer = bufnr }
+                    )
                 end,
             })
             vim.cmd("nmap <silent> <leader>af <cmd>call aerial#fzf()<cr>")
@@ -58,19 +68,6 @@ return {
                 "<cmd>Trouble qflist toggle<cr>",
                 desc = "TROUBLE: Quickfix List",
             },
-        },
-    },
-    {
-        "rmagatti/goto-preview",
-        dependencies = { "rmagatti/logger.nvim" },
-        event = "BufEnter",
-        config = true,
-        opts = {
-            references = {
-                provider = "fzf_lua",
-            },
-            resizing_mappings = true,
-            default_mappings = true,
         },
     },
 }
