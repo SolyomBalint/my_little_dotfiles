@@ -24,6 +24,16 @@
 
   programs.gamemode.enable = true;
 
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-rocm;
+    environmentVariables = {
+      HCC_AMDGPU_TARGET = "gfx1035"; # used to be necessary, but doesn't seem to anymore
+    };
+    # results in environment variable "HSA_OVERRIDE_GFX_VERSION=10.3.0"
+    rocmOverrideGfx = "10.3.5";
+  };
+
   # For zen
   # services.flatpak.enable = true;
 

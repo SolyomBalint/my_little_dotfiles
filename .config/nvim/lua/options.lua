@@ -46,3 +46,6 @@ vim.diagnostic.config({
 
 -- Obisdian settings
 vim.opt.conceallevel = 1
+
+-- For avante.nvim
+vim.opt.laststatus = 3
