@@ -39,7 +39,7 @@
     firejail
     rpi-imager
     android-tools
-    filebot
+    # filebot
 
     #AI
     claude-code
