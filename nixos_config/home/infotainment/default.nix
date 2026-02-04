@@ -9,7 +9,6 @@
     httrack
     brave
     signal-desktop
-    obsidian
     prismlauncher
     discord
     spotify
@@ -17,7 +16,6 @@
     firefox
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight
     mnemosyne
-    anki
     lutris
   ];
 }

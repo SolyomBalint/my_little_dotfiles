@@ -21,10 +21,6 @@
     gnome-multi-writer
     nettools
 
-    # PDF viewers
-    zathura
-    evince
-
     # Music handling
     playerctl
 
@@ -42,7 +38,8 @@
     # filebot
 
     #AI
-    claude-code
+    opencode
+
     poppler-utils
   ];
 }
