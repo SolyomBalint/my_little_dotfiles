@@ -19,7 +19,7 @@
     # For development
     devenv
     direnv
-    # distrobox
+    distrobox
 
     inputs.claude-desktop.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop-with-fhs
 

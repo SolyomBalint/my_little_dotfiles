@@ -12,10 +12,14 @@
     prismlauncher
     discord
     spotify
-    wineWowPackages.waylandFull
+    wineWow64Packages.waylandFull
     firefox
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight
     mnemosyne
     lutris
+    wonderdraft
+    gimp
+    inkscape
+    krita
   ];
 }

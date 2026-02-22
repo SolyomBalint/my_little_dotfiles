@@ -11,6 +11,8 @@
     extraGroups = [
       "networkmanager"
       "wheel"
+      "video"
+      "render"
     ];
   };
 

@@ -13,7 +13,7 @@
     black
     isort
     shfmt
-    nixfmt-rfc-style
+    nixfmt
     prettier
     typstyle
 

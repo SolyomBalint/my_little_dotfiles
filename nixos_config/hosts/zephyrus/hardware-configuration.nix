@@ -110,4 +110,35 @@
     initrd.enable = true;
     legacySupport.enable = true;
   };
+
+  # AMD hip support
+  systemd.tmpfiles.rules =
+    let
+      rocmEnv = pkgs.symlinkJoin {
+        name = "rocm-combined";
+        paths = with pkgs.rocmPackages; [
+          clr
+          rocblas
+          hipblas
+          rocsparse
+          rocsolver
+          rocfft
+          rocalution
+          rocthrust
+          rocprim
+          miopen
+          rocrand
+          rccl
+          rocm-core
+          rocm-comgr
+          rocm-cmake
+          rocdbgapi
+          hip-common
+        ];
+      };
+    in
+    [
+      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+    ];
+
 }

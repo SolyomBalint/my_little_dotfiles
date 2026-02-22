@@ -171,9 +171,11 @@ return {
                 on_attach = on_attach,
             })
 
+            local clangd_cmd = vim.env.CLANGD_CMD or "clangd"
+
             vim.lsp.config("clangd", {
                 cmd = {
-                    "clangd",
+                    clangd_cmd,
                     "-j=4",
                     "--clang-tidy",
                     "--pretty",
@@ -185,7 +187,7 @@ return {
                     "--query-driver=/nix/store/*/bin/gcc,/nix/store/*/bin/g++,/nix/store/*/bin/clang,/nix/store/*/bin/clang++,/usr/bin/gcc,/usr/bin/g++",
                     "--header-insertion-decorators",
                 },
-                filetypes = { "c", "cpp" },
+                filetypes = { "c", "cpp", "cuda" },
                 root_markers = {
                     ".clangd",
                     ".clang-tidy",
