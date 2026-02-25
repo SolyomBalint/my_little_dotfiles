@@ -17,6 +17,8 @@
     wl-screenrec # screen rec
     slurp # select region
     kdePackages.kdeconnect-kde
+    mpvpaper
+    hyprpaper
   ];
 
   # Firewall needed for kde connect
