@@ -19,7 +19,7 @@
     lutris
     wonderdraft
     gimp
-    inkscape
-    krita
+    # inkscape
+    # krita
   ];
 }
