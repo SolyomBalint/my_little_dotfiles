@@ -111,6 +111,7 @@ return {
                 "nixd",
                 "lua_ls",
                 "tinymist",
+                "cypher_ls",
             }
 
             -- setup() is also available as an alias

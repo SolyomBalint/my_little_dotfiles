@@ -7,7 +7,7 @@
 {
 
   home.packages = with pkgs; [
-    neofetch
+    fastfetch
     stow
     fd
     inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default
@@ -20,6 +20,7 @@
     nmap
     gnome-multi-writer
     nettools
+    bear
 
     # Music handling
     playerctl
