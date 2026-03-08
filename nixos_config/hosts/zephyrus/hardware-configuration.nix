@@ -6,6 +6,7 @@
   lib,
   pkgs,
   modulesPath,
+  nixpkgs_stable,
   ...
 }:
 
@@ -32,7 +33,7 @@
   #   '';
 
   # Update kernel to latest available
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = nixpkgs_stable.linuxPackages;
 
   boot.initrd.availableKernelModules = [
     "nvme"
@@ -112,33 +113,33 @@
   };
 
   # AMD hip support
-  systemd.tmpfiles.rules =
-    let
-      rocmEnv = pkgs.symlinkJoin {
-        name = "rocm-combined";
-        paths = with pkgs.rocmPackages; [
-          clr
-          rocblas
-          hipblas
-          rocsparse
-          rocsolver
-          rocfft
-          rocalution
-          rocthrust
-          rocprim
-          miopen
-          rocrand
-          rccl
-          rocm-core
-          rocm-comgr
-          rocm-cmake
-          rocdbgapi
-          hip-common
-        ];
-      };
-    in
-    [
-      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-    ];
+  # systemd.tmpfiles.rules =
+  #   let
+  #     rocmEnv = nixpkgs_stable.symlinkJoin {
+  #       name = "rocm-combined";
+  #       paths = with pkgs.rocmPackages; [
+  #         clr
+  #         rocblas
+  #         hipblas
+  #         rocsparse
+  #         rocsolver
+  #         rocfft
+  #         rocalution
+  #         rocthrust
+  #         rocprim
+  #         miopen
+  #         rocrand
+  #         rccl
+  #         rocm-core
+  #         rocm-comgr
+  #         rocm-cmake
+  #         rocdbgapi
+  #         hip-common
+  #       ];
+  #     };
+  #   in
+  #   [
+  #     "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  #   ];
 
 }

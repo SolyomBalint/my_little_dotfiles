@@ -96,6 +96,7 @@
   ];
 
   services.envfs.enable = true;
+  services.fprintd.enable = true;
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;

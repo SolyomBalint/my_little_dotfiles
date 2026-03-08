@@ -24,14 +24,6 @@
 
   programs.gamemode.enable = true;
 
-  services.ollama = {
-    enable = true;
-    package = pkgs.ollama-vulkan;
-  };
-
-  # For zen
-  # services.flatpak.enable = true;
-
   virtualisation.docker.enable = true;
   users.users.${username}.extraGroups = [ "docker" ];
   # # 1. Ensure the share directories exist with correct permissions

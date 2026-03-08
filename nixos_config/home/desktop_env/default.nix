@@ -25,4 +25,5 @@
     enableCalendarEvents = false; # Calendar integration (khal) (doesn't buildrn)
     enableClipboardPaste = true;
   };
+
 }
