@@ -33,7 +33,7 @@
   #   '';
 
   # Update kernel to latest available
-  boot.kernelPackages = nixpkgs_stable.linuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.initrd.availableKernelModules = [
     "nvme"

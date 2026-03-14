@@ -112,6 +112,7 @@ return {
                 "lua_ls",
                 "tinymist",
                 "cypher_ls",
+                "rust_analyzer",
             }
 
             -- setup() is also available as an alias

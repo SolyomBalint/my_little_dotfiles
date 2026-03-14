@@ -24,6 +24,9 @@
 
   programs.gamemode.enable = true;
 
+  # virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "balintsolyom" ];
+
   virtualisation.docker.enable = true;
   users.users.${username}.extraGroups = [ "docker" ];
   # # 1. Ensure the share directories exist with correct permissions
