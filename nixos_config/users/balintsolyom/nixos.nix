@@ -26,9 +26,33 @@
 
   # virtualisation.virtualbox.host.enable = true;
   users.extraGroups.vboxusers.members = [ "balintsolyom" ];
+  # MTP share
+  services.gvfs.enable = true;
+
+  # quick local fileshare
+  programs.localsend.enable = true;
+  programs.localsend.openFirewall = true;
 
   virtualisation.docker.enable = true;
   users.users.${username}.extraGroups = [ "docker" ];
+
+  # NFS mounts for synology
+  boot.supportedFilesystems = [ "nfs" ];
+  services.rpcbind.enable = true; # needed for NFS
+  # fileSystems."/mnt/synology" = {
+  #   device = "192.168.0.213:/volume1/Public";
+  #   fsType = "nfs";
+  #   options = [
+  #     "nfsvers=3"
+  #     "proto=tcp"
+  #     "_netdev"
+  #     "nofail"
+  #     "x-systemd.automount"
+  #     "noauto"
+  #     "x-systemd.idle-timeout=600"
+  #   ];
+  # };
+
   # # 1. Ensure the share directories exist with correct permissions
   # systemd.tmpfiles.rules = [
   #   "d /mnt/Shares/Public  0775 ${username} users - -"
@@ -81,14 +105,10 @@
   #   openFirewall = true;
   # };
   #
-  # # 3. Apple/Linux Service Discovery (mDNS)
-  # services.avahi = {
-  #   enable = true;
-  #   nssmdns4 = true; # Allow this machine to resolve .local names
-  #   publish = {
-  #     enable = true;
-  #     userServices = true;
-  #   };
-  #   openFirewall = true;
-  # };
+  # # 3. Apple/Linux Service Discovery (mDNS) for both sambe and nfs
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true; # Allow this machine to resolve .local names
+    openFirewall = true;
+  };
 }
