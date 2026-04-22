@@ -42,5 +42,7 @@
     opencode
 
     poppler-utils
+
+    python313Packages.markitdown
   ];
 }

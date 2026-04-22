@@ -97,6 +97,27 @@
 
   services.envfs.enable = true;
   services.fprintd.enable = true;
+  location.provider = "geoclue2";
+  services.geoclue2 = {
+    enable = true;
+    appConfig = {
+      "firefox" = {
+        isAllowed = true;
+        isSystem = false;
+        users = [ "1000" ];
+      };
+      "brave-browser" = {
+        isAllowed = true;
+        isSystem = false;
+        users = [ "1000" ];
+      };
+      "zen" = {
+        isAllowed = true;
+        isSystem = false;
+        users = [ "1000" ];
+      };
+    };
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
