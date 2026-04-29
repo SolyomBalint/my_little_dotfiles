@@ -15,7 +15,7 @@
     wineWow64Packages.waylandFull
     firefox
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight
-    lutris
+    # lutris
     wonderdraft
     gimp
     # inkscape

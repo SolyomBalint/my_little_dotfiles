@@ -14,7 +14,7 @@
     isort
     shfmt
     nixfmt
-    prettier
+    prettierd
     typstyle
 
     # LSPs
