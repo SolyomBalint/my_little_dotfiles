@@ -34,7 +34,7 @@
 
     # Debuggers
     gdb
-    python312Packages.debugpy
+    python313Packages.debugpy
 
     gcc15
 

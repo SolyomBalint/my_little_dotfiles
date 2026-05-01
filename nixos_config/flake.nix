@@ -18,10 +18,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixos-hardware = {
-      url = "github:NixOS/nixos-hardware/master";
-    };
-
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -29,17 +25,7 @@
 
     yazi.url = "github:sxyazi/yazi";
 
-    # The flake is faulty atm
-    systems.url = "github:nix-systems/x86_64-linux";
-    flake-utils.url = "github:numtide/flake-utils";
-    flake-utils.inputs.systems.follows = "systems";
-
     ## Quickshell based desktop env
-    dgop = {
-      url = "github:AvengeMedia/dgop";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,7 +52,7 @@
               inherit username;
               inherit inputs;
               nixpkgs_stable = import nixpkgs_stable {
-                localSystem = "x86_64-linux";
+                system = "x86_64-linux";
                 config.allowUnfree = true;
                 overlays = [
                 ];

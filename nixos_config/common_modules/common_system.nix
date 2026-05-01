@@ -21,21 +21,22 @@
     25565
     8123
   ];
-  nix.settings.trusted-users = [ username ];
 
   nix.settings = {
+    trusted-users = [ username ];
     experimental-features = [
       "nix-command"
       "flakes"
     ];
-    auto-optimise-store = true;
   };
+
+  nix.optimise.automatic = true;
 
   # For windows dual-boot clock preservation
   time.hardwareClockInLocalTime = true;
   nix.gc = {
     automatic = lib.mkDefault true;
-    dates = lib.mkDefault "weakly";
+    dates = lib.mkDefault "weekly";
     options = lib.mkDefault "--delete-older-than 7d";
   };
 
@@ -79,8 +80,7 @@
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-  fonts.packages =
-    [ ] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+  fonts.packages = builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
   # Git is enabled from Home manager to config the user better
   environment.systemPackages = with pkgs; [
     vim

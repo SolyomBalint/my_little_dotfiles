@@ -1,10 +1,9 @@
 { inputs, pkgs, ... }:
 {
   programs.hyprland.enable = true;
-  programs.xwayland.enable = true;
+  programs.hyprland.xwayland.enable = true;
   services.hypridle.enable = true;
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  programs.hyprland.xwayland.enable = true;
   environment.systemPackages = with pkgs; [
     wofi # program starter
     font-awesome # Needed by waybar
