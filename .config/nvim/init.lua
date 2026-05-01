@@ -24,7 +24,7 @@ vim.opt.rtp:prepend(lazypath)
 
 local function check_nvim_server_file()
     local server_file = "/tmp/nvim"
-    local file_exists = vim.loop.fs_stat(server_file) ~= nil
+    local file_exists = vim.uv.fs_stat(server_file) ~= nil
     return file_exists
 end
 
@@ -41,7 +41,6 @@ vim.filetype.add({
     },
 })
 
-require("custom_functions")
 require("custom_struct")
 require("options")
 require("custom_keymaps")
@@ -52,12 +51,3 @@ require("lazy").setup({
         { import = "plugins" },
     },
 })
-
--- folding makes movement and insertion pretty slow, so I disabled it for now.
-local isLoaded = package.loaded["ufo"] ~= nil
-
-if not isLoaded then
-    vim.o.nu = true
-    vim.opt.relativenumber = true
-    vim.o.statuscolumn = "%s %l %r"
-end

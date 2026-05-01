@@ -7,6 +7,7 @@
 {
   home.packages = with pkgs; [
     neovim
+    tree-sitter
 
     # Formatters
     stylua

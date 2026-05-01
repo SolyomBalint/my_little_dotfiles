@@ -1,96 +1,103 @@
 local fzf = require("fzf-lua")
 
-local on_attach = function()
+local on_attach = function(bufnr)
     vim.keymap.set(
         "n",
         "I",
         vim.lsp.buf.hover,
-        { noremap = true, desc = "LSP: Hover" }
+        { buf = bufnr, noremap = true, desc = "LSP: Hover" }
     )
     vim.keymap.set(
         "n",
         "gd",
         vim.lsp.buf.definition,
-        { noremap = true, desc = "LSP: Go to definition" }
+        { buf = bufnr, noremap = true, desc = "LSP: Go to definition" }
     )
     vim.keymap.set(
         "n",
         "<leader>wa",
         vim.lsp.buf.add_workspace_folder,
-        { noremap = true, desc = "LSP: Add workspace folder" }
+        { buf = bufnr, noremap = true, desc = "LSP: Add workspace folder" }
     )
     vim.keymap.set(
         "n",
         "gD",
         vim.lsp.buf.declaration,
-        { noremap = true, desc = "LSP: Go to declaration" }
+        { buf = bufnr, noremap = true, desc = "LSP: Go to declaration" }
     )
     vim.keymap.set(
         "n",
         "gi",
         vim.lsp.buf.implementation,
-        { noremap = true, desc = "LSP: Go to implementation" }
+        { buf = bufnr, noremap = true, desc = "LSP: Go to implementation" }
     )
     vim.keymap.set(
         "n",
         "<leader>rn",
         vim.lsp.buf.rename,
-        { noremap = true, desc = "LSP: Rename" }
+        { buf = bufnr, noremap = true, desc = "LSP: Rename" }
     )
-    vim.keymap.set(
-        "n",
-        "<leader>of",
-        vim.diagnostic.open_float,
-        { noremap = true, desc = "DIAGNOSTIC: Open errors in floating window" }
-    )
+    vim.keymap.set("n", "<leader>of", vim.diagnostic.open_float, {
+        buf = bufnr,
+        noremap = true,
+        desc = "DIAGNOSTIC: Open errors in floating window",
+    })
     vim.keymap.set("n", "<leader>gt", function()
         vim.diagnostic.jump({ count = 1, float = true })
-    end, { noremap = true, desc = "DIAGNOSTIC: Go to next diagnostic" })
+    end, {
+        buf = bufnr,
+        noremap = true,
+        desc = "DIAGNOSTIC: Go to next diagnostic",
+    })
     vim.keymap.set("n", "<leader>gp", function()
         vim.diagnostic.jump({ count = -1, float = true })
-    end, { noremap = true, desc = "DIAGNOSTIC: Go to previous diagnostic" })
+    end, {
+        buf = bufnr,
+        noremap = true,
+        desc = "DIAGNOSTIC: Go to previous diagnostic",
+    })
     vim.keymap.set(
         "n",
         "<leader>tp",
         vim.lsp.buf.typehierarchy,
-        { noremap = true, desc = "LSP: Get type hierarchy" }
+        { buf = bufnr, noremap = true, desc = "LSP: Get type hierarchy" }
     )
 
     vim.keymap.set(
         "n",
         "<leader>ic",
         fzf.lsp_incoming_calls,
-        { noremap = true, desc = "FZF: List incoming calls" }
+        { buf = bufnr, noremap = true, desc = "FZF: List incoming calls" }
     )
     vim.keymap.set(
         "n",
         "<leader>ot",
         fzf.lsp_outgoing_calls,
-        { noremap = true, desc = "FZF: List outgoing call" }
+        { buf = bufnr, noremap = true, desc = "FZF: List outgoing call" }
     )
     vim.keymap.set(
         "n",
         "<leader>rf",
         fzf.lsp_references,
-        { noremap = true, desc = "FZF: List references" }
+        { buf = bufnr, noremap = true, desc = "FZF: List references" }
     )
     vim.keymap.set(
         "n",
         "<leader>td",
         fzf.lsp_typedefs,
-        { noremap = true, desc = "FZF: List type definitons" }
+        { buf = bufnr, noremap = true, desc = "FZF: List type definitons" }
     )
     vim.keymap.set(
         "n",
         "<leader>ds",
         fzf.lsp_document_symbols,
-        { noremap = true, desc = "FZF: List document symbols" }
+        { buf = bufnr, noremap = true, desc = "FZF: List document symbols" }
     )
     vim.keymap.set(
         { "n", "v" },
         "<leader>ca",
         fzf.lsp_code_actions,
-        { noremap = true, desc = "FZF: List code actions" }
+        { buf = bufnr, noremap = true, desc = "FZF: List code actions" }
     )
 end
 return {
@@ -150,13 +157,10 @@ return {
                 },
             })
 
-            -- This way the default on attach functions can do their thing in the plugin
             vim.api.nvim_create_autocmd("LspAttach", {
                 group = vim.api.nvim_create_augroup("UserLspConfig", {}),
                 callback = function(args)
-                    local buffer = args.buf
-                    local client = vim.lsp.get_client_by_id(args.data.client_id)
-                    on_attach()
+                    on_attach(args.buf)
                 end,
             })
 
@@ -170,7 +174,6 @@ return {
                     },
                 },
                 root_markers = { ".git" },
-                on_attach = on_attach,
             })
 
             local clangd_cmd = vim.env.CLANGD_CMD or "clangd"

@@ -1,56 +1,3 @@
--- These function may help later
-
-local keys_registered = false
-
-local function add_debug_keymaps()
-    local dap = require("dap")
-    vim.keymap.set(
-        "n",
-        "<leader>dr",
-        dap.restart,
-        { noremap = true, desc = "DAP: Restart current session" }
-    )
-    vim.keymap.set(
-        "n",
-        "<leader>dt",
-        dap.terminate,
-        { noremap = true, desc = "DAP: Terninate current session" }
-    )
-    vim.keymap.set(
-        "n",
-        "<F11>",
-        dap.step_into,
-        { noremap = true, desc = "DAP: Step into function at cursor" }
-    )
-    vim.keymap.set(
-        "n",
-        "<F10>",
-        dap.step_over,
-        { noremap = true, desc = "DAP: Step over cursor" }
-    )
-    vim.keymap.set(
-        "n",
-        "<F9>",
-        dap.step_out,
-        { noremap = true, desc = "DAP: Step out of current cursor" }
-    )
-    vim.keymap.set(
-        "n",
-        "<leader>dc",
-        dap.run_to_cursor,
-        { noremap = true, desc = "DAP: Run debugging sessios to cursor" }
-    )
-end
-
-local function remove_debug_keymaps()
-    vim.keymap.del("n", "<leader>dr")
-    vim.keymap.del("n", "<leader>dt")
-    vim.keymap.del("n", "<F11>")
-    vim.keymap.del("n", "<F10>")
-    vim.keymap.del("n", "<F9>")
-    vim.keymap.del("n", "<leader>dc")
-end
-
 return {
     {
         "mfussenegger/nvim-dap",
@@ -149,7 +96,6 @@ return {
         "theHamsta/nvim-dap-virtual-text",
         dependencies = {
             "rcarriga/nvim-dap-ui",
-            "nvim-treesitter/nvim-treesitter",
         },
         config = function()
             require("nvim-dap-virtual-text").setup({

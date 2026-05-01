@@ -1,8 +1,8 @@
 -- Setting tabs
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=4")
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4")
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
 
 -- Show tabs and spaces
 -- Only show dots at the start of lines (for indentation)
@@ -19,7 +19,9 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Turning file numbering on
+vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.statuscolumn = "%s %l %r"
 
 -- Setting the system clipboard
 vim.o.clipboard = "unnamedplus"

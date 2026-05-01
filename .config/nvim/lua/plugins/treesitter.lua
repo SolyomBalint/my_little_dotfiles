@@ -1,15 +1,13 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    "romus204/tree-sitter-manager.nvim",
+    lazy = false,
     config = function()
-        local config = require("nvim-treesitter.configs")
         vim.filetype.add({
             extension = {
                 hip = "cuda",
             },
         })
-        config.setup({
-            ignore_install = { "latex" },
+        require("tree-sitter-manager").setup({
             ensure_installed = {
                 "html",
                 "regex",
@@ -17,10 +15,7 @@ return {
                 "markdown_inline",
             },
             auto_install = true,
-            highlight = {
-                enable = true,
-            },
-            indent = { enable = true },
+            highlight = true,
         })
     end,
 }
