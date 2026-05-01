@@ -15,22 +15,28 @@ edit = [
 ]
 
 open = [
-    { run = 'xdg-open $1', block = false, orphan = true, desc = "open with xdg-open", for = "linux" },
-    { run = 'zathura $1', block = false, orphan = true, desc = "open pdf with zathura", for = "linux" },
-    { run = 'evince $1', block = false, orphan = true, desc = "open pdf with evince", for = "linux" },
-    { run = 'zen $1', block = false, orphan = true, desc ="open html in zen", for = "linux" },
+    { run = 'xdg-open "$@"', block = false, orphan = true, desc = "open with xdg-open", for = "linux" },
+    { run = 'zathura "$@"', block = false, orphan = true, desc = "open pdf with zathura", for = "linux" },
+    { run = 'evince "$@"', block = false, orphan = true, desc = "open pdf with evince", for = "linux" },
+    { run = 'zen "$@"', block = false, orphan = true, desc = "open html in zen", for = "linux" },
+]
+
+[open]
+rules = [
+    { mime = "text/*",          use = ["edit", "open"] },
+    { mime = "application/pdf", use = ["open"] },
+    { mime = "text/html",       use = ["open"] },
+    { mime = "*",               use = ["edit", "open"] },
 ]
 
 [[plugin.prepend_fetchers]]
 id    = "git"
-name  = "*"
+url   = "*"
 run   = "git"
-group = "mime"
-mime  = "*"
+group = "git"
 
 [[plugin.prepend_fetchers]]
 id    = "git"
-name  = "*/"
+url   = "*/"
 run   = "git"
-group = "mime"
-mime  = "*"
+group = "git"
