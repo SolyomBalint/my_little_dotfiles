@@ -84,59 +84,16 @@ return {
     },
     {
         "igorlfs/nvim-dap-view",
+        -- let the plugin lazy load itself
         lazy = false,
+        version = "1.*",
         ---@module 'dap-view'
         ---@type dapview.Config
         opts = {
-            auto_toggle = true,
-            follow_tab = false,
-        },
-    },
-    {
-        "theHamsta/nvim-dap-virtual-text",
-        dependencies = {
-            "rcarriga/nvim-dap-ui",
-        },
-        config = function()
-            require("nvim-dap-virtual-text").setup({
+            virtual_text = {
                 enabled = true,
-                enabled_commands = true,
-                highlight_changed_variables = true,
-                highlight_new_as_changed = false,
-                show_stop_reason = true,
-                commented = false,
-                only_first_definition = true,
-                all_references = false,
-                clear_on_continue = false,
-                --- @param variable Variable
-                --- @param buf number
-                --- @param stackframe dap.StackFrame
-                --- @param node userdata
-                --- @param options nvim_dap_virtual_text_options
-                --- @return string|nil
-                display_callback = function(
-                    variable,
-                    buf,
-                    stackframe,
-                    node,
-                    options
-                )
-                    -- by default, strip out new line characters
-                    if options.virt_text_pos == "inline" then
-                        return " = " .. variable.value:gsub("%s+", " ")
-                    else
-                        return variable.name
-                            .. " = "
-                            .. variable.value:gsub("%s+", " ")
-                    end
-                end,
-                virt_text_pos = vim.fn.has("nvim-0.10") == 1 and "inline"
-                    or "eol",
-
-                all_frames = false,
-                virt_lines = false,
-                virt_text_win_col = nil,
-            })
-        end,
+            },
+            auto_toggle = "keep_terminal",
+        },
     },
 }
