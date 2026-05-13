@@ -15,7 +15,8 @@ return {
         priority = 49,
         opts = {
             preview = {
-                enable = false,
+                filetypes = { "markdown", "codecompanion" },
+                ignore_buftypes = {},
             },
         },
         dependencies = {

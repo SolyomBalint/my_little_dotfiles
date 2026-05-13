@@ -38,9 +38,10 @@
 
     gcc15
 
-    # Avante needs this
+    claude-agent-acp
+
     gnumake
-    nodejs_24
+    # nodejs_24
 
     # document generation
     typst

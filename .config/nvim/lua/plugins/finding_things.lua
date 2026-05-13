@@ -52,6 +52,7 @@ return {
             local fzf = require("fzf-lua")
 
             fzf.setup({})
+            fzf.register_ui_select()
             local rg_cmd = "rg -u --follow --hidden --with-filename --line-number --column --smart-case"
                 .. " --glob=!**/.git/* --glob=!**/build/* --glob=!**/.idea/* --glob=!**/.cache/* --glob=!**/.devenv/* --glob=!**/.direnv/*"
             vim.keymap.set("n", "<C-p>a", function()

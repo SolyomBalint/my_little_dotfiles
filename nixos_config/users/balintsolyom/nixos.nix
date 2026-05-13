@@ -36,6 +36,18 @@
   virtualisation.docker.enable = true;
   users.users.${username}.extraGroups = [ "docker" ];
 
+  # Local LLM runner. RX 6700S is Navi 23 (gfx1032), not officially in ROCm's
+  # supported list, so spoof it as gfx1030 via HSA_OVERRIDE_GFX_VERSION=10.3.0.
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-rocm;
+    rocmOverrideGfx = "10.3.0";
+    loadModels = [
+      "mistral:7b"
+      "deepseek-r1:7b"
+    ];
+  };
+
   # NFS mounts for synology
   boot.supportedFilesystems = [ "nfs" ];
   services.rpcbind.enable = true; # needed for NFS

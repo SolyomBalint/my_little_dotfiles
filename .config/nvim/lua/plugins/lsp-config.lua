@@ -205,6 +205,17 @@ return {
                 },
             })
 
+            vim.lsp.config("rust_analyzer", {
+                settings = {
+                    ["rust-analyzer"] = {
+                        diagnostics = {
+                            enable = true,
+                        },
+                        checkOnSave = true,
+                    },
+                },
+            })
+
             vim.lsp.config("tinymist", {
                 settings = {
                     formatterMode = "typstyle",
