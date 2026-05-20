@@ -20,6 +20,7 @@
 
     # LSPs
     lua-language-server
+    wgsl-analyzer
     # llvmPackages_latest.clang-tools
     neocmakelsp
     pyright

@@ -120,6 +120,7 @@ return {
                 "tinymist",
                 "cypher_ls",
                 "rust_analyzer",
+                "wgsl_analyzer",
             }
 
             -- setup() is also available as an alias
