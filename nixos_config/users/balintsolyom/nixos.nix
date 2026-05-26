@@ -49,7 +49,10 @@
   };
 
   # NFS mounts for synology
-  boot.supportedFilesystems = [ "nfs" ];
+  boot.supportedFilesystems = [
+    "nfs"
+    "ntfs"
+  ];
   services.rpcbind.enable = true; # needed for NFS
   # fileSystems."/mnt/synology" = {
   #   device = "192.168.0.213:/volume1/Public";
