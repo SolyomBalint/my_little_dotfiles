@@ -2,11 +2,11 @@
   inputs,
   pkgs,
   config,
+  nixpkgs_stable,
   ...
 }:
 {
   home.packages = with pkgs; [
-    httrack
     brave
     signal-desktop
     prismlauncher
@@ -15,8 +15,8 @@
     wineWow64Packages.waylandFull
     firefox
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight
-    # lutris
     wonderdraft
+    nixpkgs_stable.bottles
     gimp
     # inkscape
     # krita

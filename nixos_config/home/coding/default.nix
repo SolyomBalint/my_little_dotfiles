@@ -20,6 +20,7 @@
     devenv
     direnv
     distrobox
+    python313
 
     claude-code
 

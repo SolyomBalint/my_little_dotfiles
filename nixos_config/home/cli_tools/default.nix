@@ -26,17 +26,8 @@
     playerctl
 
     # For sensors
-    # pciutils
-    # gtop # similiar to bottom
-    # amdgpu_top
-
-    # Useful nix CLI tools
-    nix-output-monitor
-
-    firejail
-    rpi-imager
-    android-tools
-    # filebot
+    pciutils
+    amdgpu_top
 
     #AI
     opencode

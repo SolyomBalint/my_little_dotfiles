@@ -24,8 +24,6 @@
 
   programs.gamemode.enable = true;
 
-  # virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = [ "balintsolyom" ];
   # MTP share
   services.gvfs.enable = true;
 
@@ -54,6 +52,7 @@
     "ntfs"
   ];
   services.rpcbind.enable = true; # needed for NFS
+
   # fileSystems."/mnt/synology" = {
   #   device = "192.168.0.213:/volume1/Public";
   #   fsType = "nfs";
@@ -120,6 +119,7 @@
   #   openFirewall = true;
   # };
   #
+
   # # 3. Apple/Linux Service Discovery (mDNS) for both sambe and nfs
   services.avahi = {
     enable = true;

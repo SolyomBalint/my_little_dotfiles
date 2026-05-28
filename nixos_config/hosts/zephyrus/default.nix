@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}:
+{ ... }:
 
 {
   imports = [
@@ -11,48 +6,8 @@
     ../../common_modules/desktop_envs/gnome.nix
     ../../common_modules/desktop_envs/hyprland.nix
 
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./hardware.nix
+    ./host.nix
   ];
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking = {
-    hostName = "balint_nixos";
-  };
-
-  # Enable networking
-  networking.networkmanager = {
-    enable = true;
-    wifi.backend = "iwd";
-  };
-
-  environment.systemPackages = with pkgs; [
-    pciutils
-    clinfo
-  ];
-
-  services.supergfxd = {
-    enable = true;
-
-    settings = {
-      mode = "Hybrid";
-      vfio_enable = false;
-      vfio_save = false;
-      always_reboot = false;
-      no_logind = true;
-      logout_timeout_s = 180;
-      hotplug_type = "None";
-    };
-  };
-
-  services = {
-    asusd = {
-      enable = true;
-    };
-  };
-
-  system.stateVersion = "25.11";
 }

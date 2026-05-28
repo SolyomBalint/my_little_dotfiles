@@ -4,7 +4,7 @@
 # Adding oh my posh
 export PATH=$PATH:~/.local/bin
 if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
-  eval "$(oh-my-posh init zsh --config ~/.config/oh_my_posh/custom.omp.json)"
+    eval "$(oh-my-posh init zsh --config ~/.config/oh_my_posh/custom.omp.json)"
 fi
 
 # Setup zinit plugin manager
@@ -84,11 +84,11 @@ alias fzfnvim='nvim $(fzf -m --preview="bat --color=always {}")'
 ## yazi things TODO these should be exported to PATH instead of making aliases, this is true fro the above parts as well
 export PATH=$PATH:~/yazi/target/release
 function y() {
-	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-	yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-	rm -f -- "$tmp"
+    local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+    yazi "$@" --cwd-file="$tmp"
+    IFS= read -r -d '' cwd <"$tmp"
+    [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+    rm -f -- "$tmp"
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
@@ -97,3 +97,6 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # direnv hook for zsh
 eval "$(direnv hook zsh)"
+
+# Devenv hook for automatic activation instead of direnv
+eval "$(devenv hook zsh)"
