@@ -10,7 +10,7 @@
     fastfetch
     stow
     fd
-    inputs.yazi.packages.${pkgs.stdenv.hostPlatform.system}.default
+    yazi
     bat
     delta
     fzf

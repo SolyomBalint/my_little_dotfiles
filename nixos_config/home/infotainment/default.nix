@@ -15,7 +15,7 @@
     wineWow64Packages.waylandFull
     firefox
     inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight
-    wonderdraft
+    # wonderdraft
     nixpkgs_stable.bottles
     gimp
     # inkscape
