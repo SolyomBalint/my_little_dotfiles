@@ -13,6 +13,7 @@
     # PDF viewers
     zathura
     evince
+    anki
 
   ];
 }
