@@ -14,6 +14,7 @@
     zathura
     evince
     anki
+    mcaselector
 
   ];
 }
