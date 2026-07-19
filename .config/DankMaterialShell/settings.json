@@ -30,7 +30,6 @@
   "firstDayOfWeek": -1,
   "showWeekNumber": false,
   "calendarBackend": "auto",
-  "use24HourClock": true,
   "showSeconds": false,
   "padHours12Hour": false,
   "useFahrenheit": false,
@@ -341,7 +340,6 @@
   "batteryNotifyCritical": true,
   "batteryLowThreshold": 20,
   "batteryNotifyLow": false,
-  "batteryNotificationType": 0,
   "batteryAutoPowerSaver": false,
   "lockBeforeSuspend": false,
   "loginctlLockIntegration": true,
@@ -446,7 +444,6 @@
   "maxFprintTries": 3,
   "enableU2f": false,
   "u2fMode": "or",
-  "lockScreenActiveMonitor": "all",
   "lockScreenInactiveColor": "#000000",
   "lockScreenNotificationMode": 0,
   "lockScreenVideoEnabled": false,
@@ -814,5 +811,9 @@
   "frameLauncherEmergeSide": "bottom",
   "frameLauncherArcExtender": false,
   "frameMode": "separate",
-  "configVersion": 11
+  "configVersion": 12,
+  "batteryChargeLimitNotificationType": 0,
+  "batteryLowNotificationType": 0,
+  "batteryCriticalNotificationType": 0,
+  "clockFormat": "24h"
 }
