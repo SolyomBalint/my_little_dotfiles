@@ -9,6 +9,8 @@
     zotero
     obsidian
     nixpkgs_stable.mcp-nixos
+    rpi-imager
+    tigervnc
 
     # PDF viewers
     zathura

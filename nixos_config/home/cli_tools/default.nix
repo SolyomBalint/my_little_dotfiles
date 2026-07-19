@@ -21,6 +21,8 @@
     gnome-multi-writer
     nettools
     bear
+    usbutils
+    parted
 
     # Music handling
     playerctl

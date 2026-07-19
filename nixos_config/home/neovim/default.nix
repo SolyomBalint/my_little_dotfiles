@@ -29,6 +29,7 @@
     typescript-language-server
     glsl_analyzer
     tinymist
+    arduino-language-server
 
     # Diagnostic tools
     mypy
@@ -47,6 +48,7 @@
     # document generation
     typst
     texliveFull
+    arduino-cli
   ];
 
   # Needed for nix lsp

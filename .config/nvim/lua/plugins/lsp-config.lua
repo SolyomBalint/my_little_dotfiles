@@ -121,6 +121,7 @@ return {
                 "cypher_ls",
                 "rust_analyzer",
                 "wgsl_analyzer",
+                "arduino_language_server",
             }
 
             -- setup() is also available as an alias
