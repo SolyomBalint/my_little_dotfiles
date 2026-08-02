@@ -20,5 +20,6 @@
     gimp
     # inkscape
     # krita
+    foliate
   ];
 }

@@ -6,22 +6,23 @@
     stateVersion = "26.05";
   };
 
+  # TODO: Kanagawa gtk theme seems to be unmaintained, check for solutions
   home.packages = with pkgs; [
-    kanagawa-gtk-theme
-    kanagawa-icon-theme
+    # kanagawa-gtk-theme
+    # kanagawa-icon-theme
     libreoffice-qt6-fresh
   ];
 
   gtk = {
     enable = true;
-    iconTheme = {
-      name = "Kanagawa";
-      package = pkgs.kanagawa-icon-theme;
-    };
-    theme = {
-      name = "Kanagawa";
-      package = pkgs.kanagawa-gtk-theme;
-    };
+    # iconTheme = {
+    #   name = "Kanagawa";
+    #   package = pkgs.kanagawa-icon-theme;
+    # };
+    # theme = {
+    #   name = "Kanagawa";
+    #   package = pkgs.kanagawa-gtk-theme;
+    # };
     gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
   };

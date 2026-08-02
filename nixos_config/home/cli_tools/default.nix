@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  nixpkgs_stable,
   ...
 }:
 {
@@ -36,6 +37,6 @@
 
     poppler-utils
 
-    python313Packages.markitdown
+    nixpkgs_stable.python313Packages.markitdown
   ];
 }
