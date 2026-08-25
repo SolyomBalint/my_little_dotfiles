@@ -10,6 +10,7 @@ return {
                         enabled = true,
                         if_many = true,
                     },
+                    show_code = true,
                     multilines = true,
                     -- show_all_diags_on_cursorline = true,
                     -- multiple_diag_under_cursor = true,

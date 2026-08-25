@@ -14,6 +14,11 @@ return {
 
         vim.g.undotree_WindowLayout = 4
         vim.g.undotree_SetFocusWhenToggle = 1
-        vim.keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle, { desc = "UNDOTREE: Toggle undotree" })
+        vim.keymap.set(
+            "n",
+            "<leader>ut",
+            vim.cmd.UndotreeToggle,
+            { desc = "UNDOTREE: Toggle undotree" }
+        )
     end,
 }

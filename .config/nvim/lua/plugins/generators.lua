@@ -49,16 +49,32 @@ return {
 
             vim.keymap.set("n", ";df", function()
                 neogen.generate({ type = "func" })
-            end, { noremap = true, silent = true, desc = "NEOGEN: Generate function docs" })
+            end, {
+                noremap = true,
+                silent = true,
+                desc = "NEOGEN: Generate function docs",
+            })
             vim.keymap.set("n", ";dc", function()
                 neogen.generate({ type = "class" })
-            end, { noremap = true, silent = true, desc = "NEOGEN: Generate class docs" })
+            end, {
+                noremap = true,
+                silent = true,
+                desc = "NEOGEN: Generate class docs",
+            })
             vim.keymap.set("n", ";dt", function()
                 neogen.generate({ type = "type" })
-            end, { noremap = true, silent = true, desc = "NEOGEN: Generate type docs" })
+            end, {
+                noremap = true,
+                silent = true,
+                desc = "NEOGEN: Generate type docs",
+            })
             vim.keymap.set("n", ";dfl", function()
                 neogen.generate({ type = "file" })
-            end, { noremap = true, silent = true, desc = "NEOGEN: Generate file docs" })
+            end, {
+                noremap = true,
+                silent = true,
+                desc = "NEOGEN: Generate file docs",
+            })
         end,
     },
 }

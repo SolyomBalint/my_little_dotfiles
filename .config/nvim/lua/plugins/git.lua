@@ -75,32 +75,40 @@ return {
     {
         "NeogitOrg/neogit",
         dependencies = {
-            "nvim-lua/plenary.nvim",  -- required
+            "nvim-lua/plenary.nvim", -- required
             "sindrets/diffview.nvim", -- optional - Diff integration
-            "ibhagwan/fzf-lua",       -- optional
+            "ibhagwan/fzf-lua", -- optional
         },
         config = function()
             local neogit = require("neogit")
             neogit.setup({})
-            vim.keymap.set(
-                "n",
-                ";goc",
-                neogit.open,
-                { silent = true, noremap = true, desc = "NEOGIT: Open neogit in current root" }
-            ) -- git open current
+            vim.keymap.set("n", ";goc", neogit.open, {
+                silent = true,
+                noremap = true,
+                desc = "NEOGIT: Open neogit in current root",
+            }) -- git open current
 
             vim.keymap.set("n", ";gop", function()
-                Snacks.input(
-                    { prompt = "Path to gitrepo: ", default = vim.fn.getcwd() .. "/", completion = "file" },
-                    function(input)
-                        last_open_git_repo_path = input
-                        neogit.open({ cwd = input })
-                    end
-                )
-            end, { silent = true, noremap = true, desc = "NEOGIT: Open neogit in given dir" }) -- git open path
+                Snacks.input({
+                    prompt = "Path to gitrepo: ",
+                    default = vim.fn.getcwd() .. "/",
+                    completion = "file",
+                }, function(input)
+                    last_open_git_repo_path = input
+                    neogit.open({ cwd = input })
+                end)
+            end, {
+                silent = true,
+                noremap = true,
+                desc = "NEOGIT: Open neogit in given dir",
+            }) -- git open path
             vim.keymap.set("n", ";gol", function()
                 neogit.open({ cwd = last_open_git_repo_path })
-            end, { silent = true, noremap = true, desc = "NEOGIT: Open neogit in last open dir" }) -- git open last
+            end, {
+                silent = true,
+                noremap = true,
+                desc = "NEOGIT: Open neogit in last open dir",
+            }) -- git open last
             -- Example custom command, would come in handy for work, maybe using a vim cmd would also be good
             -- vim.keymap.set("n", "<leader>gcc", neogit.action("commit", "commit", { "--verbose", "--all" }))
         end,

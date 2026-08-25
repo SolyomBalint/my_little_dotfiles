@@ -55,25 +55,32 @@ return {
             fzf.register_ui_select()
             local rg_cmd = "rg -u --follow --hidden --with-filename --line-number --column --smart-case"
                 .. " --glob=!**/.git/* --glob=!**/build/* --glob=!**/.idea/* --glob=!**/.cache/* --glob=!**/.devenv/* --glob=!**/.direnv/*"
-            vim.keymap.set("n", "<C-p>a", function()
-                Snacks.input({
-                    prompt = "Path to basedir: ",
-                    default = searchPlace .. (searchPlace:sub(-1) == "/" and "" or "/"),
-                    completion = "file",
-                }, function(input)
-                    if input ~= nil then
-                        searchPlace = input
-                        fzf.files({
-                            cwd = input,
-                            cmd = "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build -E !**/.git/* -E .git -E !**/.devenv/* -E .devenv",
-                        })
-                    end
-                end)
-            end, { noremap = true, desc = "FZF: search for files in input dir" })
+            vim.keymap.set(
+                "n",
+                "<C-p>a",
+                function()
+                    Snacks.input({
+                        prompt = "Path to basedir: ",
+                        default = searchPlace
+                            .. (searchPlace:sub(-1) == "/" and "" or "/"),
+                        completion = "file",
+                    }, function(input)
+                        if input ~= nil then
+                            searchPlace = input
+                            fzf.files({
+                                cwd = input,
+                                cmd = "fd --follow --hidden --no-ignore-vcs -E !**/build/* -E build -E !**/.git/* -E .git -E !**/.devenv/* -E .devenv",
+                            })
+                        end
+                    end)
+                end,
+                { noremap = true, desc = "FZF: search for files in input dir" }
+            )
             vim.keymap.set("n", "<leader>lg", function()
                 Snacks.input({
                     prompt = "Path to basedir: ",
-                    default = searchPlace .. (searchPlace:sub(-1) == "/" and "" or "/"),
+                    default = searchPlace
+                        .. (searchPlace:sub(-1) == "/" and "" or "/"),
                     completion = "file",
                 }, function(input)
                     if input ~= nil then
@@ -84,11 +91,15 @@ return {
                         })
                     end
                 end)
-            end, { noremap = true, desc = "FZF: Live grep in input dir wiht glob support" })
+            end, {
+                noremap = true,
+                desc = "FZF: Live grep in input dir wiht glob support",
+            })
             vim.keymap.set("v", "<C-p>v", function()
                 Snacks.input({
                     prompt = "Path to basedir: ",
-                    default = searchPlace .. (searchPlace:sub(-1) == "/" and "" or "/"),
+                    default = searchPlace
+                        .. (searchPlace:sub(-1) == "/" and "" or "/"),
                     completion = "file",
                 }, function(input)
                     if input ~= nil then
@@ -99,7 +110,10 @@ return {
                         })
                     end
                 end)
-            end, { noremap = true, desc = "FZF: Grep for the highlighted word in input dir" })
+            end, {
+                noremap = true,
+                desc = "FZF: Grep for the highlighted word in input dir",
+            })
             vim.keymap.set(
                 "n",
                 "<C-p>rl",
@@ -112,27 +126,67 @@ return {
                 fzf.lgrep_curbuf,
                 { noremap = true, desc = "FZF: Live grep in current buffer" }
             )
-            vim.keymap.set("n", "<C-p>sh", fzf.search_history, { noremap = true, desc = "FZF: Vim search history" })
+            vim.keymap.set(
+                "n",
+                "<C-p>sh",
+                fzf.search_history,
+                { noremap = true, desc = "FZF: Vim search history" }
+            )
             vim.keymap.set(
                 "n",
                 "<C-p>cmd",
                 fzf.command_history,
                 { noremap = true, desc = "FZF: Vim command line history" }
             )
-            vim.keymap.set("n", "<C-p>od", fzf.oldfiles, { noremap = true, desc = "FZF: List previously opened files" })
+            vim.keymap.set(
+                "n",
+                "<C-p>od",
+                fzf.oldfiles,
+                { noremap = true, desc = "FZF: List previously opened files" }
+            )
             vim.keymap.set(
                 "n",
                 "<leader>dl",
                 fzf.dap_breakpoints,
                 { noremap = true, desc = "FZF: List dap breakpoints" }
             )
-            vim.keymap.set("n", "<C-p>b", fzf.buffers, { noremap = true, desc = "FZF: List open buffers" })
-            vim.keymap.set("n", "<C-p>k", fzf.keymaps, { noremap = true, desc = "FZF: Search loaded keymaps" })
+            vim.keymap.set(
+                "n",
+                "<C-p>b",
+                fzf.buffers,
+                { noremap = true, desc = "FZF: List open buffers" }
+            )
+            vim.keymap.set(
+                "n",
+                "<C-p>k",
+                fzf.keymaps,
+                { noremap = true, desc = "FZF: Search loaded keymaps" }
+            )
             -- TODO think this through
-            vim.keymap.set("n", ";gc", fzf.git_commits, { desc = "FZF: Search git commits" })
-            vim.keymap.set("n", ";gb", fzf.git_branches, { desc = "FZF: Search git branches" })
-            vim.keymap.set("n", ";gs", fzf.git_status, { desc = "FZF: Check git status" })
-            vim.keymap.set("n", ";gst", fzf.git_stash, { desc = "FZF: Search git stash" })
+            vim.keymap.set(
+                "n",
+                ";gc",
+                fzf.git_commits,
+                { desc = "FZF: Search git commits" }
+            )
+            vim.keymap.set(
+                "n",
+                ";gb",
+                fzf.git_branches,
+                { desc = "FZF: Search git branches" }
+            )
+            vim.keymap.set(
+                "n",
+                ";gs",
+                fzf.git_status,
+                { desc = "FZF: Check git status" }
+            )
+            vim.keymap.set(
+                "n",
+                ";gst",
+                fzf.git_stash,
+                { desc = "FZF: Search git stash" }
+            )
         end,
     },
 }
