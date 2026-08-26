@@ -1,20 +1,19 @@
-{ username, pkgs, ... }:
+{ pkgs, ... }:
 {
-  home = {
-    inherit username;
-    homeDirectory = "/home/${username}";
-    stateVersion = "26.05";
-  };
+  # home.username and home.homeDirectory are set per user by home-manager's
+  # NixOS module, so this file stays user-agnostic.
+  home.stateVersion = "26.05";
 
   # TODO: Kanagawa gtk theme seems to be unmaintained, check for solutions
   home.packages = with pkgs; [
     # kanagawa-gtk-theme
     # kanagawa-icon-theme
-    libreoffice-qt6-fresh
+    libreoffice-qt-stable
   ];
 
   gtk = {
     enable = true;
+    colorScheme = "dark";
     # iconTheme = {
     #   name = "Kanagawa";
     #   package = pkgs.kanagawa-icon-theme;

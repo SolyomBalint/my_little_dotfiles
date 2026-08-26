@@ -40,39 +40,74 @@
       nixpkgs_stable,
       ...
     }:
+    let
+      system = "x86_64-linux";
+
+      specialArgs = {
+        inherit inputs;
+        nixpkgs_stable = import nixpkgs_stable {
+          inherit system;
+          config.allowUnfree = true;
+          overlays = [
+          ];
+        };
+      };
+
+      # A user is three things: a system account, a system-level module of
+      # their own, and a home-manager configuration.
+      mkUser =
+        {
+          username,
+          uid,
+          extraGroups ? [ ],
+        }:
+        {
+          imports = [ ./users/${username}/nixos.nix ];
+
+          users.users.${username} = {
+            inherit uid;
+            isNormalUser = true;
+            description = username;
+            extraGroups = [
+              "networkmanager"
+              "wheel"
+              "video"
+              "render"
+            ]
+            ++ extraGroups;
+          };
+
+          home-manager.users.${username} = import ./users/${username}/home.nix;
+        };
+    in
     {
       nixosConfigurations = {
-        balintnixos =
-          let
-            username = "balintsolyom";
-          in
+        balintnixos = nixpkgs.lib.nixosSystem {
+          inherit system specialArgs;
 
-          nixpkgs.lib.nixosSystem rec {
-            specialArgs = {
-              inherit username;
-              inherit inputs;
-              nixpkgs_stable = import nixpkgs_stable {
-                system = "x86_64-linux";
-                config.allowUnfree = true;
-                overlays = [
-                ];
-              };
-            };
-            modules = [
-              ./hosts/zephyrus
-              ./users/${username}/nixos.nix
+          modules = [
+            ./hosts/zephyrus
 
-              # Make home manager a NixOs module so it will always load
-              home-manager.nixosModules.home-manager
-              {
-                home-manager.useGlobalPkgs = true;
-                home-manager.useUserPackages = true;
+            # Make home manager a NixOs module so it will always load
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs;
+            }
 
-                home-manager.extraSpecialArgs = specialArgs;
-                home-manager.users.${username} = import ./users/${username}/home.nix;
-              }
-            ];
-          };
+            (mkUser {
+              username = "balintsolyom";
+              uid = 1000;
+              extraGroups = [ "docker" ];
+            })
+            (mkUser {
+              username = "holodetect";
+              uid = 1001;
+              extraGroups = [ "docker" ];
+            })
+          ];
+        };
       };
     };
 }

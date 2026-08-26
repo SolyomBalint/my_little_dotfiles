@@ -1,20 +1,10 @@
 {
   pkgs,
   lib,
-  username,
   ...
 }:
 {
-  users.users.${username} = {
-    isNormalUser = true;
-    description = username;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
-      "render"
-    ];
-  };
+  # User accounts are declared by mkUser in flake.nix, not here.
 
   # for minecraft
   networking.firewall.allowedTCPPorts = [
@@ -23,7 +13,7 @@
   ];
 
   nix.settings = {
-    trusted-users = [ username ];
+    trusted-users = [ "@wheel" ];
     experimental-features = [
       "nix-command"
       "flakes"
@@ -103,17 +93,26 @@
       "firefox" = {
         isAllowed = true;
         isSystem = false;
-        users = [ "1000" ];
+        users = [
+          "1000"
+          "1001"
+        ];
       };
       "brave-browser" = {
         isAllowed = true;
         isSystem = false;
-        users = [ "1000" ];
+        users = [
+          "1000"
+          "1001"
+        ];
       };
       "zen" = {
         isAllowed = true;
         isSystem = false;
-        users = [ "1000" ];
+        users = [
+          "1000"
+          "1001"
+        ];
       };
     };
   };

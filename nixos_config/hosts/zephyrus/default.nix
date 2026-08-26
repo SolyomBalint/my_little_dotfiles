@@ -9,5 +9,7 @@
     ./hardware-configuration.nix
     ./hardware.nix
     ./host.nix
+    ./gaming.nix
+    ./services.nix
   ];
 }

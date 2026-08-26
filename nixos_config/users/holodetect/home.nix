@@ -9,7 +9,6 @@
     ../../home/coding
     ../../home/terminal
     ../../home/neovim
-    ../../home/infotainment
     ../../home/work_tools
     ../../home/desktop_env
     ../../home/desktop_tools
