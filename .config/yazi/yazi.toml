@@ -10,23 +10,28 @@ sort_dir_first = true
 wrap = "yes"
 
 [opener]
-edit = [ 
-    { run = 'nvim "$@"', block = true, for = 'unix', desc = "nvim file" },
+edit = [
+    { run = 'nvim %s', block = true, for = 'unix', desc = "nvim file" },
 ]
 
 open = [
-    { run = 'xdg-open "$@"', block = false, orphan = true, desc = "open with xdg-open", for = "linux" },
-    { run = 'zathura "$@"', block = false, orphan = true, desc = "open pdf with zathura", for = "linux" },
-    { run = 'evince "$@"', block = false, orphan = true, desc = "open pdf with evince", for = "linux" },
-    { run = 'zen "$@"', block = false, orphan = true, desc = "open html in zen", for = "linux" },
+    { run = 'xdg-open %s', orphan = true, desc = "open with xdg-open", for = "linux" },
+]
+
+pdf = [
+    { run = 'zathura %s', orphan = true, desc = "open pdf with zathura", for = "linux" },
+    { run = 'evince %s', orphan = true, desc = "open pdf with evince", for = "linux" },
+]
+
+html = [
+    { run = 'zen %s', orphan = true, desc = "open html in zen", for = "linux" },
 ]
 
 [open]
-rules = [
-    { mime = "text/*",          use = ["edit", "open"] },
-    { mime = "application/pdf", use = ["open"] },
-    { mime = "text/html",       use = ["open"] },
-    { mime = "*",               use = ["edit", "open"] },
+prepend_rules = [
+    { mime = "application/pdf", use = [ "pdf", "open" ] },
+    { mime = "text/html", use = [ "html", "open", "edit" ] },
+    { url = "*.htm*", use = [ "html", "open", "edit" ] },
 ]
 
 [[plugin.prepend_fetchers]]
