@@ -196,6 +196,7 @@ hl.bind(mainMod .. " + m", hl.dsp.layout("togglesplit")) -- dwindle
 -- Custom
 hl.bind("PRINT", hl.dsp.exec_cmd("hyprshot -m window"))
 hl.bind("SHIFT + PRINT", hl.dsp.exec_cmd("hyprshot -m region"))
+hl.bind(mainMod .. " + SHIFT + U", hl.dsp.exec_cmd("hyprshot -m region"))
 hl.bind(mainMod .. " + SHIFT + l", hl.dsp.exec_cmd("dms ipc call lock lock"))
 hl.bind(mainMod .. " + n", hl.dsp.exec_cmd("hyprsunset -t 4000"))
 hl.bind(mainMod .. " + SHIFT + n", hl.dsp.exec_cmd("hyprsunset -t 6000"))

@@ -23,6 +23,7 @@
     nettools
     bear
     usbutils
+    touying
     parted
 
     # Music handling

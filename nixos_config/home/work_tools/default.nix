@@ -17,6 +17,6 @@
     evince
     anki
     mcaselector
-
+    pympress
   ];
 }
