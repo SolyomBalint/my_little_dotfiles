@@ -12,6 +12,7 @@
     mangohud
     discord
     wineWow64Packages.waylandFull
+    vlc
     # wonderdraft
     nixpkgs_stable.bottles
     gimp
