@@ -6,7 +6,7 @@
 }:
 {
   home.packages = with pkgs; [
-    zotero
+    nixpkgs_stable.zotero
     obsidian
     nixpkgs_stable.mcp-nixos
     rpi-imager
