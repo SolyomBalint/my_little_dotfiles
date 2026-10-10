@@ -36,7 +36,12 @@
 
   services.xserver.videoDrivers = [ "amdgpu" ];
 
+  # DDC/CI over i2c so external monitors' brightness can be controlled
+  # (loads i2c-dev and creates the i2c group with matching udev rules)
+  hardware.i2c.enable = true;
+
   environment.systemPackages = with pkgs; [
+    ddcutil
     amdgpu_top
     vulkan-tools
     clinfo

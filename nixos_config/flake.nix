@@ -73,6 +73,7 @@
               "wheel"
               "video"
               "render"
+              "i2c"
             ]
             ++ extraGroups;
           };
