@@ -70,7 +70,6 @@ local menu = "wofi --show drun"
 hl.on("hyprland.start", function()
     -- hl.exec_cmd(terminal)
     -- hl.exec_cmd("nm-applet")
-    hl.exec_cmd("hypridle")
     hl.exec_cmd("hyprpaper")
     hl.exec_cmd(
         'tmux setenv -g HYPRLAND_INSTANCE_SIGNATURE "$HYPRLAND_INSTANCE_SIGNATURE"'
@@ -78,7 +77,6 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
     -- For dank linux desktop
     hl.exec_cmd("wl-paste --watch cliphist store")
-    hl.exec_cmd("dms run")
 
     -- hl.exec_cmd('mpvpaper --auto-pause -o "no-audio loop panscan=1.0" DP-11 ~/Pictures/backgrounds/vertical/quiet_neon_night.mp4')
 end)
@@ -353,3 +351,13 @@ suppressMaximizeRule = hl.window_rule({
 
     suppress_event = "maximize",
 })
+
+-----------------------------
+---- DANK MATERIAL SHELL ----
+-----------------------------
+
+-- Files DMS writes from its settings UI. Loaded last so DMS settings win over
+-- the defaults above (gaps, rounding, touchpad, ...).
+require("dms.layout")
+require("dms.input")
+require("dms.windowrules")

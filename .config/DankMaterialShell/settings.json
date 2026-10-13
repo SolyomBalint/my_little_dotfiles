@@ -54,6 +54,7 @@
       "magnification": false,
       "magnificationScale": 130,
       "magnificationProfile": "parabolic",
+      "magnificationExpand": false,
       "order": [],
       "widgets": [
         {
@@ -324,12 +325,26 @@
       "popupGapsManual": 4,
       "maximizeDetection": true,
       "scrollEnabled": true,
-      "scrollXBehavior": "column",
+      "scrollXBehavior": "focusWindow",
       "scrollYBehavior": "workspace",
       "followInterfaceStyle": false,
       "widgetFollowInterfaceStyle": true
     }
   ],
+  "builtInPluginSettings": {
+    "dms_qr_generator": {
+      "trigger": "qrg"
+    },
+    "dms_power": {
+      "trigger": "pw"
+    },
+    "dms_clipboard_search": {
+      "trigger": "cb"
+    },
+    "dms_settings_search": {
+      "trigger": "?"
+    }
+  },
   "frameMode": "separate",
-  "configVersion": 36
+  "configVersion": 41
 }

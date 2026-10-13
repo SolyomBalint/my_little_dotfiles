@@ -29,10 +29,6 @@
     # Music handling
     playerctl
 
-    # For sensors
-    pciutils
-    amdgpu_top
-
     #AI
     opencode
 

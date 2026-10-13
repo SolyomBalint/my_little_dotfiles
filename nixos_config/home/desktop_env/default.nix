@@ -26,4 +26,14 @@
     enableClipboardPaste = true;
   };
 
+  # IBus (pulled in by GNOME) autostarts in every non-GNOME/KDE session that
+  # runs XDG autostart (UWSM does) and nags that it should be launched by the
+  # compositor. Keyboard layouts come from xkb, so hide it outside GNOME.
+  xdg.configFile."autostart/ibus-daemon.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=IBus
+    Hidden=true
+  '';
+
 }

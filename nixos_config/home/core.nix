@@ -22,23 +22,16 @@
     #   name = "Kanagawa";
     #   package = pkgs.kanagawa-gtk-theme;
     # };
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
-  };
-
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
+    # colorScheme also sets gtk-application-prefer-dark-theme and the dconf
+    # org/gnome/desktop/interface color-scheme, so nothing else is needed here
   };
 
   qt = {
     enable = true;
     platformTheme.name = "gtk3";
-    style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
-    };
+    # Leaving style.package unset lets home-manager install both adwaita-qt
+    # (Qt5) and adwaita-qt6; pinning adwaita-qt left Qt6 apps unstyled
+    style.name = "adwaita-dark";
   };
 
   programs.home-manager.enable = true;

@@ -102,5 +102,10 @@
     enable = true;
     nssmdns4 = true; # Allow this machine to resolve .local names
     openFirewall = true;
+    # Let user services (e.g. KDE Connect) announce themselves over mDNS
+    publish = {
+      enable = true;
+      userServices = true;
+    };
   };
 }

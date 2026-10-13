@@ -23,8 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    yazi.url = "github:sxyazi/yazi";
-
     ## Quickshell based desktop env
     dankMaterialShell = {
       url = "github:AvengeMedia/DankMaterialShell";
@@ -100,7 +98,11 @@
             (mkUser {
               username = "balintsolyom";
               uid = 1000;
-              extraGroups = [ "docker" ];
+              # input: lets DMS read evdev devices (keyboard/caps-lock state etc.)
+              extraGroups = [
+                "docker"
+                "input"
+              ];
             })
             (mkUser {
               username = "holodetect";
