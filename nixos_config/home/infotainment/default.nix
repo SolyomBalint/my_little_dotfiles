@@ -18,5 +18,8 @@
     gimp
     # inkscape
     # krita
+    # controller test
+    # jstest-gtk
+    antimicrox
   ];
 }

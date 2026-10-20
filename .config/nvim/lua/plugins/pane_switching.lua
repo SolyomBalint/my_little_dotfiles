@@ -10,11 +10,8 @@ return {
         vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
         vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
         vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
-        vim.keymap.set(
-            "n",
-            "<C-\\>",
-            require("smart-splits").move_cursor_previous
-        )
+        -- move_cursor_previous was removed in smart-splits v3
+        vim.keymap.set("n", "<C-\\>", "<C-w>p")
         vim.keymap.set(
             "n",
             "<leader><leader>h",
