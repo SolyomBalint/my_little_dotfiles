@@ -1,22 +1,24 @@
 #!/bin/bash
-STATE_FILE="/tmp/hypr_gaming_mode"
+# `hyprctl keyword` doesn't work with the Lua config parser, so use `hyprctl eval`.
 
 HP="desc:Hewlett Packard HP E241i CN44171KK9"
 SAMSUNG="desc:Samsung Electric Company LS24AG32x H9JW105851"
 
-if [ ! -f "$STATE_FILE" ] || [ "$(cat $STATE_FILE)" = "off" ]; then
-    # HP renders as 1200x1920, spans y=0..1920
-    # Place Samsung at y=1921 — 1px below HP's bottom edge, no shared boundary
-    # Place Laptop at a y that doesn't overlap Samsung's y=1921..3001 range
-    # Laptop is 1200px tall, place it at y=0 so it spans y=0..1200
-    # Samsung spans y=1921..3001, Laptop spans y=0..1200 — zero overlap on the right edge
-    hyprctl keyword monitor "$HP, 1920x1200@59.95, 0x0, 1, transform, 3"
-    hyprctl keyword monitor "$SAMSUNG, 1920x1080@164.96, 1200x2000, 1"
-    echo "on" >"$STATE_FILE"
+set_layout() {
+    local samsung_pos="$1"
+    hyprctl eval "hl.monitor({ output = \"$HP\", mode = \"1920x1200@59.95\", position = \"0x0\", scale = 1, transform = 3 })"
+    hyprctl eval "hl.monitor({ output = \"$SAMSUNG\", mode = \"1920x1080@164.96\", position = \"$samsung_pos\", scale = 1 })"
+}
+
+# Derive the current mode from the real layout (Samsung at y=2000 means gaming mode),
+# so the state can't go stale after a config reload.
+samsung_y=$(hyprctl monitors -j | jq -r --arg d "${SAMSUNG#desc:}" '.[] | select(.description == $d) | .y')
+
+if [ "$samsung_y" != "2000" ]; then
+    # Samsung sits far below/right of HP so the cursor can't leave it
+    set_layout "1200x2000"
     notify-send "Gaming Mode" "Cursor confined to Samsung"
 else
-    hyprctl keyword monitor "$SAMSUNG, 1920x1080@164.96, 1200x0, 1"
-    hyprctl keyword monitor "$HP, 1920x1200@59.95, 0x0, 1, transform, 3"
-    echo "off" >"$STATE_FILE"
+    set_layout "1200x0"
     notify-send "Gaming Mode" "Normal layout restored"
 fi

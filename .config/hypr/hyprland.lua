@@ -37,7 +37,12 @@ hl.monitor({
 -- hl.monitor({ output = "desc:Shenzhen KTC Technology Group H27D9", mode = "2560x1440@99.97", position = "1920x0", scale = 1 })
 
 -- Only laptop
--- hl.monitor({ output = "desc:Thermotrex Corporation TL140VDXP10", mode = "1920x1200@144",  position = "0x0", scale = 1 })
+-- hl.monitor({
+--     output = "desc:Thermotrex Corporation TL140VDXP10",
+--     mode = "1920x1200@144",
+--     position = "0x0",
+--     scale = 1.33,
+-- })
 -- hl.monitor({ output = "desc:Thermotrex Corporation TL140VDXP10", mode = "1920x1200@60.0", position = "0x0", scale = 1 })
 -- hl.monitor({ output = "desc:Thermotrex Corporation TL140VDXP10", mode = "1920x1200@144",  position = "0x0", scale = 1.2 })
 -- hl.monitor({ output = "desc:Thermotrex Corporation TL140VDXP10", mode = "1920x1200@60.0", position = "0x0", scale = 1.2 })
@@ -200,6 +205,7 @@ hl.bind(mainMod .. " + n", hl.dsp.exec_cmd("hyprsunset -t 4000"))
 hl.bind(mainMod .. " + SHIFT + n", hl.dsp.exec_cmd("hyprsunset -t 6000"))
 hl.bind(mainMod .. " + q", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + SHIFT + s", hl.dsp.exec_cmd("systemctl suspend"))
+hl.bind(mainMod .. " + SHIFT + o", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_monitors.sh"))
 -- hl.bind("ALT + l", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
 hl.bind(
     mainMod .. " + SHIFT + b",
