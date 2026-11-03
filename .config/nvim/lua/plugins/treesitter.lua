@@ -16,6 +16,8 @@ return {
             },
             auto_install = true,
             highlight = true,
+            -- VimTeX needs its own syntax engine (conceal, math zone detection)
+            nohighlight = { "latex" },
         })
     end,
 }

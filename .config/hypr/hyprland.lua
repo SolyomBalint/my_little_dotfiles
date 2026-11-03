@@ -82,6 +82,10 @@ hl.on("hyprland.start", function()
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
     -- For dank linux desktop
     hl.exec_cmd("wl-paste --watch cliphist store")
+    -- Keep DMS bar/monitor assignments in sync when connector names change
+    hl.exec_cmd(
+        "~/.config/hypr/scripts/monitor_hotplug_listener.sh ~/.config/hypr/scripts/dms_monitor_names.sh"
+    )
 
     -- hl.exec_cmd('mpvpaper --auto-pause -o "no-audio loop panscan=1.0" DP-11 ~/Pictures/backgrounds/vertical/quiet_neon_night.mp4')
 end)
@@ -205,7 +209,10 @@ hl.bind(mainMod .. " + n", hl.dsp.exec_cmd("hyprsunset -t 4000"))
 hl.bind(mainMod .. " + SHIFT + n", hl.dsp.exec_cmd("hyprsunset -t 6000"))
 hl.bind(mainMod .. " + q", hl.dsp.window.fullscreen())
 hl.bind(mainMod .. " + SHIFT + s", hl.dsp.exec_cmd("systemctl suspend"))
-hl.bind(mainMod .. " + SHIFT + o", hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_monitors.sh"))
+hl.bind(
+    mainMod .. " + SHIFT + o",
+    hl.dsp.exec_cmd("~/.config/hypr/scripts/toggle_monitors.sh")
+)
 -- hl.bind("ALT + l", hl.dsp.exec_cmd("hyprctl switchxkblayout all next"))
 hl.bind(
     mainMod .. " + SHIFT + b",

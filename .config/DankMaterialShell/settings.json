@@ -346,5 +346,6 @@
     }
   },
   "frameMode": "separate",
-  "configVersion": 42
+  "configVersion": 42,
+  "displayNameMode": "model"
 }

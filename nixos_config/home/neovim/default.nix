@@ -43,11 +43,12 @@
     claude-agent-acp
 
     gnumake
-    # nodejs_24
+    nodejs
 
     # document generation
     typst
     texliveFull
+    texlab
     arduino-cli
   ];
 

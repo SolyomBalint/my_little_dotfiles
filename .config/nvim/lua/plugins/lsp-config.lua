@@ -122,6 +122,7 @@ return {
                 "rust_analyzer",
                 "wgsl_analyzer",
                 "arduino_language_server",
+                "texlab",
             }
 
             -- setup() is also available as an alias
@@ -223,6 +224,15 @@ return {
                     formatterMode = "typstyle",
                     exportPdf = "onType",
                     semanticTokens = "disable",
+                },
+            })
+
+            -- VimTeX handles compilation and viewing, texlab only provides completion/diagnostics
+            vim.lsp.config("texlab", {
+                settings = {
+                    texlab = {
+                        build = { onSave = false },
+                    },
                 },
             })
 
