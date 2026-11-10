@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  nixpkgs_stable,
   ...
 }:
 {
@@ -22,7 +23,7 @@
     lua-language-server
     wgsl-analyzer
     # llvmPackages_latest.clang-tools
-    neocmakelsp
+    nixpkgs_stable.neocmakelsp
     pyright
     marksman
     nixd

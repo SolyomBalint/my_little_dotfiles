@@ -35,7 +35,6 @@
     poppler-utils
 
     nixpkgs_stable.python313Packages.markitdown
-    docling
 
     # For handling controller inputs
     evtest

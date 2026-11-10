@@ -15,7 +15,7 @@
     # PDF viewers
     zathura
     evince
-    anki
+    nixpkgs_stable.anki
     mcaselector
     pympress
   ];

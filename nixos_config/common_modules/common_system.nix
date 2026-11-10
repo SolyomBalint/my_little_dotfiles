@@ -12,6 +12,8 @@
     8123
   ];
 
+  boot.loader.systemd-boot.configurationLimit = 5;
+
   nix.settings = {
     trusted-users = [ "@wheel" ];
     experimental-features = [
@@ -126,6 +128,5 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    jack.enable = true;
   };
 }
