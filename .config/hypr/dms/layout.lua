@@ -15,10 +15,16 @@ hl.config({
 	},
 })
 
--- Hand-written or migrated hyprland.lua often lacks this; tweened island lifts misplace the drag pointer.
-hl.layer_rule({ match = { namespace = "^dms:dankisland$" }, no_anim = true })
+-- Hand-written or migrated hyprland.lua often lacks these; Hyprland would tween every DMS layer move.
+hl.layer_rule({ match = { namespace = "^(quickshell)$" }, no_anim = true })
+hl.layer_rule({ match = { namespace = "^dms:.*" }, no_anim = true })
 
 hl.layer_rule({
 	match = { namespace = "^dms:bar$" },
+	xray = true,
+})
+
+hl.layer_rule({
+	match = { namespace = "^dms:dankisland$" },
 	xray = true,
 })

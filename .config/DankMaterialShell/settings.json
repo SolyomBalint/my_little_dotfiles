@@ -28,10 +28,12 @@
       "smartAutoHide": false,
       "useOverlayLayer": false,
       "editOnRightClick": false,
+      "showEditWidgetsInContextMenu": true,
       "showOnFullscreen": false,
       "openOnOverview": false,
       "groupByApp": false,
       "separatePinnedAndRunningApps": false,
+      "showRunningApps": true,
       "restoreSpecialWorkspaceOnClick": false,
       "isolateDisplays": false,
       "indicatorStyle": "circle",
@@ -347,6 +349,7 @@
     }
   },
   "frameMode": "separate",
-  "configVersion": 43,
-  "displayNameMode": "model"
+  "configVersion": 46,
+  "displayNameMode": "model",
+  "motionDuration": 0
 }

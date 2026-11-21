@@ -33,4 +33,10 @@
   services.asusd.enable = true;
 
   system.stateVersion = "26.05";
+
+  # # for fioo
+  # hardware.bluetooth.settings.General = {
+  #   ControllerMode = "bredr";
+  #   JustWorksRepairing = "always";
+  # };
 }
